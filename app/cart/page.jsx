@@ -1,17 +1,16 @@
 "use client";
 
-import axios from "axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useFetchAllProduct } from "../../internalAPI/FetchAllProducts";
 
 export default function Cart() {
-  const queryClient = useQueryClient();
+  const { data, isPending, isError } = useFetchAllProduct();
 
-  const { data, isPending, isError } = useQuery({
-    queryKey: ["productsData"],
-    queryFn: () => {
-      return axios.get("/api/product");
-    },
-  });
-
-  return <div>Cart</div>;
+  return (
+    <div>
+      <p>All products</p>
+      {data?.map((product) => (
+        <p>{product.title}</p>
+      ))}
+    </div>
+  );
 }
