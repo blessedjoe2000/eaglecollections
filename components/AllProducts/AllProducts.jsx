@@ -34,12 +34,15 @@ export default function AllProducts() {
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
       {data &&
         data.map((productData) => (
-          <div key={productData._id} className="p-5 shadow-md rounded-md">
+          <div
+            key={productData._id}
+            className="p-5 rounded-md bg-white shadow-sm"
+          >
             <div>
               <div className="mb-2">
                 <Link href={`/product/${productData._id}`}>
                   <Image
-                    src={productData.images[0]}
+                    src={productData.images?.[0]}
                     alt={`${productData.title}`}
                     width={250}
                     height={200}

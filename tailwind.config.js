@@ -18,6 +18,7 @@ module.exports = {
         "main-pink": "#ff99c8",
         "light-pink": "#feeafa",
         "mid-pink": "#ffc8dd",
+        "light-grey": "#f4f4f6",
       },
     },
   },

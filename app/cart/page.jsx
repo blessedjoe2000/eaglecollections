@@ -18,14 +18,8 @@ export default function Cart() {
   const [country, setCountry] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const {
-    cartProductIds,
-    addProduct,
-    removeProduct,
-    addToFavorite,
-    favoriteStatus,
-    clearCart,
-  } = useContext(CartContext);
+  const { cartProductIds, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
 
   useEffect(() => {
     if (cartProductIds?.length > 0) {
@@ -43,10 +37,6 @@ export default function Cart() {
 
   const decreaseCartProduct = (productId) => {
     return removeProduct(productId);
-  };
-
-  const addFavorite = (productId) => {
-    addToFavorite(productId);
   };
 
   let total = 0;
@@ -144,18 +134,19 @@ export default function Cart() {
               cartProducts.map((cartProductData) => (
                 <div
                   key={cartProductData._id}
-                  className=" shadow-md rounded-md mb-2"
+                  className=" shadow-sm rounded-md mb-2 bg-white"
                 >
                   <div className="flex justify-start items-center gap-5 p-5">
-                    <div className="">
+                    <Link href={`/product/${cartProductData._id}`}>
                       <Image
-                        src={cartProductData.images[0]}
+                        src={cartProductData.images?.[0]}
                         alt={`${cartProductData.title}`}
                         width={150}
                         height={100}
                         className="rounded-md"
                       />
-                    </div>
+                    </Link>
+
                     <div>
                       <p className=" font-bold ">
                         $
@@ -196,38 +187,16 @@ export default function Cart() {
                           </button>
                         </div>
                       </div>
-                      <div className="flex gap-2 justify-start items-center">
-                        <p>Save for later</p>
-                        <svg
-                          onClick={() => addFavorite(cartProductData._id)}
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className={
-                            favoriteStatus.includes(cartProductData._id)
-                              ? "w-6 h-6 fill-main-pink"
-                              : "w-6 h-6"
-                          }
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                          />
-                        </svg>
-                      </div>
                     </div>
                   </div>
                 </div>
               ))}
-            <div className="flex gap-2 shadow-md py-2 px-5">
+            <div className="flex gap-2 shadow-sm bg-white py-2 px-5">
               <p>Sub-total: </p>
               <div className="font-bold">${total}</div>
             </div>
           </div>
-          <div className="flex flex-col p-5 rounded-md shadow-md ">
+          <div className="flex flex-col p-5 rounded-md shadow-sm bg-white ">
             {!!cartProducts?.length && (
               <div className="">
                 <h2 className="font-bold text-lg text-main-pink">
