@@ -1,6 +1,7 @@
 import { mongooseConnect } from "@/lib/connectDB";
 import OrderModel from "@/model/OrderModel";
 import ProductModel from "@/model/ProductModel";
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
 export async function POST(req) {
   await mongooseConnect();
