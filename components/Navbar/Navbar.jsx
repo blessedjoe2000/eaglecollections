@@ -2,15 +2,12 @@
 
 import Link from "next/link";
 import Logo from "../Logo/Logo";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../providers/CartContext/CartContext";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
-
-  const ls = typeof window !== "undefined" ? window.localStorage : null;
-  const cartProducts = ls ? JSON.parse(ls.getItem("cart")) : [];
-
-  console.log("cartProducts", cartProducts);
+  const { cartProductIds } = useContext(CartContext);
 
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
@@ -31,7 +28,7 @@ export default function Navbar() {
       </div>
       <div className="flex gap-2 justify-center items-center">
         <Link href={"/cart"}>
-          <div>{cartProducts ? cartProducts.length : 0}</div>
+          <div>{cartProductIds ? cartProductIds.length : 0}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

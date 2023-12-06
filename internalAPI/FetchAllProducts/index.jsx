@@ -11,5 +11,5 @@ const fetchAllProducts = async () => {
 
 export const useFetchAllProduct = () => {
   const queryClient = new QueryClient();
-  return useQuery({ queryKey: ["allProductData"], queryFn: fetchAllProducts });
+  return useQuery({ queryKey: ["allProductsData"], queryFn: fetchAllProducts });
 };

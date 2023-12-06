@@ -3,34 +3,19 @@
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../providers/CartContext/CartContext";
 
 export default function AllProducts() {
   const { data, isPending, isError } = useFetchAllProduct();
-  const [cartProducts, setCartProducts] = useState([]);
-  const [favoriteStatus, setFavoriteStatus] = useState([]);
+  const { addToFavorite, favoriteStatus, addProduct } = useContext(CartContext);
 
   const addToCart = (productId) => {
-    const ls = typeof window !== "undefined" ? window.localStorage : null;
-    setCartProducts((prev) => {
-      const updatedCart = [...prev, productId];
-      ls.setItem("cart", JSON.stringify(updatedCart));
-      return updatedCart;
-    });
+    addProduct(productId);
   };
 
-  const addToFavorite = (productId) => {
-    setFavoriteStatus((prev) => {
-      let updatedFavorite = [];
-      if (prev.includes(productId)) {
-        updatedFavorite = prev.filter((id) => id !== productId);
-      } else {
-        updatedFavorite = [...prev, productId];
-      }
-      localStorage.setItem("favorite", JSON.stringify(updatedFavorite));
-
-      return updatedFavorite;
-    });
+  const addFavorite = (productId) => {
+    addToFavorite(productId);
   };
 
   if (isPending) {
@@ -65,7 +50,7 @@ export default function AllProducts() {
                 <div className="flex justify-between items-center ">
                   <p className=" font-bold text-xl">${productData.price}</p>
                   <svg
-                    onClick={() => addToFavorite(productData._id)}
+                    onClick={() => addFavorite(productData._id)}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -73,7 +58,7 @@ export default function AllProducts() {
                     stroke="currentColor"
                     className={
                       favoriteStatus.includes(productData._id)
-                        ? "w-6 h-6 fill-mid-pink"
+                        ? "w-6 h-6 fill-main-pink"
                         : "w-6 h-6"
                     }
                   >
@@ -91,7 +76,7 @@ export default function AllProducts() {
               <div className="flex justify-end mt-2">
                 <button
                   onClick={() => addToCart(productData._id)}
-                  className="bg-mid-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold"
+                  className="bg-main-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold"
                 >
                   Add to cart
                 </button>

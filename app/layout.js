@@ -1,8 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import TanstackProvider from "../components/providers/TanstackProvider";
+import TanstackProvider from "../components/providers/TanstackProvider/TanstackProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import { CartContextProvider } from "@/components/providers/CartContext/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <TanstackProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <CartContextProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartContextProvider>
         </TanstackProvider>
       </body>
     </html>
