@@ -1,7 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
-import Image from "next/image";
 import { useContext } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
@@ -21,14 +20,13 @@ export default function Product() {
   };
 
   return (
-    <div className="p-5">
-      <div className=" inline-flex gap-5 p-5 shadow-sm bg-white">
+    <div className="p-5 ">
+      <div className="sm:inline-flex  shadow-sm ">
         <div>
           <ProductImages images={productData?.images} />
         </div>
-        <div className="flex flex-col gap-2">
-          <p>${productData?.price}</p>
-          <h2>{productData?.title}</h2>
+        <div className="flex flex-col gap-2 mt-2 sm:mt-0 bg-white p-5 shadow-sm">
+          <h2 className="font-bold text-xl">{productData?.title}</h2>
           <p>{productData?.description}</p>
           <div className="flex gap-2 justify-start items-center">
             <p>Save for later</p>
@@ -52,6 +50,7 @@ export default function Product() {
               />
             </svg>
           </div>
+          <p className="font-bold text-lg">${productData?.price}</p>
           <div className="flex justify-end mt-2">
             <button
               onClick={() => addToCart(productData._id)}

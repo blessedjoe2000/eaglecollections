@@ -70,6 +70,7 @@ export function CartContextProvider({ children }) {
         clearCart,
         addToFavorite,
         favoriteStatus,
+        setFavoriteStatus,
       }}
     >
       {children}

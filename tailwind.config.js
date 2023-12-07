@@ -20,6 +20,9 @@ module.exports = {
         "mid-pink": "#ffc8dd",
         "light-grey": "#f4f4f6",
       },
+      fontFamily: {
+        bodyFont: ["Mukta", "sans-serif"],
+      },
     },
   },
   plugins: [],

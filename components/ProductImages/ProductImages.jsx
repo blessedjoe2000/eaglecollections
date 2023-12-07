@@ -14,7 +14,7 @@ export function ProductImages({ images }) {
   }, [activeImage, images]);
 
   return (
-    <div className="flex gap-1">
+    <div className="sm:flex gap-1 shadow-sm p-5 bg-white">
       <div>
         <Image
           src={activeImage}
@@ -24,7 +24,7 @@ export function ProductImages({ images }) {
           className="rounded-md"
         />
       </div>
-      <div className="flex gap-1 flex-col">
+      <div className="flex gap-1 sm:flex-col mt-2 sm:mt-0">
         {images?.map((image, index) => (
           <button
             key={index}
