@@ -20,6 +20,7 @@ export async function POST(req) {
       const productInfo = cartProductData.find(
         (product) => product._id.toString() === productId
       );
+
       const quantity =
         cartProductIds.filter((id) => id === productId)?.length || 0;
       if (quantity && productInfo) {
@@ -27,7 +28,10 @@ export async function POST(req) {
           quantity,
           price_data: {
             currency: "USD",
-            product_data: { name: productInfo.title },
+            product_data: {
+              name: productInfo.title,
+              images: productInfo.images,
+            },
             unit_amount: quantity * productInfo.price * 100,
           },
         });
@@ -39,18 +43,27 @@ export async function POST(req) {
       name,
       email,
       phone,
-      address,
-      zipCode,
-      country,
+      address: {
+        city: "",
+        country: "",
+        line1: "",
+        line2: "",
+        postal_code: "",
+        state: "",
+      },
       paid: false,
     });
 
     const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      shipping_address_collection: {
+        allowed_countries: ["US", "CA"],
+      },
       line_items,
       mode: "payment",
       customer_email: email,
-      success_url: process.env.PUBLIC_URL + "/cart?success=true",
-      cancel_url: process.env.PUBLIC_URL + "/cart?canceled=true",
+      success_url: process.env.NEXTAUTH_URL + "/cart?success=true",
+      cancel_url: process.env.NEXTAUTH_URL + "/cart?canceled=true",
       metadata: { orderId: orderInfo?._id.toString() },
     });
 

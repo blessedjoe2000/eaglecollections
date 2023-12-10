@@ -53,7 +53,7 @@ export default function Favorite() {
                       alt={`${favProductData.title}`}
                       width={200}
                       height={100}
-                      className="rounded-md"
+                      className="rounded-md scale-100 hover:scale-105 transition-transform duration-300"
                     />
                   </Link>
 

@@ -27,13 +27,16 @@ export async function POST(req) {
     case "checkout.session.completed":
       const paymentData = event.data.object;
       // Then define and call a function to handle the event payment_intent.succeeded
-      const { payment_status, metadata } = paymentData;
-      const orderId = metadata.orderId;
+      const { payment_status, metadata, shipping_details } = paymentData;
 
-      console.log("orderId", orderId);
+      const orderId = metadata.orderId;
+      const address = shipping_details.address;
 
       if (payment_status === "paid" || orderId) {
-        await OrderModel.findByIdAndUpdate(orderId, { paid: true });
+        await OrderModel.findByIdAndUpdate(orderId, {
+          paid: true,
+          address: address,
+        });
       }
       break;
     // ... handle other event types

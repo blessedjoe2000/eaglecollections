@@ -3,7 +3,7 @@
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 
 export default function AllProducts() {
@@ -39,13 +39,14 @@ export default function AllProducts() {
             className="p-5 rounded-md bg-white shadow-sm"
           >
             <div>
-              <div className="mb-2">
+              <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${productData._id}`}>
                   <Image
                     src={productData.images?.[0]}
                     alt={`${productData.title}`}
                     width={250}
                     height={200}
+                    priority
                   />
                 </Link>
               </div>

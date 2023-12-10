@@ -21,7 +21,8 @@ export function ProductImages({ images }) {
           alt={""}
           width={300}
           height={200}
-          className="rounded-md"
+          priority
+          className="rounded-md scale-95 hover:scale-100 transition-transform duration-300"
         />
       </div>
       <div className="flex gap-1 sm:flex-col mt-2 sm:mt-0">
@@ -41,6 +42,7 @@ export function ProductImages({ images }) {
               width={70}
               height={50}
               className="rounded-md"
+              priority
             />
           </button>
         ))}

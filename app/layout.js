@@ -3,6 +3,7 @@ import TanstackProvider from "../components/providers/TanstackProvider/TanstackP
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { CartContextProvider } from "@/components/providers/CartContext/CartContext";
+import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 
 export const metadata = {
   title: "Eagle Collection Store Admin",
@@ -15,11 +16,13 @@ export default function RootLayout({ children }) {
     <html lang="en " className="bg-light-grey font-bodyFont">
       <body className="">
         <TanstackProvider>
-          <CartContextProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </CartContextProvider>
+          <AuthProvider>
+            <CartContextProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </CartContextProvider>
+          </AuthProvider>
         </TanstackProvider>
       </body>
     </html>

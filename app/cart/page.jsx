@@ -6,6 +6,7 @@ import Image from "next/image";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import axios from "axios";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Cart() {
   const { data, isPending, isError } = useFetchAllProduct();
@@ -13,10 +14,9 @@ export default function Cart() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [country, setCountry] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const { data: session } = useSession();
 
   const { cartProductIds, addProduct, removeProduct, clearCart } =
     useContext(CartContext);
@@ -59,7 +59,7 @@ export default function Cart() {
   const handleGoToPayment = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !phone || !address || !zipCode || !country) {
+    if (!name || !email || !phone) {
       console.log("enter required fields");
       return;
     }
@@ -67,9 +67,6 @@ export default function Cart() {
       name,
       email,
       phone,
-      address,
-      zipCode,
-      country,
       cartProductIds,
     });
 
@@ -119,7 +116,7 @@ export default function Cart() {
   return (
     <div className="m-5">
       <h2 className="font-bold mb-3 text-lg text-main-pink text-center">
-        Cart
+        Shopping Cart
       </h2>
       {!cartProducts?.length ? (
         <div>
@@ -141,9 +138,10 @@ export default function Cart() {
                       <Image
                         src={cartProductData.images?.[0]}
                         alt={`${cartProductData.title}`}
-                        width={150}
+                        width={100}
                         height={100}
-                        className="rounded-md"
+                        priority
+                        className="rounded-md scale-100 hover:scale-105 transition-transform duration-300"
                       />
                     </Link>
 
@@ -165,7 +163,7 @@ export default function Cart() {
                             onClick={() =>
                               decreaseCartProduct(cartProductData._id)
                             }
-                            className="bg-main-pink px-2 rounded-lg text-xl text-white hover:text-main-purple "
+                            className="bg-main-pink px-2 rounded-lg text-xl text-white  "
                           >
                             -
                           </button>
@@ -181,7 +179,7 @@ export default function Cart() {
                             onClick={() =>
                               increaseCartProduct(cartProductData._id)
                             }
-                            className="bg-main-pink px-2 rounded-lg text-xl text-white hover:text-main-purple"
+                            className="bg-main-pink px-2 rounded-lg text-xl text-white "
                           >
                             +
                           </button>
@@ -224,35 +222,22 @@ export default function Cart() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                   />
-                  <input
-                    type="text"
-                    name="address"
-                    placeholder="Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      name="zipCode"
-                      placeholder="Zip code"
-                      value={zipCode}
-                      onChange={(e) => setZipCode(e.target.value)}
-                    />
-                    <input
-                      type="text"
-                      name="country"
-                      placeholder="Country"
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                    />
-                  </div>
+
                   <button
                     type="submit"
-                    className=" bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
+                    className={
+                      session
+                        ? " bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
+                        : "cursor-not-allowed bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
+                    }
                   >
                     Continue to payment
                   </button>
+                  {!session && (
+                    <p className="text-sm text-red-600 ml-5 pt-1">
+                      *login to continue*
+                    </p>
+                  )}
                 </form>
               </div>
             )}
