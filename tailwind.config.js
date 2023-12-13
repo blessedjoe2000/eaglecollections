@@ -15,10 +15,12 @@ module.exports = {
       colors: {
         "main-purple": "#c8b6ff",
         "sharp-purple": "#7161ef",
-        "main-pink": "#ff99c8",
+        "main-pink": "#ff5d8f",
         "light-pink": "#feeafa",
         "mid-pink": "#ffc8dd",
         "light-grey": "#f4f4f6",
+        "sharp-pink": "#f72585",
+        "main-red": "#dd0426",
       },
       fontFamily: {
         bodyFont: ["Mukta", "sans-serif"],

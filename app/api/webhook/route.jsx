@@ -31,7 +31,6 @@ export async function POST(req) {
 
       const orderId = metadata.orderId;
       const address = shipping_details.address;
-
       if (payment_status === "paid" || orderId) {
         await OrderModel.findByIdAndUpdate(orderId, {
           paid: true,

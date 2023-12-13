@@ -24,7 +24,7 @@ table tbody tr td {
 }
 
 a:hover {
-  @apply text-main-pink;
+  @apply text-sharp-pink;
 }
 
 button:hover {

@@ -10,7 +10,6 @@ import { useSession } from "next-auth/react";
 
 export default function Cart() {
   const { data, isPending, isError } = useFetchAllProduct();
-  const [cartProducts, setCartProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,33 +17,27 @@ export default function Cart() {
 
   const { data: session } = useSession();
 
-  const { cartProductIds, addProduct, removeProduct, clearCart } =
-    useContext(CartContext);
+  const { cartProducts, reduceProduct, clearCart } = useContext(CartContext);
+  const [isCartEmpty, setIsCartEmpty] = useState(cartProducts.length === 0);
 
   useEffect(() => {
-    if (cartProductIds?.length > 0) {
-      axios.post("/api/cart", { ids: cartProductIds }).then((response) => {
-        setCartProducts(response.data);
-      });
-    } else {
-      setCartProducts([]);
+    const newIsCartEmpty = cartProducts.length === 0;
+
+    if (!isCartEmpty && newIsCartEmpty) {
+      clearCart();
     }
-  }, [cartProductIds]);
 
-  const increaseCartProduct = (productId) => {
-    return addProduct(productId);
-  };
-
-  const decreaseCartProduct = (productId) => {
-    return removeProduct(productId);
-  };
+    setIsCartEmpty(newIsCartEmpty);
+  }, [cartProducts, isCartEmpty, clearCart]);
 
   let total = 0;
-  for (const productId of cartProductIds) {
-    const price =
-      cartProducts?.find((product) => product._id === productId)?.price || 0;
-    total += price;
-  }
+  cartProducts?.map((cartProduct) => {
+    if (cartProduct?.newPrice) {
+      return (total += cartProduct.newPrice);
+    } else {
+      return (total += cartProduct.price);
+    }
+  });
 
   useEffect(() => {
     if (
@@ -67,7 +60,7 @@ export default function Cart() {
       name,
       email,
       phone,
-      cartProductIds,
+      cartProducts,
     });
 
     if (response.data.url) {
@@ -128,12 +121,12 @@ export default function Cart() {
         <div className="grid sm:grid-cols-2 gap-2 ">
           <div className="">
             {cartProducts &&
-              cartProducts.map((cartProductData) => (
+              cartProducts.map((cartProductData, index) => (
                 <div
-                  key={cartProductData._id}
+                  key={index}
                   className=" shadow-sm rounded-md mb-2 bg-white"
                 >
-                  <div className="flex justify-start items-center gap-5 p-5">
+                  <div className="flex  items-center gap-5 p-5">
                     <Link href={`/product/${cartProductData._id}`}>
                       <Image
                         src={cartProductData.images?.[0]}
@@ -145,45 +138,78 @@ export default function Cart() {
                       />
                     </Link>
 
-                    <div>
-                      <p className=" font-bold ">
-                        $
-                        {cartProductData.price *
-                          cartProductIds.filter(
-                            (cartProductId) =>
-                              cartProductId === cartProductData._id
-                          ).length}
-                      </p>
-
-                      <p>{cartProductData.title}</p>
-                      <div className="flex gap-2 justify-start items-center my-1">
-                        <p>Quantity</p>
-                        <div className="flex gap-2 font-bold justify-center items-center">
-                          <button
-                            onClick={() =>
-                              decreaseCartProduct(cartProductData._id)
-                            }
-                            className="bg-main-pink px-2 rounded-lg text-xl text-white  "
-                          >
-                            -
-                          </button>
-                          <p>
-                            {
-                              cartProductIds.filter(
-                                (cartProductId) =>
-                                  cartProductId === cartProductData._id
-                              ).length
-                            }
+                    <div className="">
+                      <div>
+                        {cartProductData?.newPrice ? (
+                          <p className="font-bold">
+                            ${cartProductData?.newPrice}
                           </p>
-                          <button
-                            onClick={() =>
-                              increaseCartProduct(cartProductData._id)
-                            }
-                            className="bg-main-pink px-2 rounded-lg text-xl text-white "
+                        ) : (
+                          <p className=" font-bold ">
+                            ${cartProductData.price}
+                          </p>
+                        )}
+                      </div>
+
+                      <p>
+                        {cartProductData?.title
+                          ?.trim()
+                          .slice(0, 1)
+                          .toUpperCase() +
+                          cartProductData?.title?.trim().slice(1)}
+                      </p>
+                      <div>
+                        {cartProductData?.colors && (
+                          <div className="flex items-center gap-5">
+                            <p>Color: </p>
+
+                            <p>
+                              {cartProductData?.colors
+                                ?.trim()
+                                .slice(0, 1)
+                                .toUpperCase() +
+                                cartProductData?.colors?.trim().slice(1)}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        {cartProductData?.sizes && (
+                          <div className="flex items-center gap-5">
+                            <p>Size: </p>
+
+                            <p>
+                              {cartProductData?.sizes
+                                .trim()
+                                .slice(0, 1)
+                                .toUpperCase() +
+                                cartProductData?.sizes.trim().slice(1)}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex  py-2">
+                        <button
+                          onClick={() => reduceProduct(cartProductData)}
+                          className="flex items-center bg-main-red px-2 rounded-md text-white hover:text-white"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-5 h-5"
                           >
-                            +
-                          </button>
-                        </div>
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                          <p>remove</p>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -225,10 +251,11 @@ export default function Cart() {
 
                   <button
                     type="submit"
+                    disabled={!session}
                     className={
                       session
                         ? " bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
-                        : "cursor-not-allowed bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
+                        : "cursor-not-allowed disabled:bg-slate-300  px-3 py-1 mt-2 rounded-md text-white text-center hover:text-white"
                     }
                   >
                     Continue to payment

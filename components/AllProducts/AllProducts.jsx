@@ -3,19 +3,38 @@
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 
 export default function AllProducts() {
   const { data, isPending, isError } = useFetchAllProduct();
-  const { addToFavorite, favoriteStatus, addProduct } = useContext(CartContext);
-
-  const addToCart = (productId) => {
-    addProduct(productId);
-  };
+  const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
+  const [colors, setColors] = useState("");
+  const [sizes, setSizes] = useState("");
+  const [productToCart, setProductToCart] = useState([]);
 
   const addFavorite = (productId) => {
     addToFavorite(productId);
+  };
+
+  useEffect(() => {}, [productToCart]);
+
+  const handleColorChange = (e, productId) => {
+    const productToUpdate = data.find((product) => product._id === productId);
+    if (productToUpdate) {
+      const color = e.target?.value;
+      setColors((productToUpdate.colors = color));
+      setProductToCart(productToUpdate);
+    }
+  };
+
+  const handleSizeChange = (e, productId) => {
+    const productToUpdate = data.find((product) => product._id === productId);
+    if (productToUpdate) {
+      const size = e.target?.value;
+      setSizes((productToUpdate.sizes = size));
+      setProductToCart(productToUpdate);
+    }
   };
 
   if (isPending) {
@@ -41,6 +60,11 @@ export default function AllProducts() {
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${productData._id}`}>
+                  {productData?.newPrice && (
+                    <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                      Sale ${productData?.newPrice - productData?.price}
+                    </span>
+                  )}
                   <Image
                     src={productData.images?.[0]}
                     alt={`${productData.title}`}
@@ -52,7 +76,19 @@ export default function AllProducts() {
               </div>
               <div>
                 <div className="flex justify-between items-center ">
-                  <p className=" font-bold text-xl">${productData.price}</p>
+                  {productData?.newPrice ? (
+                    <div className="flex items-center gap-3">
+                      <p className=" font-bold text-xl">
+                        ${productData?.newPrice}
+                      </p>
+                      <p className=" font-bold line-through text-sharp-pink">
+                        ${productData?.price}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className=" font-bold text-xl">${productData.price}</p>
+                  )}
+
                   <svg
                     onClick={() => addFavorite(productData._id)}
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +97,7 @@ export default function AllProducts() {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className={
-                      favoriteStatus.includes(productData._id)
+                      favoriteIds.includes(productData._id)
                         ? "w-6 h-6 fill-main-pink"
                         : "w-6 h-6"
                     }
@@ -74,12 +110,63 @@ export default function AllProducts() {
                   </svg>
                 </div>
                 <Link href={`/product/${productData._id}`}>
-                  {productData.title}
+                  <p>
+                    {productData?.title?.trim().slice(0, 1).toUpperCase() +
+                      productData?.title?.trim().slice(1)}
+                  </p>
                 </Link>
+              </div>
+              <div className=" flex justify-between">
+                <div>
+                  {productData?.colors && (
+                    <div className="flex items-center gap-5">
+                      <p>Color: </p>
+
+                      <select
+                        className="p-0"
+                        name={productData?.colors}
+                        onChange={(e) => handleColorChange(e, productData._id)}
+                      >
+                        {productData?.colors
+                          ?.split(",")
+
+                          .map((value, index) => (
+                            <option value={value} key={index}>
+                              {value.trim().slice(0, 1).toUpperCase() +
+                                value.trim().slice(1)}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  {productData?.sizes && (
+                    <div className="flex items-center gap-5">
+                      <p>Size: </p>
+
+                      <select
+                        className="p-0"
+                        name={productData?.sizes}
+                        onChange={(e) => handleSizeChange(e, productData._id)}
+                      >
+                        {productData?.sizes
+                          ?.split(",")
+
+                          .map((value, index) => (
+                            <option value={value} key={index}>
+                              {value.trim().slice(0, 1).toUpperCase() +
+                                value.trim().slice(1)}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className="flex justify-end mt-2">
                 <button
-                  onClick={() => addToCart(productData._id)}
+                  onClick={() => addProduct(productData)}
                   className="bg-main-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold flex gap-1 justify-center items-center"
                 >
                   <svg

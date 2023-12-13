@@ -1,33 +1,108 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
 
 export default function Product() {
-  const { addToFavorite, favoriteStatus, addProduct } = useContext(CartContext);
+  const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
   const { id: _id } = useParams();
   const { data } = useFetchAllProduct();
+  const [colors, setColors] = useState("");
+  const [sizes, setSizes] = useState("");
   const productData = data?.find((product) => product._id === _id);
 
-  const addFavorite = (productId) => {
-    addToFavorite(productId);
+  const addFavorite = (product) => {
+    addToFavorite(product);
   };
 
-  const addToCart = (productId) => {
-    addProduct(productId);
+  const addToCart = () => {
+    addProduct(productData);
   };
+
+  const handleColorChange = (e) => {
+    const color = e.target.value;
+    setColors((productData.colors = color));
+  };
+
+  const handleSizeChange = (e) => {
+    const size = e.target.value;
+    setSizes((productData.sizes = size));
+  };
+
+  if (!productData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="p-5 ">
       <div className="sm:inline-flex  shadow-sm ">
         <div>
+          {productData?.newPrice && (
+            <span className="bg-sharp-pink text-white px-2 text-lg absolute left-12 top-36 z-10  ">
+              Sale ${productData?.newPrice - productData?.price}
+            </span>
+          )}
           <ProductImages images={productData?.images} />
         </div>
         <div className="flex flex-col gap-2 mt-2 sm:mt-0 bg-white p-5 shadow-sm">
-          <h2 className="font-bold text-xl">{productData?.title}</h2>
-          <p>{productData?.description}</p>
+          <h2 className="font-bold text-xl">
+            <p>
+              {productData?.title?.trim().slice(0, 1).toUpperCase() +
+                productData?.title?.trim().slice(1)}
+            </p>
+          </h2>
+          <p>
+            {productData?.description.trim().slice(0, 1).toUpperCase() +
+              productData?.description.trim().slice(1)}
+          </p>
+          <div>
+            {productData?.colors && (
+              <div className="flex items-center gap-5">
+                <p>Color: </p>
+
+                <select
+                  className="p-0"
+                  name={productData?.colors}
+                  onChange={handleColorChange}
+                >
+                  {productData?.colors
+                    ?.split(",")
+
+                    .map((value, index) => (
+                      <option value={value} key={index}>
+                        {value.trim().slice(0, 1).toUpperCase() +
+                          value.trim().slice(1)}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            )}
+          </div>
+          <div>
+            {productData?.sizes && (
+              <div className="flex items-center gap-5">
+                <p>Size: </p>
+
+                <select
+                  className="p-0"
+                  name={productData?.sizes}
+                  onChange={handleSizeChange}
+                >
+                  {productData?.sizes
+                    ?.split(",")
+
+                    .map((value, index) => (
+                      <option value={value} key={index}>
+                        {value.trim().slice(0, 1).toUpperCase() +
+                          value.trim().slice(1)}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            )}
+          </div>
           <div className="flex gap-2 justify-start items-center">
             <p>Save for later</p>
             <svg
@@ -38,7 +113,7 @@ export default function Product() {
               strokeWidth={1.5}
               stroke="currentColor"
               className={
-                favoriteStatus.includes(productData?._id)
+                favoriteIds.includes(productData?._id)
                   ? "w-6 h-6 fill-main-pink"
                   : "w-6 h-6"
               }
@@ -50,7 +125,16 @@ export default function Product() {
               />
             </svg>
           </div>
-          <p className="font-bold text-lg">${productData?.price}</p>
+          {productData?.newPrice ? (
+            <div className="flex items-center gap-3">
+              <p className=" font-bold text-xl">${productData?.newPrice}</p>
+              <p className=" font-bold line-through text-sharp-pink">
+                ${productData?.price}
+              </p>
+            </div>
+          ) : (
+            <p className=" font-bold text-xl">${productData?.price}</p>
+          )}
           <div className="flex justify-end mt-2">
             <button
               onClick={() => addToCart(productData._id)}

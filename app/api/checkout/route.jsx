@@ -1,38 +1,32 @@
 import { mongooseConnect } from "@/lib/connectDB";
 import OrderModel from "@/model/OrderModel";
-import ProductModel from "@/model/ProductModel";
 const stripe = require("stripe")(process.env.STRIPE_SK);
 
 export async function POST(req) {
   await mongooseConnect();
 
   try {
-    const { name, email, phone, address, zipCode, country, cartProductIds } =
-      await req.json();
-    const uniqueProductIds = [...new Set(cartProductIds)];
-    const cartProductData = await ProductModel.find({
-      _id: { $in: uniqueProductIds },
-    });
+    const { name, email, phone, cartProducts } = await req.json();
 
     let line_items = [];
 
-    for (const productId of uniqueProductIds) {
-      const productInfo = cartProductData.find(
-        (product) => product._id.toString() === productId
-      );
+    for (const cartProduct of cartProducts) {
+      const productPrice = cartProduct?.newPrice
+        ? cartProduct.newPrice * 100
+        : cartProduct.price * 100;
 
-      const quantity =
-        cartProductIds.filter((id) => id === productId)?.length || 0;
-      if (quantity && productInfo) {
+      const quantity = 1;
+
+      if (quantity && cartProduct) {
         line_items.push({
           quantity,
           price_data: {
             currency: "USD",
             product_data: {
-              name: productInfo.title,
-              images: productInfo.images,
+              name: cartProduct.title,
+              images: cartProduct.images,
             },
-            unit_amount: quantity * productInfo.price * 100,
+            unit_amount: productPrice,
           },
         });
       }
@@ -51,6 +45,14 @@ export async function POST(req) {
         postal_code: "",
         state: "",
       },
+      orderProducts: cartProducts.map((cartProduct) => ({
+        name: cartProduct.title,
+        images: cartProduct.images,
+        colors: cartProduct.colors,
+        sizes: cartProduct.sizes,
+        price: cartProduct?.newPrice ? cartProduct.newPrice : cartProduct.price,
+        quantity: 1,
+      })),
       paid: false,
     });
 

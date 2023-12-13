@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
-  const { cartProductIds } = useContext(CartContext);
+  const { cartProducts } = useContext(CartContext);
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
   };
@@ -90,7 +90,7 @@ export default function Navbar() {
         <Link href={"/cart"} className="flex">
           <div className="flex flex-col  items-center">
             <div className="absolute sm:top-5 top-3 ">
-              {cartProductIds ? cartProductIds.length : 0}
+              {cartProducts ? cartProducts.length : 0}
             </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
