@@ -9,32 +9,11 @@ import { CartContext } from "../providers/CartContext/CartContext";
 export default function AllProducts() {
   const { data, isPending, isError } = useFetchAllProduct();
   const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
-  const [colors, setColors] = useState("");
-  const [sizes, setSizes] = useState("");
-  const [productToCart, setProductToCart] = useState([]);
+
+  useEffect(() => {}, [data]);
 
   const addFavorite = (productId) => {
     addToFavorite(productId);
-  };
-
-  useEffect(() => {}, [productToCart]);
-
-  const handleColorChange = (e, productId) => {
-    const productToUpdate = data.find((product) => product._id === productId);
-    if (productToUpdate) {
-      const color = e.target?.value;
-      setColors((productToUpdate.colors = color));
-      setProductToCart(productToUpdate);
-    }
-  };
-
-  const handleSizeChange = (e, productId) => {
-    const productToUpdate = data.find((product) => product._id === productId);
-    if (productToUpdate) {
-      const size = e.target?.value;
-      setSizes((productToUpdate.sizes = size));
-      setProductToCart(productToUpdate);
-    }
   };
 
   if (isPending) {
@@ -62,7 +41,12 @@ export default function AllProducts() {
                 <Link href={`/product/${productData._id}`}>
                   {productData?.newPrice && (
                     <span className="bg-sharp-pink text-white px-2 absolute text-lg">
-                      Sale ${productData?.newPrice - productData?.price}
+                      -
+                      {Math.round(
+                        (100 * (productData?.price - productData?.newPrice)) /
+                          productData?.price
+                      )}
+                      %
                     </span>
                   )}
                   <Image
@@ -78,10 +62,10 @@ export default function AllProducts() {
                 <div className="flex justify-between items-center ">
                   {productData?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl">
+                      <p className=" font-bold text-xl text-main-pink">
                         ${productData?.newPrice}
                       </p>
-                      <p className=" font-bold line-through text-sharp-pink">
+                      <p className=" font-bold line-through ">
                         ${productData?.price}
                       </p>
                     </div>
@@ -115,76 +99,6 @@ export default function AllProducts() {
                       productData?.title?.trim().slice(1)}
                   </p>
                 </Link>
-              </div>
-              <div className=" flex justify-between">
-                <div>
-                  {productData?.colors && (
-                    <div className="flex items-center gap-5">
-                      <p>Color: </p>
-
-                      <select
-                        className="p-0"
-                        name={productData?.colors}
-                        onChange={(e) => handleColorChange(e, productData._id)}
-                      >
-                        {productData?.colors
-                          ?.split(",")
-
-                          .map((value, index) => (
-                            <option value={value} key={index}>
-                              {value.trim().slice(0, 1).toUpperCase() +
-                                value.trim().slice(1)}
-                            </option>
-                          ))}
-                      </select>
-                    </div>
-                  )}
-                </div>
-                <div>
-                  {productData?.sizes && (
-                    <div className="flex items-center gap-5">
-                      <p>Size: </p>
-
-                      <select
-                        className="p-0"
-                        name={productData?.sizes}
-                        onChange={(e) => handleSizeChange(e, productData._id)}
-                      >
-                        {productData?.sizes
-                          ?.split(",")
-
-                          .map((value, index) => (
-                            <option value={value} key={index}>
-                              {value.trim().slice(0, 1).toUpperCase() +
-                                value.trim().slice(1)}
-                            </option>
-                          ))}
-                      </select>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-end mt-2">
-                <button
-                  onClick={() => addProduct(productData)}
-                  className="bg-main-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold flex gap-1 justify-center items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                    />
-                  </svg>
-                  <p>Add to cart</p>
-                </button>
               </div>
             </div>
           </div>

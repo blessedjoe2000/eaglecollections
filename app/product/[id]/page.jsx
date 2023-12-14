@@ -1,7 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
 
@@ -13,22 +13,37 @@ export default function Product() {
   const [sizes, setSizes] = useState("");
   const productData = data?.find((product) => product._id === _id);
 
+  useEffect(() => {
+    if (productData?.colors) {
+      setColors(productData.colors.split(",")[0]);
+    }
+
+    if (productData?.sizes) {
+      setSizes(productData.sizes.split(",")[0]);
+    }
+  }, [productData]);
+
   const addFavorite = (product) => {
     addToFavorite(product);
   };
 
   const addToCart = () => {
-    addProduct(productData);
+    const productWithColorsAndSizes = {
+      ...productData,
+      colors,
+      sizes,
+    };
+    addProduct(productWithColorsAndSizes);
   };
 
   const handleColorChange = (e) => {
     const color = e.target.value;
-    setColors((productData.colors = color));
+    setColors(color);
   };
 
   const handleSizeChange = (e) => {
     const size = e.target.value;
-    setSizes((productData.sizes = size));
+    setSizes(size);
   };
 
   if (!productData) {
@@ -36,12 +51,17 @@ export default function Product() {
   }
 
   return (
-    <div className="p-5 ">
-      <div className="sm:inline-flex  shadow-sm ">
+    <div className="p-5 flex justify-center ">
+      <div className="sm:inline-flex  shadow-sm">
         <div>
           {productData?.newPrice && (
             <span className="bg-sharp-pink text-white px-2 text-lg absolute left-12 top-36 z-10  ">
-              Sale ${productData?.newPrice - productData?.price}
+              -
+              {Math.round(
+                (100 * (productData?.price - productData?.newPrice)) /
+                  productData?.price
+              )}
+              %
             </span>
           )}
           <ProductImages images={productData?.images} />
@@ -127,10 +147,10 @@ export default function Product() {
           </div>
           {productData?.newPrice ? (
             <div className="flex items-center gap-3">
-              <p className=" font-bold text-xl">${productData?.newPrice}</p>
-              <p className=" font-bold line-through text-sharp-pink">
-                ${productData?.price}
+              <p className=" font-bold text-xl text-sharp-pink">
+                ${productData?.newPrice}
               </p>
+              <p className=" font-bold line-through ">${productData?.price}</p>
             </div>
           ) : (
             <p className=" font-bold text-xl">${productData?.price}</p>
