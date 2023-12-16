@@ -7,19 +7,32 @@ import { CartContext } from "../providers/CartContext/CartContext";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import SearchProducts from "../SearchProduct/SearchProduct";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { data: session } = useSession();
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
   };
 
-  const { data: session } = useSession();
-
   return (
-    <nav className="bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50">
+    <nav
+      className={
+        showHamburger
+          ? "mb-32 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
+          : "bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
+      }
+    >
       <div className="py-2">
         <Logo />
       </div>
@@ -30,52 +43,6 @@ export default function Navbar() {
         <Link href={"/"}>About</Link>
         <Link href={"/"}>Account</Link>
         <Link href={"/"}>Contact</Link>
-      </div>
-      <div className="sm:inline-flex hidden">
-        {session ? (
-          <button
-            className=" flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-            onClick={() => signOut()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-              />
-            </svg>
-            <p className="font-bold">Logout</p>
-          </button>
-        ) : (
-          <button
-            className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-            onClick={() => signIn("google")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-              />
-            </svg>
-
-            <p>Signin</p>
-          </button>
-        )}
       </div>
 
       <div className="flex gap-5 justify-center items-center">
@@ -102,16 +69,102 @@ export default function Navbar() {
           </div>
           <p>cart</p>
         </Link>
+        <div className="sm:inline-flex hidden">
+          {!session && (
+            <button
+              className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
+              onClick={() => signIn("google")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                />
+              </svg>
 
+              <p>Signin</p>
+            </button>
+          )}
+        </div>
         <div>
           {session && (
-            <Image
-              src={session?.user?.image}
-              alt="profile photo"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <div>
+              <button onClick={toggleDrawer}>
+                <Image
+                  src={session?.user?.image}
+                  alt="profile photo"
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
+              </button>
+              <Drawer
+                open={isOpen}
+                onClose={toggleDrawer}
+                direction="right"
+                className="text-black/60 flex flex-col items-center"
+              >
+                <button onClick={toggleDrawer} className="pb-3 pt-5 ">
+                  <Image
+                    src={session?.user?.image}
+                    alt="profile photo"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
+                </button>
+                <p>{session.user.name}</p>
+                <p className="py-1">{session.user.email}</p>
+                <button
+                  className=" flex items-center px-2 py-1 bg-main-pink rounded-lg text-white hover:text-sharp-purple my-3"
+                  onClick={() => signOut()}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                    />
+                  </svg>
+                  <p className="font-bold">Logout</p>
+                </button>
+                <button
+                  onClick={toggleDrawer}
+                  className="flex items-center px-2 bg-main-purple text-white rounded-md mt-10 hover:text-sharp-pink"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <p>close</p>
+                </button>
+              </Drawer>
+            </div>
           )}
         </div>
       </div>
@@ -124,8 +177,8 @@ export default function Navbar() {
         <div
           className={
             showHamburger
-              ? "hidden"
-              : "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-main-purple mb-20"
+              ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-main-purple mb-20"
+              : "hidden"
           }
         >
           <button className="px-10 py-3 mb-1 relative ml-auto">
@@ -159,27 +212,30 @@ export default function Navbar() {
               Contact
             </Link>
           </div>
-          <div className="pt-1">
-            <button
-              className=" flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-              onClick={() => signOut()}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
+          <div className="inline-flex mt-3">
+            {!session && (
+              <button
+                className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
+                onClick={() => signIn("google")}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                />
-              </svg>
-              <p className="font-bold">Logout</p>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                  />
+                </svg>
+
+                <p>Signin</p>
+              </button>
+            )}
           </div>
         </div>
       </div>
