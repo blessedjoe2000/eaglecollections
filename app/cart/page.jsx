@@ -126,7 +126,7 @@ export default function Cart() {
                   key={index}
                   className=" shadow-sm rounded-md mb-2 bg-white"
                 >
-                  <div className="flex  items-center gap-5 p-5">
+                  <div className="flex justify-center items-center gap-5 p-5">
                     <Link href={`/product/${cartProductData._id}`}>
                       <Image
                         src={cartProductData.images?.[0]}
@@ -139,7 +139,7 @@ export default function Cart() {
                     </Link>
 
                     <div className="">
-                      <div>
+                      <div className="text-main-pink">
                         {cartProductData?.newPrice ? (
                           <p className="font-bold">
                             ${cartProductData?.newPrice}
@@ -217,7 +217,7 @@ export default function Cart() {
               ))}
             <div className="flex gap-2 shadow-sm bg-white py-2 px-5">
               <p>Sub-total: </p>
-              <div className="font-bold">${total}</div>
+              <div className="font-bold text-main-pink">${total}</div>
             </div>
           </div>
           <div className="flex flex-col p-5 rounded-md shadow-sm bg-white ">

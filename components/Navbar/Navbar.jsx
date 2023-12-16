@@ -6,20 +6,16 @@ import { useContext, useState } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import SearchProducts from "../SearchProduct/SearchProduct";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
-  const [search, setSearch] = useState("");
 
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
   };
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-  console.log("search", search);
   const { data: session } = useSession();
 
   return (
@@ -83,30 +79,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex gap-5 justify-center items-center">
-        <div className="flex ">
-          <input
-            type="text"
-            placeholder="search..."
-            className="rounded-lg focus-visible:border-none text-black"
-            value={search}
-            onChange={(e) => handleSearch(e)}
-          />
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-8   text-main-purple absolute right-52 sm:right-40 cursor-pointer"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
-        </div>
+        <SearchProducts />
         <Link href={"/cart"} className="flex">
           <div className="flex flex-col  items-center">
             <div className="absolute sm:top-5 top-3 ">

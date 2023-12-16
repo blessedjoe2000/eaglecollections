@@ -20,12 +20,14 @@ export async function POST(req) {
       if (quantity && cartProduct) {
         line_items.push({
           quantity,
+          tax_rates: ["txr_1ONmWpKXecqKmAes5jkQFCO0"],
           price_data: {
             currency: "USD",
             product_data: {
               name: cartProduct.title,
               images: cartProduct.images,
             },
+            tax_behavior: "exclusive",
             unit_amount: productPrice,
           },
         });
@@ -61,11 +63,52 @@ export async function POST(req) {
       shipping_address_collection: {
         allowed_countries: ["US", "CA"],
       },
+
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: 0,
+              currency: "usd",
+            },
+            display_name: "Pick up",
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: 0,
+              currency: "usd",
+            },
+            display_name: "Free Shipping",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 7 },
+              maximum: { unit: "business_day", value: 10 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: 2000,
+              currency: "usd",
+            },
+            display_name: "Standard",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 3 },
+              maximum: { unit: "business_day", value: 5 },
+            },
+          },
+        },
+      ],
       line_items,
       mode: "payment",
       customer_email: email,
-      success_url: process.env.NEXTAUTH_URL + "/cart?success=true",
-      cancel_url: process.env.NEXTAUTH_URL + "/cart?canceled=true",
+      success_url: process.env.PUBLIC_URL + "/cart?success=true",
+      cancel_url: process.env.PUBLIC_URL + "/cart?canceled=true",
       metadata: { orderId: orderInfo?._id.toString() },
     });
 

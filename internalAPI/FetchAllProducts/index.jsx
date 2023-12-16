@@ -1,12 +1,13 @@
 import { useQuery, QueryClient } from "@tanstack/react-query";
 
-const fetchAllProducts = async () => {
-  const response = await fetch("/api/product");
+export const fetchAllProducts = async () => {
+  const domainUrl = "http://localhost:3000";
+  const response = await fetch(`${domainUrl}/api/product`);
   if (!response.ok) {
     throw new Error("Cannot fetch data");
   }
 
-  return response.json();
+  return await response.json();
 };
 
 export const useFetchAllProduct = () => {
