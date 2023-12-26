@@ -6,52 +6,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
-export default function George() {
+export default function Lace() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
-  const [allGeorges, setAllGeorges] = useState([]);
+  const [allLaces, setAllLaces] = useState([]);
 
-  const getGeorges = async () => {
-    const response = await axios.get("/api/george");
-    setAllGeorges(response.data);
+  const getLaces = async () => {
+    const response = await axios.get("/api/lace");
+    setAllLaces(response.data);
   };
 
   useEffect(() => {
-    getGeorges();
-  }, [allGeorges]);
+    getLaces();
+  }, [allLaces]);
 
   const addFavorite = (productId) => {
     addToFavorite(productId);
   };
 
-  if (!allGeorges.length) {
+  if (!allLaces.length) {
     return (
       <div className="bg-white mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">No George product available</h1>
+        <h1 className="font-bold py-2 text-lg">No Lace product available</h1>
       </div>
     );
   }
-
   return (
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
-      {allGeorges &&
-        allGeorges.map((george) => (
-          <div key={george._id} className="p-5 rounded-md bg-white shadow-sm">
+      {allLaces &&
+        allLaces.map((lace) => (
+          <div key={lace._id} className="p-5 rounded-md bg-white shadow-sm">
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
-                <Link href={`/product/${george._id}`}>
-                  {george?.newPrice && (
+                <Link href={`/product/${lace._id}`}>
+                  {lace?.newPrice && (
                     <span className="bg-sharp-pink text-white px-2 absolute text-lg">
                       -
                       {Math.round(
-                        (100 * (george?.price - george?.newPrice)) /
-                          george?.price
+                        (100 * (lace?.price - lace?.newPrice)) / lace?.price
                       )}
                       %
                     </span>
                   )}
                   <Image
-                    src={george.images?.[0]}
-                    alt={`${george.title}`}
+                    src={lace.images?.[0]}
+                    alt={`${lace.title}`}
                     width={150}
                     height={200}
                     priority
@@ -60,28 +58,26 @@ export default function George() {
               </div>
               <div>
                 <div className="flex justify-between items-center ">
-                  {george?.newPrice ? (
+                  {lace?.newPrice ? (
                     <div className="flex items-center gap-3">
                       <p className=" font-bold text-xl text-main-pink">
-                        ${george?.newPrice}
+                        ${lace?.newPrice}
                       </p>
-                      <p className=" font-bold line-through ">
-                        ${george?.price}
-                      </p>
+                      <p className=" font-bold line-through ">${lace?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${george.price}</p>
+                    <p className=" font-bold text-xl">${lace.price}</p>
                   )}
 
                   <svg
-                    onClick={() => addFavorite(george._id)}
+                    onClick={() => addFavorite(lace._id)}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className={
-                      favoriteIds?.includes(george._id)
+                      favoriteIds?.includes(lace._id)
                         ? "w-6 h-6 fill-main-pink"
                         : "w-6 h-6"
                     }
@@ -93,10 +89,10 @@ export default function George() {
                     />
                   </svg>
                 </div>
-                <Link href={`/product/${george._id}`}>
+                <Link href={`/product/${lace._id}`}>
                   <p>
-                    {george?.title?.trim().slice(0, 1).toUpperCase() +
-                      george?.title?.trim().slice(1)}
+                    {lace?.title?.trim().slice(0, 1).toUpperCase() +
+                      lace?.title?.trim().slice(1)}
                   </p>
                 </Link>
               </div>

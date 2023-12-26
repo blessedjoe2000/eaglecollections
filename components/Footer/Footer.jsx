@@ -12,8 +12,8 @@ export default function Footer() {
           <Logo />
         </div>
         <div className="flex flex-col justify-center items-center">
-          <Link href={"/"}>Shop</Link>
-          <Link href={"/"}>About</Link>
+          <Link href={"/george"}>Georges</Link>
+          <Link href={"/lace"}>Laces</Link>
           <Link href={"/"}>Account</Link>
           <Link href={"/"}>Contact</Link>
         </div>
@@ -21,7 +21,7 @@ export default function Footer() {
           <Link href={"/favorite"}>Saved products</Link>
           <Link href={"/ankara"}>Ankara</Link>
           <Link href={"/"}>Shoes</Link>
-          <Link href={"/"}>Jewelries</Link>
+          <Link href={"/jewelry"}>Jewelries</Link>
         </div>
         <div className="flex flex-col justify-center text-center gap-2">
           <h2>Our Social Media</h2>
