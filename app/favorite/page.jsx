@@ -6,22 +6,18 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
 export default function Favorite() {
-  const { favoriteStatus, addProduct, addToFavorite } = useContext(CartContext);
+  const { favoriteIds, addToFavorite } = useContext(CartContext);
   const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   useEffect(() => {
-    if (favoriteStatus?.length > 0) {
-      axios.post("/api/cart", { ids: favoriteStatus }).then((response) => {
+    if (favoriteIds?.length > 0) {
+      axios.post("/api/cart", { ids: favoriteIds }).then((response) => {
         setFavoriteProducts(response.data);
       });
     } else {
       setFavoriteProducts([]);
     }
-  }, [favoriteStatus]);
-
-  const addToCart = (productId) => {
-    addProduct(productId);
-  };
+  }, [favoriteIds]);
 
   const addFavorite = (productId) => {
     addToFavorite(productId);
@@ -63,7 +59,7 @@ export default function Favorite() {
                     </h2>
                     <p>{favProductData?.description}</p>
                     <div className="flex gap-2 justify-start items-center">
-                      <p>Save for later</p>
+                      <p>Saved</p>
                       <svg
                         onClick={() => addFavorite(favProductData?._id)}
                         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +68,7 @@ export default function Favorite() {
                         strokeWidth={1.5}
                         stroke="currentColor"
                         className={
-                          favoriteStatus.includes(favProductData?._id)
+                          favoriteIds.includes(favProductData?._id)
                             ? "w-6 h-6 fill-main-pink"
                             : "w-6 h-6"
                         }
@@ -87,28 +83,6 @@ export default function Favorite() {
                     <p className="font-bold text-lg">
                       ${favProductData?.price}
                     </p>
-                    <div className="flex justify-end mt-2">
-                      <button
-                        onClick={() => addToCart(favProductData._id)}
-                        className="bg-main-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold flex gap-1 justify-center items-center"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-5 h-5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                          />
-                        </svg>
-                        <p>Add to cart</p>
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>

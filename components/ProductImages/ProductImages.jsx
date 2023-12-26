@@ -15,14 +15,14 @@ export function ProductImages({ images }) {
 
   return (
     <div className="sm:flex gap-1 shadow-sm p-5 bg-white">
-      <div>
+      <div className="relative overflow-hidden rounded-md ">
         <Image
           src={activeImage}
           alt={""}
           width={300}
           height={200}
           priority
-          className="rounded-md scale-95 hover:scale-100 transition-transform duration-300"
+          // className="rounded-md scale-95 hover:scale-100 transition-transform duration-300"
         />
       </div>
       <div className="flex gap-1 sm:flex-col mt-2 sm:mt-0">

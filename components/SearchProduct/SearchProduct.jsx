@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useSearch } from "../providers/SearchProvider/SearchProvider";
 
-export default function SearchProduct({ onLinkClick }) {
+export default function SearchProduct() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { setResult } = useSearch();
@@ -19,7 +19,7 @@ export default function SearchProduct({ onLinkClick }) {
     setSearchQuery("");
   };
   return (
-    <div>
+    <div className=" relative">
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -28,14 +28,14 @@ export default function SearchProduct({ onLinkClick }) {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button type="submit">
+        <button type="submit" className="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-8   text-main-purple absolute right-52 sm:right-40 top-5 cursor-pointer hover:text-main-pink"
+            className="w-6 h-7 text-sharp-purple absolute right-0 sm:right-0 top-0 cursor-pointer hover:text-main-pink bg-light-grey rounded-tr-lg rounded-br-lg"
           >
             <path
               strokeLinecap="round"

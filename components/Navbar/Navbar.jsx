@@ -9,11 +9,13 @@ import Image from "next/image";
 import SearchProducts from "../SearchProduct/SearchProduct";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { data: session } = useSession();
 
@@ -25,11 +27,76 @@ export default function Navbar() {
     setShowHamburger(!showHamburger);
   };
 
+  const login = async () => {
+    try {
+      setIsLoading(true);
+      await signIn("google");
+      toast.success("Login successful", {
+        style: {
+          border: "1px solid #01B700",
+          padding: "16px",
+          color: "#01B700",
+        },
+        iconTheme: {
+          primary: "#01B700",
+          secondary: "#FFFAEE",
+        },
+      });
+    } catch (error) {
+      console.error("Login failed:", error);
+
+      toast.error("Login failed", {
+        style: {
+          border: "1px solid #FF0000",
+          padding: "16px",
+          color: "#FF0000",
+        },
+        iconTheme: {
+          primary: "#FF0000",
+          secondary: "#FFFAEE",
+        },
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      toast.success("Logout successful", {
+        style: {
+          border: "1px solid #01B700",
+          padding: "16px",
+          color: "#01B700",
+        },
+        iconTheme: {
+          primary: "#01B700",
+          secondary: "#FFFAEE",
+        },
+      });
+      await signOut();
+    } catch (error) {
+      console.error("Login failed:", error);
+
+      toast.error("Login failed", {
+        style: {
+          border: "1px solid #FF0000",
+          padding: "16px",
+          color: "#FF0000",
+        },
+        iconTheme: {
+          primary: "#FF0000",
+          secondary: "#FFFAEE",
+        },
+      });
+    }
+  };
+
   return (
     <nav
       className={
         showHamburger
-          ? "mb-32 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
+          ? "mb-40 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
           : "bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
       }
     >
@@ -44,12 +111,11 @@ export default function Navbar() {
         <Link href={"/"}>Account</Link>
         <Link href={"/"}>Contact</Link>
       </div>
-
       <div className="flex gap-5 justify-center items-center">
         <SearchProducts />
         <Link href={"/cart"} className="flex">
           <div className="flex flex-col  items-center">
-            <div className="absolute sm:top-5 top-3 ">
+            <div className="absolute sm:top-4 top-3 font-bold text-lg text-sharp-pink">
               {cartProducts ? cartProducts.length : 0}
             </div>
             <svg
@@ -58,7 +124,7 @@ export default function Navbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 z-0"
             >
               <path
                 strokeLinecap="round"
@@ -73,7 +139,7 @@ export default function Navbar() {
           {!session && (
             <button
               className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-              onClick={() => signIn("google")}
+              onClick={() => !isLoading && login()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +191,7 @@ export default function Navbar() {
                 <p className="py-1">{session.user.email}</p>
                 <button
                   className=" flex items-center px-2 py-1 bg-main-pink rounded-lg text-white hover:text-sharp-purple my-3"
-                  onClick={() => signOut()}
+                  onClick={logout}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +234,6 @@ export default function Navbar() {
           )}
         </div>
       </div>
-
       <div onClick={toggleHambuger} className="space-y-1 hamburger sm:hidden">
         <div className="w-6 h-1 bg-white"></div>
         <div className="w-6 h-1 bg-white"></div>
@@ -216,7 +281,7 @@ export default function Navbar() {
             {!session && (
               <button
                 className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-                onClick={() => signIn("google")}
+                onClick={() => !isLoading && login()}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

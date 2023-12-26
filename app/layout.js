@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import { CartContextProvider } from "@/components/providers/CartContext/CartContext";
 import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 import { SearchProvider } from "@/components/providers/SearchProvider/SearchProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Eagle Collection Store Admin",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en " className="bg-light-grey font-bodyFont">
       <body className="">
+        <Toaster position="top-right" />
         <TanstackProvider>
           <AuthProvider>
             <CartContextProvider>

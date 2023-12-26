@@ -5,7 +5,9 @@ export async function GET(req) {
   await mongooseConnect();
 
   try {
-    const allProducts = await Product.find();
+    const allProducts = await Product.find().sort({
+      createdAt: -1,
+    });
 
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {

@@ -10,7 +10,7 @@ export async function POST(req) {
     const ids = cartData.ids.map((id) => new mongoose.Types.ObjectId(id));
     const allCartProducts = await ProductModel.find({ _id: { $in: ids } }).sort(
       {
-        updatedAt: -1,
+        createdAt: -1,
       }
     );
 

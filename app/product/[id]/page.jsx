@@ -4,6 +4,7 @@ import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function Product() {
   const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
@@ -47,15 +48,19 @@ export default function Product() {
   };
 
   if (!productData) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center py-5">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
     <div className="p-5 flex justify-center ">
-      <div className="sm:inline-flex  shadow-sm">
+      <div className="sm:inline-flex  shadow-sm relative">
         <div>
           {productData?.newPrice && (
-            <span className="bg-sharp-pink text-white px-2 text-lg absolute left-12 top-36 z-10  ">
+            <span className="bg-sharp-pink text-white px-2 text-lg absolute left-7 top-8 z-10  ">
               -
               {Math.round(
                 (100 * (productData?.price - productData?.newPrice)) /

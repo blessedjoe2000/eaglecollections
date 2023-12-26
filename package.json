@@ -18,8 +18,12 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-easy-panzoom": "^0.4.4",
+    "react-hot-toast": "^2.4.1",
+    "react-image-magnify": "^2.7.4",
     "react-modern-drawer": "^1.2.2",
     "react-social-icons": "^6.7.0",
+    "react-spinners": "^0.13.8",
     "stripe": "^14.7.0"
   },
   "devDependencies": {

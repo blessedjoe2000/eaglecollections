@@ -1,15 +1,14 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import { useFetchAllProduct } from "../../internalAPI/FetchAllProducts";
 import Image from "next/image";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import axios from "axios";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 export default function Cart() {
-  const { data, isPending, isError } = useFetchAllProduct();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -52,9 +51,44 @@ export default function Cart() {
   const handleGoToPayment = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !phone) {
-      console.log("enter required fields");
-      return;
+    if (!name) {
+      return toast.error("Name is required. Please enter name", {
+        style: {
+          border: "1px solid #f72585",
+          padding: "16px",
+          color: "#f72585",
+        },
+        iconTheme: {
+          primary: "#f72585",
+          secondary: "#FFFAEE",
+        },
+      });
+    }
+    if (!email) {
+      return toast.error("Email is required. Please enter email", {
+        style: {
+          border: "1px solid #f72585",
+          padding: "16px",
+          color: "#f72585",
+        },
+        iconTheme: {
+          primary: "#f72585",
+          secondary: "#FFFAEE",
+        },
+      });
+    }
+    if (!phone) {
+      return toast.error("Mobile no is required. Please enter mobile", {
+        style: {
+          border: "1px solid #f72585",
+          padding: "16px",
+          color: "#f72585",
+        },
+        iconTheme: {
+          primary: "#f72585",
+          secondary: "#FFFAEE",
+        },
+      });
     }
     const response = await axios.post("/api/checkout", {
       name,
@@ -67,10 +101,6 @@ export default function Cart() {
       window.location = response.data.url;
     }
   };
-
-  if (isPending) {
-    return <div>Loading...</div>;
-  }
 
   if (isSuccess) {
     return (

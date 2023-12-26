@@ -3,9 +3,10 @@
 import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 import { useSearch } from "../providers/SearchProvider/SearchProvider";
+import Spinner from "../Spinner/Spinner";
 
 export default function AllProducts() {
   const { data, isPending, isError } = useFetchAllProduct();
@@ -21,15 +22,27 @@ export default function AllProducts() {
   };
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center py-5">
+        <Spinner />
+      </div>
+    );
   }
 
   if (isError) {
-    return <div>Error fetching all products</div>;
+    return (
+      <div className="bg-white mx-5 text-center py-10 ">
+        <h1 className="font-bold py-2 text-lg">Error fetching all products</h1>
+      </div>
+    );
   }
 
   if (!data) {
-    return <div>No products available</div>;
+    return (
+      <div className="bg-white mx-5 text-center py-10 ">
+        <h1 className="font-bold py-2 text-lg">No products available</h1>
+      </div>
+    );
   }
 
   if (searchResults.length > 0) {
@@ -56,7 +69,7 @@ export default function AllProducts() {
                   <Image
                     src={searchResult.images?.[0]}
                     alt={`${searchResult.title}`}
-                    width={250}
+                    width={150}
                     height={200}
                     priority
                   />
@@ -135,7 +148,7 @@ export default function AllProducts() {
                   <Image
                     src={productData.images?.[0]}
                     alt={`${productData.title}`}
-                    width={250}
+                    width={150}
                     height={200}
                     priority
                   />
@@ -164,7 +177,7 @@ export default function AllProducts() {
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className={
-                      favoriteIds.includes(productData._id)
+                      favoriteIds?.includes(productData._id)
                         ? "w-6 h-6 fill-main-pink"
                         : "w-6 h-6"
                     }
