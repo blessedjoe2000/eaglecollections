@@ -14,14 +14,20 @@ export default function Footer() {
         <div className="flex flex-col justify-center items-center">
           <Link href={"/george"}>Georges</Link>
           <Link href={"/lace"}>Laces</Link>
-          <Link href={"/"}>Account</Link>
-          <Link href={"/"}>Contact</Link>
+          <Link href={"/bag"}>Bags</Link>
+          <Link href={"/accessories"}>Accessories</Link>
         </div>
         <div className="flex flex-col justify-center items-center">
           <Link href={"/favorite"}>Saved products</Link>
           <Link href={"/ankara"}>Ankara</Link>
-          <Link href={"/"}>Shoes</Link>
+          <Link href={"/shoe"}>Shoes</Link>
           <Link href={"/jewelry"}>Jewelries</Link>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+          <Link href={"/men"}>Men Products</Link>
+          <Link href={"/clutch"}>clutches</Link>
+          <Link href={"/dress"}>Gown Dresses</Link>
+          <Link href={"/headtie"}>Headtie Gele</Link>
         </div>
         <div className="flex flex-col justify-center text-center gap-2">
           <h2>Our Social Media</h2>
@@ -30,7 +36,6 @@ export default function Footer() {
             <SocialIcon network="instagram" url="/" />
             <SocialIcon network="whatsapp" url="/" />
             <SocialIcon network="tiktok" url="/" />
-            <SocialIcon network="twitter" url="/" />
           </div>
         </div>
       </div>

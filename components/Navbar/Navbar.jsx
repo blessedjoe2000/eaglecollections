@@ -107,7 +107,7 @@ export default function Navbar() {
         <Link href={"/"} className="">
           Shop
         </Link>
-        <Link href={"/"}>About</Link>
+        <Link href={"/about"}>About</Link>
         <Link href={"/"}>Account</Link>
         <Link href={"/"}>Contact</Link>
       </div>
