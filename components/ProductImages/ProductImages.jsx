@@ -19,7 +19,7 @@ export function ProductImages({ images }) {
         <Image
           src={activeImage}
           alt={""}
-          width={300}
+          width={400}
           height={200}
           priority
           // className="rounded-md scale-95 hover:scale-100 transition-transform duration-300"

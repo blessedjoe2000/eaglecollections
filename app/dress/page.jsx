@@ -61,7 +61,7 @@ export default function Dress() {
                 <div className="flex justify-between items-center ">
                   {dress?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${dress?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -69,7 +69,7 @@ export default function Dress() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${dress.price}</p>
+                    <p className=" font-bold text-lg">${dress.price}</p>
                   )}
 
                   <svg

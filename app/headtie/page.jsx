@@ -62,7 +62,7 @@ export default function Headtie() {
                 <div className="flex justify-between items-center ">
                   {headtie?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${headtie?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -70,7 +70,7 @@ export default function Headtie() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${headtie.price}</p>
+                    <p className=" font-bold text-lg">${headtie.price}</p>
                   )}
 
                   <svg

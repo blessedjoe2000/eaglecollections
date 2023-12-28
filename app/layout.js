@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en " className="bg-light-grey font-bodyFont">
+    <html lang="en " className="bg-light-grey font-muktaFont text-black/60">
       <body className="">
         <Toaster position="top-right" />
         <TanstackProvider>

@@ -60,13 +60,13 @@ export default function Lace() {
                 <div className="flex justify-between items-center ">
                   {lace?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${lace?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">${lace?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${lace.price}</p>
+                    <p className=" font-bold text-lg">${lace.price}</p>
                   )}
 
                   <svg

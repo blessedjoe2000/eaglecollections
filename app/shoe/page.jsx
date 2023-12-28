@@ -61,13 +61,13 @@ export default function Shoe() {
                 <div className="flex justify-between items-center ">
                   {shoe?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${shoe?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">${shoe?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${shoe.price}</p>
+                    <p className=" font-bold text-lg">${shoe.price}</p>
                   )}
 
                   <svg

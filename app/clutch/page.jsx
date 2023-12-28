@@ -62,7 +62,7 @@ export default function Clutch() {
                 <div className="flex justify-between items-center ">
                   {clutch?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${clutch?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -70,7 +70,7 @@ export default function Clutch() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${clutch.price}</p>
+                    <p className=" font-bold text-lg">${clutch.price}</p>
                   )}
 
                   <svg

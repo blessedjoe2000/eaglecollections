@@ -55,7 +55,7 @@ export default function AllProducts() {
           >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
-                <Link href={`/product/${searchResult._id}`}>
+                <Link href={`/product/${searchResult._id}`} className="">
                   {searchResult?.newPrice && (
                     <span className="bg-sharp-pink text-white px-2 absolute text-lg">
                       -
@@ -79,7 +79,7 @@ export default function AllProducts() {
                 <div className="flex justify-between items-center ">
                   {searchResult?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${searchResult?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -87,7 +87,7 @@ export default function AllProducts() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${searchResult.price}</p>
+                    <p className=" font-bold text-lg">${searchResult.price}</p>
                   )}
 
                   <svg
@@ -158,7 +158,7 @@ export default function AllProducts() {
                 <div className="flex justify-between items-center ">
                   {productData?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${productData?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -166,7 +166,7 @@ export default function AllProducts() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${productData.price}</p>
+                    <p className=" font-bold text-lg">${productData.price}</p>
                   )}
 
                   <svg

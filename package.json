@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^14.0.4",
     "@stripe/stripe-js": "^2.2.0",
     "@tanstack/react-query": "^5.8.9",
     "@tanstack/react-query-devtools": "^5.10.0",
@@ -20,7 +21,6 @@
     "react-dom": "^18",
     "react-easy-panzoom": "^0.4.4",
     "react-hot-toast": "^2.4.1",
-    "react-image-magnify": "^2.7.4",
     "react-modern-drawer": "^1.2.2",
     "react-social-icons": "^6.7.0",
     "react-spinners": "^0.13.8",

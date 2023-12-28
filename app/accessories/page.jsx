@@ -65,7 +65,7 @@ export default function Accessories() {
                 <div className="flex justify-between items-center ">
                   {accessory?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${accessory?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -73,7 +73,7 @@ export default function Accessories() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${accessory.price}</p>
+                    <p className=" font-bold text-lg">${accessory.price}</p>
                   )}
 
                   <svg

@@ -25,7 +25,7 @@ export default function Favorite() {
 
   return (
     <div className="p-5 ">
-      <h2 className="font-bold mb-3 text-lg text-main-pink text-center">
+      <h2 className="font-bold mb-3 text-xl text-main-pink text-center">
         Saved Products
       </h2>
       {!favoriteProducts?.length ? (
@@ -54,7 +54,7 @@ export default function Favorite() {
                   </Link>
 
                   <div className="flex flex-col gap-2 mt-2 sm:mt-0  px-5 ">
-                    <h2 className="font-bold text-xl">
+                    <h2 className="font-bold text-lg">
                       {favProductData?.title}
                     </h2>
                     <p>{favProductData?.description}</p>

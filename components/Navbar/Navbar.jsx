@@ -96,8 +96,8 @@ export default function Navbar() {
     <nav
       className={
         showHamburger
-          ? "mb-40 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
-          : "bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50"
+          ? "mb-40 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
+          : "bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
       }
     >
       <div className="py-2">
@@ -108,8 +108,7 @@ export default function Navbar() {
           Shop
         </Link>
         <Link href={"/about"}>About</Link>
-        <Link href={"/"}>Account</Link>
-        <Link href={"/"}>Contact</Link>
+        <Link href={"/contact"}>Contact</Link>
       </div>
       <div className="flex gap-5 justify-center items-center">
         <SearchProducts />

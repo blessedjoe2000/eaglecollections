@@ -65,7 +65,7 @@ export default function Men() {
                 <div className="flex justify-between items-center ">
                   {menProduct?.newPrice ? (
                     <div className="flex items-center gap-3">
-                      <p className=" font-bold text-xl text-main-pink">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${menProduct?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
@@ -73,7 +73,7 @@ export default function Men() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-xl">${menProduct.price}</p>
+                    <p className=" font-bold text-lg">${menProduct.price}</p>
                   )}
 
                   <svg
