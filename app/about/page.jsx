@@ -39,8 +39,8 @@ export default function About() {
               We got the men covered too, offering ready-made native attires,
               slippers, various traditional hats, Italian shoes, and belts.
               Explore our stylish pre-made Ankara attires, elegant Turkish and
-              Dubai dresses for ladies, and more. We've got you covered, even
-              for your food warmers.
+              Dubai dresses for ladies, and more. We got you covered, even for
+              your food warmers.
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default function About() {
               handmade lace, sequins lace, Chantilly lace, cord lace, dry lace,
               and various other lace varieties. Embrace the elegance of Ankara
               wax prints, along with beautiful selections of silk Georges, Swiss
-              fabrics, and Italian cotton materials for men's agbada and kaftan.
+              fabrics, and Italian cotton materials for mens agbada and kaftan.
             </p>
             <p>
               We also provide you with the opportunity to explore ready-made
