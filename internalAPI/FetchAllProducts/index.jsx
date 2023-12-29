@@ -4,7 +4,8 @@ import axios from "axios";
 const queryClient = new QueryClient();
 
 export const fetchAllProducts = async () => {
-  const domainUrl = "http://localhost:3000";
+  const domainUrl =
+    "https://eaglecollections-m746jyjio-blessedjoe2000.vercel.app/";
   const response = await axios.get(`${domainUrl}/api/product`);
   if (response.status !== 200) {
     throw new Error("Cannot fetch data");
