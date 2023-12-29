@@ -36,7 +36,7 @@ export default function About() {
               latest trends in the African fashion world at an affordable price.
             </p>
             <p>
-              We've got the men covered too, offering ready-made native attires,
+              We got the men covered too, offering ready-made native attires,
               slippers, various traditional hats, Italian shoes, and belts.
               Explore our stylish pre-made Ankara attires, elegant Turkish and
               Dubai dresses for ladies, and more. We've got you covered, even
