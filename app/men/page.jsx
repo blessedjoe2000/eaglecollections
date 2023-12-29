@@ -73,7 +73,9 @@ export default function Men() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${menProduct.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${menProduct.price}
+                    </p>
                   )}
 
                   <svg

@@ -71,7 +71,9 @@ export default function Ankara() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${ankara.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${ankara.price}
+                    </p>
                   )}
 
                   <svg

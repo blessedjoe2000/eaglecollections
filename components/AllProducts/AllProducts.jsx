@@ -87,7 +87,9 @@ export default function AllProducts() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${searchResult.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${searchResult.price}
+                    </p>
                   )}
 
                   <svg
@@ -166,7 +168,9 @@ export default function AllProducts() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${productData.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${productData.price}
+                    </p>
                   )}
 
                   <svg

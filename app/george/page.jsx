@@ -70,7 +70,9 @@ export default function George() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${george.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${george.price}
+                    </p>
                   )}
 
                   <svg

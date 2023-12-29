@@ -67,7 +67,9 @@ export default function Bag() {
                       <p className=" font-bold line-through ">${bag?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${bag.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${bag.price}
+                    </p>
                   )}
 
                   <svg

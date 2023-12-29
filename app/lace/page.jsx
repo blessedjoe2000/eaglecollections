@@ -66,7 +66,9 @@ export default function Lace() {
                       <p className=" font-bold line-through ">${lace?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${lace.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${lace.price}
+                    </p>
                   )}
 
                   <svg

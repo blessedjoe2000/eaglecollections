@@ -70,7 +70,9 @@ export default function Jewelry() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${jewelry.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${jewelry.price}
+                    </p>
                   )}
 
                   <svg

@@ -1,6 +1,8 @@
 import { useQuery, QueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
+const queryClient = new QueryClient();
+
 export const fetchAllProducts = async () => {
   const domainUrl = "http://localhost:3000";
   const response = await axios.get(`${domainUrl}/api/product`);
@@ -12,6 +14,5 @@ export const fetchAllProducts = async () => {
 };
 
 export const useFetchAllProduct = () => {
-  const queryClient = new QueryClient();
   return useQuery({ queryKey: ["allProducts"], queryFn: fetchAllProducts });
 };

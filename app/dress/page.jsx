@@ -69,7 +69,9 @@ export default function Dress() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${dress.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${dress.price}
+                    </p>
                   )}
 
                   <svg

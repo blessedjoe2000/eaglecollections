@@ -67,7 +67,9 @@ export default function Shoe() {
                       <p className=" font-bold line-through ">${shoe?.price}</p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${shoe.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${shoe.price}
+                    </p>
                   )}
 
                   <svg

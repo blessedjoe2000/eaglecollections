@@ -70,7 +70,9 @@ export default function Headtie() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${headtie.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${headtie.price}
+                    </p>
                   )}
 
                   <svg

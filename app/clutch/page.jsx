@@ -70,7 +70,9 @@ export default function Clutch() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${clutch.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${clutch.price}
+                    </p>
                   )}
 
                   <svg

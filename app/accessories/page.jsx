@@ -73,7 +73,9 @@ export default function Accessories() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg">${accessory.price}</p>
+                    <p className=" font-bold text-lg text-black">
+                      ${accessory.price}
+                    </p>
                   )}
 
                   <svg

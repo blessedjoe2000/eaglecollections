@@ -80,7 +80,7 @@ export default function Favorite() {
                         />
                       </svg>
                     </div>
-                    <p className="font-bold text-lg">
+                    <p className="font-bold text-lg text-black">
                       ${favProductData?.price}
                     </p>
                   </div>

@@ -1,74 +1,120 @@
 import Image from "next/image";
-import aboutPhoto from "@/public/images/eaglecollectionswallpaper.jpg";
+import aboutBanner from "@/public/images/eagle_collections_banner_photo.png";
+import fabric from "@/public/images/eagle_collections_fabric_2.png";
+import shoeBag from "@/public/images/eagle_collections_shoe_and_bag.png";
+import jewelry from "@/public/images/eagle_collections_jewelry.png";
+import gele from "@/public/images/eagle_collections_gele.png";
 
 export default function About() {
   return (
     <div className="mx-5 mt-5 mb-10">
       <div>
         <Image
-          src={aboutPhoto}
-          alt="eagle collections about photo"
+          src={aboutBanner}
+          alt="eagle collections about banner"
           width={1500}
           height={500}
         />
       </div>
-      <h1>Our Story!</h1>
-      <div className="flex gap-2">
-        <div className="w-2/3">
-          <h2>We are Eagle Collections!</h2>
-          <p>
-            We mission is to meet your African fashion needs, build your
-            confidence when you dress for event, bring you the latest trend in
-            the African fashion world at an affordable way.
-          </p>
-          <p>
-            We offer custom made attires and group supplies (Asobi) for wedding,
-            birthdays, church events, meetings, and personal demands. We ensure
-            your vision becomes a reality.
-          </p>
-          <p>
-            We got you covered when it comes to jewelries, Italian shoes and
-            bags, purses, clutch, shoes, slippers, and a wide range of
-            accessories like traditional hats, handfans, belts, designer
-            glasses. We offer beads services for rental and sale for weddings
-            and all kinds of occasions.
-          </p>
+      <h1 className="text-2xl text-center sm:pt-10 pt-5">Our Services</h1>
+
+      <div className="flex gap-2 bg-white sm:text-lg text-md text-center mb-5 sm:mt-5 mt-2 p-5 sm:flex-row flex-col">
+        <div className="sm:w-1/2 w-full  shadow-md px-2 pb-5">
+          <div className="w-full  ">
+            <Image
+              src={shoeBag}
+              alt="eagle collections shoe and bag"
+              width={"full"}
+              height={0}
+              objectFit="cover"
+            />
+          </div>
+          <div className="w-full mt-2">
+            <p>
+              Our mission is to fulfill your African fashion needs, enhance your
+              confidence when dressing for events, and provide you with the
+              latest trends in the African fashion world at an affordable price.
+            </p>
+            <p>
+              We've got the men covered too, offering ready-made native attires,
+              slippers, various traditional hats, Italian shoes, and belts.
+              Explore our stylish pre-made Ankara attires, elegant Turkish and
+              Dubai dresses for ladies, and more. We've got you covered, even
+              for your food warmers.
+            </p>
+          </div>
         </div>
-        <div>
-          <Image
-            src={aboutPhoto}
-            alt="eagle collections about photo"
-            width={"full"}
-          />
+        <div className="sm:w-1/2 w-full  shadow-md px-2 pb-5">
+          <div className="w-full">
+            <Image
+              src={fabric}
+              alt="eagle collections african fabrics"
+              width={"full"}
+              height={0}
+              className=" "
+            />
+          </div>
+          <div className="w-full mt-2">
+            <p>
+              Explore an array of authentic African fabrics, including exquisite
+              handmade lace, sequins lace, Chantilly lace, cord lace, dry lace,
+              and various other lace varieties. Embrace the elegance of Ankara
+              wax prints, along with beautiful selections of silk Georges, Swiss
+              fabrics, and Italian cotton materials for men's agbada and kaftan.
+            </p>
+            <p>
+              We also provide you with the opportunity to explore ready-made
+              embroidery, stylish auto-gele, aso-oke, sego, intorika, isi-agwu,
+              Esan traditional wrappers (igbulu), a spectrum of linings, and
+              zippers.
+            </p>
+          </div>
         </div>
       </div>
-      <div className="flex gap-2">
-        <div className="">
-          <Image
-            src={aboutPhoto}
-            alt="eagle collections about photo"
-            width={"full"}
-          />
-        </div>
-        <div className="w-1/2">
-          <p>
-            Discover a world of authentic African fabrics from exquiste handmade
-            lace, sequins lace, chantilly lace, cord lace, dry lace and other
-            variety of laces, to elegance Ankara wax prints, as well as
-            beautiful varietis of silk Georges, Swiss and Italian cotton
-            materials for men's agbada and kaftan.
-          </p>
-          <p>
-            We also offer offer you the opportunity of already made embriodery,
-            stylish auto-gele, asoke, sego, intorika, isi-agwu. Esan and Ghana
-            traditional wrapper (igbulu), spectrum of linings and zippers
-          </p>
-          <p>
-            We Also go the men covered as we offer already made native attires,
-            slippers, different kind of traditional hats, Italian shoes, belts.
-            Explore our already made stylish Ankara attires, elegant Turkish and
-            Dubai dresses and more. We got you covered for your food warmers{" "}
-          </p>
+
+      <div className=" bg-white sm:text-lg text-md text-center  p-5">
+        <h2 className="text-xl sm:pt-2 pt-0">We are Eagle Collections!</h2>
+        <div className="flex gap-2 sm:mt-5 mt-2 sm:flex-row flex-col">
+          <div className="sm:w-1/2 w-full shadow-md px-2 pb-5 ">
+            <div className="w-full  ">
+              <Image
+                src={gele}
+                alt="eagle collections shoe and bag"
+                width={"full"}
+                height={0}
+                objectFit="cover"
+              />
+            </div>
+            <div className="w-full mt-2">
+              <p>
+                We specialize in crafting custom-made attires and group supplies
+                (Asobi) for weddings, birthdays, church events, meetings, and
+                custom requests. Explore our diverse range of accessories,
+                including traditional hats, hand fans, belts, and designer
+                glasses.
+              </p>
+            </div>
+          </div>
+          <div className="sm:w-1/2 w-full shadow-md px-2 pb-5">
+            <div className="w-full">
+              <Image
+                src={jewelry}
+                alt="eagle collections jewelries"
+                width={"full"}
+                height={0}
+                className=" "
+              />
+            </div>
+            <div className="w-full mt-2">
+              <p>
+                Count on us for all your jewelry needs, including Italian shoes,
+                bags, purses, clutches, and a variety of shoes and slippers. Our
+                bead services are available for both rental and sale, perfect
+                for weddings and various occasions. We are dedicated to making
+                your vision a reality.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
