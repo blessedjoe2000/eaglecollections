@@ -45,7 +45,3 @@ export async function POST(req) {
 
   return new Response(JSON.stringify("successful payment"), { status: 200 });
 }
-
-export const config = {
-  api: { bodyParser: false },
-};
