@@ -1,5 +1,4 @@
 import "./globals.css";
-import TanstackProvider from "../components/providers/TanstackProvider/TanstackProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { CartContextProvider } from "@/components/providers/CartContext/CartContext";
@@ -18,17 +17,15 @@ export default function RootLayout({ children }) {
     <html lang="en " className="bg-light-grey font-muktaFont text-black/60">
       <body className="">
         <Toaster position="top-right" />
-        <TanstackProvider>
-          <AuthProvider>
-            <CartContextProvider>
-              <SearchProvider>
-                <Navbar />
-                {children}
-                <Footer />
-              </SearchProvider>
-            </CartContextProvider>
-          </AuthProvider>
-        </TanstackProvider>
+        <AuthProvider>
+          <CartContextProvider>
+            <SearchProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </SearchProvider>
+          </CartContextProvider>
+        </AuthProvider>
       </body>
     </html>
   );

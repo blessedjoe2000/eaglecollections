@@ -1,18 +1,32 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
 import Spinner from "@/components/Spinner/Spinner";
+import axios from "axios";
 
 export default function Product() {
   const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
   const { id: _id } = useParams();
-  const { data } = useFetchAllProduct();
   const [colors, setColors] = useState("");
   const [sizes, setSizes] = useState("");
+  const [data, setData] = useState([]);
+
   const productData = data?.find((product) => product._id === _id);
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const response = await axios.get("/api/allproducts");
+        setData(response.data);
+      } catch (error) {
+        console.log("Error fetech data: ", error.message);
+      }
+    };
+
+    fetchAllProducts();
+  }, []);
 
   useEffect(() => {
     if (productData?.colors) {

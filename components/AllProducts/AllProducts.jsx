@@ -1,17 +1,29 @@
 "use client";
 
-import { useFetchAllProduct } from "@/internalAPI/FetchAllProducts";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 import { useSearch } from "../providers/SearchProvider/SearchProvider";
-import Spinner from "../Spinner/Spinner";
+import axios from "axios";
 
 export default function AllProducts() {
-  const { data, isPending, isError } = useFetchAllProduct();
   const { addToFavorite, favoriteIds } = useContext(CartContext);
   const { searchResults, resetSearchResults } = useSearch();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const response = await axios.get("/api/allproducts");
+        setData(response.data);
+      } catch (error) {
+        console.log("Error fetech data: ", error.message);
+      }
+    };
+
+    fetchAllProducts();
+  }, []);
 
   useEffect(() => {
     resetSearchResults();
@@ -20,22 +32,6 @@ export default function AllProducts() {
   const addFavorite = (productId) => {
     addToFavorite(productId);
   };
-
-  if (isPending) {
-    return (
-      <div className="flex justify-center items-center py-5">
-        <Spinner />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="bg-white mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">Error fetching all products</h1>
-      </div>
-    );
-  }
 
   if (!data) {
     return (
