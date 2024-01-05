@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function GET(req) {
   await mongooseConnect();
-  const domainUrl = process.env.PUBLIC_URL;
+  const domainUrl = process.env.NEXTAUTH_URL;
   try {
     const response = await axios.get(`${domainUrl}/api/product`);
 

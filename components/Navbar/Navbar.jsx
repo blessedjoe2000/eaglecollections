@@ -29,7 +29,7 @@ export default function Navbar() {
     <nav
       className={
         showHamburger
-          ? "mb-40 bg-dark-green text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
+          ? "mb-32 bg-dark-green text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
           : "bg-dark-green text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
       }
     >
@@ -174,7 +174,7 @@ export default function Navbar() {
         <div
           className={
             showHamburger
-              ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-dark-green mb-20"
+              ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-dark-green"
               : "hidden"
           }
         >
@@ -191,19 +191,14 @@ export default function Navbar() {
               Shop
             </Link>
             <Link
-              href={"/"}
+              href={"/about"}
               className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               About
             </Link>
+
             <Link
-              href={"/"}
-              className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
-            >
-              Account
-            </Link>
-            <Link
-              href={"/"}
+              href={"/contact"}
               className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               Contact

@@ -11,6 +11,8 @@ export const authOptions = {
     // ...add more providers here
   ],
 
+  secret: process.env.NEXTAUTH_URL,
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

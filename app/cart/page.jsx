@@ -112,7 +112,7 @@ export default function Cart() {
           <p className="mb-5">We will email you when your order is sent.</p>
           <Link
             href={"/"}
-            className=" bg-main-pink rounded-md  inline-flex justify-center items-center gap-2 text-white px-3 py-1 hover:text-sharp-purple"
+            className=" bg-dark-green rounded-md  inline-flex justify-center items-center gap-2 text-white px-3 py-1 hover:text-light-green"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -138,9 +138,7 @@ export default function Cart() {
 
   return (
     <div className="m-5">
-      <h2 className="font-bold mb-3 text-lg text-main-pink text-center">
-        Shopping Cart
-      </h2>
+      <h1 className="font-bold mb-3 text-xl text-center">Shopping Cart</h1>
       {!cartProducts?.length ? (
         <div>
           {!cartProducts?.length && (
@@ -169,7 +167,7 @@ export default function Cart() {
                     </Link>
 
                     <div className="">
-                      <div className="text-main-pink">
+                      <div className="text-light-green">
                         {cartProductData?.newPrice ? (
                           <p className="font-bold">
                             ${cartProductData?.newPrice}
@@ -190,7 +188,7 @@ export default function Cart() {
                       </p>
                       <div>
                         {cartProductData?.colors && (
-                          <div className="flex items-center gap-5">
+                          <div className="flex items-center gap-2">
                             <p>Color: </p>
 
                             <p>
@@ -205,7 +203,7 @@ export default function Cart() {
                       </div>
                       <div>
                         {cartProductData?.sizes && (
-                          <div className="flex items-center gap-5">
+                          <div className="flex items-center gap-2">
                             <p>Size: </p>
 
                             <p>
@@ -222,7 +220,7 @@ export default function Cart() {
                       <div className="flex  py-2">
                         <button
                           onClick={() => reduceProduct(cartProductData)}
-                          className="flex items-center bg-main-red px-2 rounded-md text-white hover:text-white"
+                          className="flex items-center bg-dark-green px-2 rounded-md text-white hover:text-white"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -247,13 +245,13 @@ export default function Cart() {
               ))}
             <div className="flex gap-2 shadow-sm bg-white py-2 px-5">
               <p>Sub-total: </p>
-              <div className="font-bold text-main-pink">${total}</div>
+              <div className="font-bold text-light-green">${total}</div>
             </div>
           </div>
           <div className="flex flex-col p-5 rounded-md shadow-sm bg-white ">
             {!!cartProducts?.length && (
               <div className="">
-                <h2 className="font-bold text-lg text-main-pink">
+                <h2 className="font-bold text-lg text-light-green">
                   Order information
                 </h2>
                 <form onSubmit={handleGoToPayment} className="py-2">
@@ -284,14 +282,14 @@ export default function Cart() {
                     disabled={!session}
                     className={
                       session
-                        ? " bg-main-pink px-3 py-1 mt-2 rounded-md text-white text-center"
+                        ? " bg-dark-green px-3 py-1 mt-2 rounded-md text-white text-center"
                         : "cursor-not-allowed disabled:bg-slate-300  px-3 py-1 mt-2 rounded-md text-white text-center hover:text-white"
                     }
                   >
                     Continue to payment
                   </button>
                   {!session && (
-                    <p className="text-sm text-red-600 ml-5 pt-1">
+                    <p className="text-sm text-sharp-pink ml-5 pt-1">
                       *login to continue*
                     </p>
                   )}

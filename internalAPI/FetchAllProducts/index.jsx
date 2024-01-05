@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const fetchAllProducts = async () => {
-  const domainUrl = process.env.PUBLIC_URL;
+  const domainUrl = process.env.NEXTAUTH_URL;
   try {
     const response = await axios.get(`${domainUrl}/api/product`);
     if (response.status !== 200) {
