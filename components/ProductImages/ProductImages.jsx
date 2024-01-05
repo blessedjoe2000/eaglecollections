@@ -32,7 +32,7 @@ export function ProductImages({ images }) {
             onClick={() => setActiveImage(image)}
             className={
               activeImage === image
-                ? " p-1 bg-light-grey border-2 border-mid-pink"
+                ? " p-1 bg-light-grey border-2 border-light-green"
                 : " p-1 bg-light-grey border-2 border-transparent"
             }
           >

@@ -9,13 +9,11 @@ import Image from "next/image";
 import SearchProducts from "../SearchProduct/SearchProduct";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import toast from "react-hot-toast";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   const { data: session } = useSession();
 
@@ -27,77 +25,12 @@ export default function Navbar() {
     setShowHamburger(!showHamburger);
   };
 
-  const login = async () => {
-    try {
-      setIsLoading(true);
-      await signIn("google");
-      toast.success("Login successful", {
-        style: {
-          border: "1px solid #01B700",
-          padding: "16px",
-          color: "#01B700",
-        },
-        iconTheme: {
-          primary: "#01B700",
-          secondary: "#FFFAEE",
-        },
-      });
-    } catch (error) {
-      console.error("Login failed:", error);
-
-      toast.error("Login failed", {
-        style: {
-          border: "1px solid #FF0000",
-          padding: "16px",
-          color: "#FF0000",
-        },
-        iconTheme: {
-          primary: "#FF0000",
-          secondary: "#FFFAEE",
-        },
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const logout = async () => {
-    try {
-      toast.success("Logout successful", {
-        style: {
-          border: "1px solid #01B700",
-          padding: "16px",
-          color: "#01B700",
-        },
-        iconTheme: {
-          primary: "#01B700",
-          secondary: "#FFFAEE",
-        },
-      });
-      await signOut();
-    } catch (error) {
-      console.error("Login failed:", error);
-
-      toast.error("Login failed", {
-        style: {
-          border: "1px solid #FF0000",
-          padding: "16px",
-          color: "#FF0000",
-        },
-        iconTheme: {
-          primary: "#FF0000",
-          secondary: "#FFFAEE",
-        },
-      });
-    }
-  };
-
   return (
     <nav
       className={
         showHamburger
-          ? "mb-40 bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
-          : "bg-main-purple text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
+          ? "mb-40 bg-dark-green text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
+          : "bg-dark-green text-white flex justify-between items-center gap-5 px-5 sticky top-0 z-50 font-robotoFont "
       }
     >
       <div className="py-2">
@@ -137,8 +70,8 @@ export default function Navbar() {
         <div className="sm:inline-flex hidden">
           {!session && (
             <button
-              className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-              onClick={() => !isLoading && login()}
+              className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green "
+              onClick={signIn}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -189,8 +122,8 @@ export default function Navbar() {
                 <p>{session.user.name}</p>
                 <p className="py-1">{session.user.email}</p>
                 <button
-                  className=" flex items-center px-2 py-1 bg-main-pink rounded-lg text-white hover:text-sharp-purple my-3"
-                  onClick={logout}
+                  className=" flex items-center px-2 py-1 bg-sharp-pink rounded-lg text-white hover:text-light-green my-3"
+                  onClick={signOut}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +143,7 @@ export default function Navbar() {
                 </button>
                 <button
                   onClick={toggleDrawer}
-                  className="flex items-center px-2 bg-main-purple text-white rounded-md mt-10 hover:text-sharp-pink"
+                  className="flex items-center px-2 bg-dark-green text-white rounded-md mt-10 hover:text-light-green"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +174,7 @@ export default function Navbar() {
         <div
           className={
             showHamburger
-              ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-main-purple mb-20"
+              ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-dark-green mb-20"
               : "hidden"
           }
         >
@@ -253,25 +186,25 @@ export default function Navbar() {
           <div className="flex flex-col gap-2">
             <Link
               href={"/"}
-              className=" hover:bg-white hover:text-main-purple hover:w-screen flex justify-center items-center"
+              className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               Shop
             </Link>
             <Link
               href={"/"}
-              className=" hover:bg-white hover:text-main-purple hover:w-screen flex justify-center items-center"
+              className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               About
             </Link>
             <Link
               href={"/"}
-              className=" hover:bg-white hover:text-main-purple hover:w-screen flex justify-center items-center"
+              className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               Account
             </Link>
             <Link
               href={"/"}
-              className=" hover:bg-white hover:text-main-purple hover:w-screen flex justify-center items-center"
+              className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
             >
               Contact
             </Link>
@@ -279,8 +212,8 @@ export default function Navbar() {
           <div className="inline-flex mt-3">
             {!session && (
               <button
-                className="flex items-center px-2 py-1 bg-main-pink rounded-lg hover:text-sharp-purple "
-                onClick={() => !isLoading && login()}
+                className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green "
+                onClick={signIn}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

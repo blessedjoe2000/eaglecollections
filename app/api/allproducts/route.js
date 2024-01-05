@@ -1,4 +1,3 @@
-import { fetchAllProducts } from "@/internalAPI/FetchAllProducts";
 import { mongooseConnect } from "@/lib/connectDB";
 import axios from "axios";
 

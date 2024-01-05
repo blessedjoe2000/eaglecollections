@@ -146,7 +146,7 @@ export default function Contact() {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-3 py-1 bg-main-pink rounded-md text-white"
+              className="px-3 py-1 bg-dark-green rounded-md text-white w-full"
             >
               Send
             </button>
@@ -161,7 +161,7 @@ export default function Contact() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6 "
+                className="w-6 h-6 text-main-pink"
               >
                 <path
                   strokeLinecap="round"
@@ -178,7 +178,7 @@ export default function Contact() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-6 h-6 text-light-green"
               >
                 <path
                   strokeLinecap="round"
@@ -196,7 +196,7 @@ export default function Contact() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-8 h-8 text-main-pink"
               >
                 <path
                   strokeLinecap="round"
@@ -216,10 +216,13 @@ export default function Contact() {
             </div>
           </div>
           <div className="flex flex-col justify-center text-center gap-4">
-            <h2 className=" text-xl text-main-pink">Our Social Media</h2>
+            <h2 className=" text-xl text-light-green">Our Social Media</h2>
             <div className="flex gap-1 justify-center items-center">
               <SocialIcon network="facebook" url="/" />
-              <SocialIcon network="instagram" url="/" />
+              <SocialIcon
+                network="instagram"
+                url="/https://www.instagram.com/eaglecollectionstore?igsh=MWhqZDU3M2F3OGx5dQ%3D%3D&utm_source=qr"
+              />
               <SocialIcon network="whatsapp" url="/" />
               <SocialIcon network="tiktok" url="/" />
             </div>

@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 import { useSearch } from "../providers/SearchProvider/SearchProvider";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 export default function AllProducts() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
@@ -36,15 +37,15 @@ export default function AllProducts() {
 
   if (!data.length) {
     return (
-      <div className="bg-white mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">No products available</h1>
+      <div className="flex justify-center items-center py-5">
+        <Spinner />
       </div>
     );
   }
 
   if (searchResults.length > 0) {
     return (
-      <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
+      <div className=" flex flex-wrap justify-center items-center gap-2 my-5 ">
         {searchResults.map((searchResult) => (
           <div
             key={searchResult._id}
@@ -66,7 +67,7 @@ export default function AllProducts() {
                   <Image
                     src={searchResult.images?.[0]}
                     alt={`${searchResult.title}`}
-                    width={150}
+                    width={130}
                     height={100}
                     priority
                   />
@@ -84,7 +85,7 @@ export default function AllProducts() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${searchResult.price}
                     </p>
                   )}
@@ -98,8 +99,8 @@ export default function AllProducts() {
                     stroke="currentColor"
                     className={
                       favoriteIds.includes(searchResult._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink"
+                        : "w-6 h-6 text-sharp-pink"
                     }
                   >
                     <path
@@ -124,7 +125,7 @@ export default function AllProducts() {
   }
 
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
+    <div className=" flex flex-wrap justify-center items-center gap-2 my-5 ">
       {data &&
         data.map((productData) => (
           <div
@@ -132,7 +133,7 @@ export default function AllProducts() {
             className="p-5 rounded-md bg-white shadow-sm"
           >
             <div>
-              <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
+              <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300 ">
                 <Link href={`/product/${productData._id}`}>
                   {productData?.newPrice && (
                     <span className="bg-sharp-pink text-white px-2 absolute text-lg">
@@ -147,7 +148,7 @@ export default function AllProducts() {
                   <Image
                     src={productData.images?.[0]}
                     alt={`${productData.title}`}
-                    width={150}
+                    width={130}
                     height={200}
                     priority
                   />
@@ -160,12 +161,12 @@ export default function AllProducts() {
                       <p className=" font-bold text-lg text-main-pink">
                         ${productData?.newPrice}
                       </p>
-                      <p className=" font-bold line-through ">
+                      <p className=" font-bold line-through text-dark-green">
                         ${productData?.price}
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${productData.price}
                     </p>
                   )}
@@ -179,8 +180,8 @@ export default function AllProducts() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(productData._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink"
+                        : "w-6 h-6 text-sharp-pink"
                     }
                   >
                     <path
@@ -191,7 +192,7 @@ export default function AllProducts() {
                   </svg>
                 </div>
                 <Link href={`/product/${productData._id}`}>
-                  <p>
+                  <p className="">
                     {productData?.title?.trim().slice(0, 1).toUpperCase() +
                       productData?.title?.trim().slice(1)}
                   </p>

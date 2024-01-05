@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en " className="bg-light-grey font-muktaFont text-black/60">
+    <html lang="en " className="bg-light-grey font-muktaFont text-dark-green">
       <body className="">
         <Toaster position="top-right" />
         <AuthProvider>

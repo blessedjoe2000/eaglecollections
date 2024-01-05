@@ -21,6 +21,9 @@ module.exports = {
         "light-grey": "#f4f4f6",
         "sharp-pink": "#f72585",
         "main-red": "#dd0426",
+        "dark-green": "#336b79",
+        "light-green": "#25c7c0",
+        "mid-green": "#31859b",
       },
       fontFamily: {
         muktaFont: ["Mukta", "sans-serif"],

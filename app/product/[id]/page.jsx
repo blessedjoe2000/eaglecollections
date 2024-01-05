@@ -142,6 +142,17 @@ export default function Product() {
               </div>
             )}
           </div>
+
+          {productData?.newPrice ? (
+            <div className="flex items-center gap-3">
+              <p className=" font-bold text-xl text-sharp-pink">
+                ${productData?.newPrice}
+              </p>
+              <p className=" font-bold line-through ">${productData?.price}</p>
+            </div>
+          ) : (
+            <p className=" font-bold text-xl">${productData?.price}</p>
+          )}
           <div className="flex gap-2 justify-start items-center">
             <p>Save for later</p>
             <svg
@@ -153,8 +164,8 @@ export default function Product() {
               stroke="currentColor"
               className={
                 favoriteIds.includes(productData?._id)
-                  ? "w-6 h-6 fill-main-pink"
-                  : "w-6 h-6"
+                  ? "w-6 h-6 fill-main-pink text-main-pink"
+                  : "w-6 h-6 text-main-pink"
               }
             >
               <path
@@ -164,20 +175,10 @@ export default function Product() {
               />
             </svg>
           </div>
-          {productData?.newPrice ? (
-            <div className="flex items-center gap-3">
-              <p className=" font-bold text-xl text-sharp-pink">
-                ${productData?.newPrice}
-              </p>
-              <p className=" font-bold line-through ">${productData?.price}</p>
-            </div>
-          ) : (
-            <p className=" font-bold text-xl">${productData?.price}</p>
-          )}
           <div className="flex justify-end mt-2">
             <button
               onClick={() => addToCart(productData._id)}
-              className="bg-main-pink py-1 px-3 rounded-md text-white hover:text-sharp-purple font-bold flex gap-1 justify-center items-center"
+              className="bg-dark-green py-1 px-3 rounded-md text-white hover:text-light-green font-bold flex gap-1 justify-center items-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
