@@ -16,6 +16,7 @@ export default function AllProducts() {
     const fetchAllProducts = async () => {
       try {
         const response = await axios.get("/api/allproducts");
+
         setData(response.data);
       } catch (error) {
         console.log("Error fetch data: ", error.message);
@@ -66,7 +67,7 @@ export default function AllProducts() {
                     src={searchResult.images?.[0]}
                     alt={`${searchResult.title}`}
                     width={150}
-                    height={200}
+                    height={100}
                     priority
                   />
                 </Link>
