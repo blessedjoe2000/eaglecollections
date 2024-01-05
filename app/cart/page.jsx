@@ -188,7 +188,7 @@ export default function Cart() {
                       </p>
                       <div>
                         {cartProductData?.colors && (
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                             <p>Color: </p>
 
                             <p>
@@ -203,7 +203,7 @@ export default function Cart() {
                       </div>
                       <div>
                         {cartProductData?.sizes && (
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                             <p>Size: </p>
 
                             <p>
