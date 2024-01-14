@@ -45,13 +45,13 @@ export default function AllProducts() {
 
   if (searchResults.length > 0) {
     return (
-      <div className=" flex flex-wrap justify-center items-center gap-2 my-5 ">
+      <div className=" flex flex-wrap justify-center items-center gap-2 mb-5 pt-5">
         {searchResults.map((searchResult) => (
           <div
             key={searchResult._id}
             className="p-5 rounded-md bg-white shadow-sm"
           >
-            <div>
+            <div className="w-30">
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${searchResult._id}`} className="">
                   {searchResult?.newPrice && (
@@ -67,7 +67,7 @@ export default function AllProducts() {
                   <Image
                     src={searchResult.images?.[0]}
                     alt={`${searchResult.title}`}
-                    width={130}
+                    width={200}
                     height={100}
                     priority
                   />
@@ -76,7 +76,7 @@ export default function AllProducts() {
               <div>
                 <div className="flex justify-between items-center ">
                   {searchResult?.newPrice ? (
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1">
                       <p className=" font-bold text-lg text-main-pink">
                         ${searchResult?.newPrice}
                       </p>
@@ -125,14 +125,14 @@ export default function AllProducts() {
   }
 
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 my-5 ">
+    <div className=" flex flex-wrap justify-center items-center gap-2 mb-5 pt-5">
       {data &&
         data.map((productData) => (
           <div
             key={productData._id}
-            className="p-5 rounded-md bg-white shadow-sm"
+            className="p-5 rounded-md bg-white shadow-sm "
           >
-            <div>
+            <div className="w-30">
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300 ">
                 <Link href={`/product/${productData._id}`}>
                   {productData?.newPrice && (
@@ -148,8 +148,8 @@ export default function AllProducts() {
                   <Image
                     src={productData.images?.[0]}
                     alt={`${productData.title}`}
-                    width={130}
-                    height={200}
+                    width={200}
+                    height={100}
                     priority
                   />
                 </Link>
@@ -157,7 +157,7 @@ export default function AllProducts() {
               <div>
                 <div className="flex justify-between items-center ">
                   {productData?.newPrice ? (
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1">
                       <p className=" font-bold text-lg text-main-pink">
                         ${productData?.newPrice}
                       </p>

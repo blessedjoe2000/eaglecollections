@@ -6,12 +6,12 @@ import BottomFooter from "../ButtomFooter/BottomFooter";
 
 export default function Footer() {
   return (
-    <div>
+    <div className="flex flex-col ">
       <div className="sm:flex justify-between items-center gap-5 bg-dark-green text-white p-5 font-robotoFont ">
         <div className="flex justify-center items-center">
           <Logo />
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center ">
           <Link href={"/george"}>Georges</Link>
           <Link href={"/lace"}>Laces</Link>
           <Link href={"/bag"}>Bags</Link>
@@ -42,6 +42,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
       <BottomFooter />
     </div>
   );

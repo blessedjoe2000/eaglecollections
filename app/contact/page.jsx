@@ -76,10 +76,12 @@ export default function Contact() {
   return (
     <div className="  mx-5 mt-5 mb-10 ">
       <div>
-        <h2 className="text-center pb-5 font-bold text-2xl ">Contact Us</h2>
+        <h2 className="text-center sm:pb-5 pb-2 font-bold text-2xl ">
+          Contact Us
+        </h2>
 
         <form action="" className="pt-5 pb-10 bg-white p-5">
-          <div className="flex justify-between gap-2">
+          <div className="sm:flex justify-between gap-2">
             <div className="w-full">
               <label htmlFor="firstName" name="firstName">
                 First Name
@@ -104,7 +106,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="flex justify-between gap-2">
+          <div className="sm:flex justify-between gap-2">
             <div className="w-full">
               <label htmlFor="email" name="email">
                 Email Address
@@ -152,8 +154,8 @@ export default function Contact() {
             </button>
           </div>
         </form>
-        <div className="flex justify-around items-center  py-5 bg-white my-5">
-          <div className="flex flex-col gap-2">
+        <div className="sm:flex justify-around items-center gap-5 py-5 bg-white my-5">
+          <div className="flex flex-col justify-center items-center gap-2">
             <div className="flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +217,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center text-center gap-4">
+          <div className="flex flex-col justify-center text-center gap-2 sm:mt-0 mt-5">
             <h2 className=" text-xl text-light-green">Our Social Media</h2>
             <div className="flex gap-1 justify-center items-center">
               <SocialIcon network="facebook" url="/" />

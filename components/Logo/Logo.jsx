@@ -1,4 +1,4 @@
-import logo from "@/public/images/eaglecollectionlogo.png";
+import logo from "@/public/images/eaglecollectionslogowhite.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,7 @@ export default function Logo() {
         alt="eagle collections logo"
         width="160"
         height={0}
-        className="p-4 bg-black"
+        className=" "
       />
     </Link>
   );

@@ -7,7 +7,7 @@ import { SearchProvider } from "@/components/providers/SearchProvider/SearchProv
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
-  title: "Eagle Collection Store Admin",
+  title: "Eagle Collection Store",
   description:
     "online store for all African fashion attires, jewelries and accessories",
 };

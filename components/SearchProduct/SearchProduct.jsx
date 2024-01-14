@@ -19,12 +19,12 @@ export default function SearchProduct() {
     setSearchQuery("");
   };
   return (
-    <div className=" relative">
+    <div className=" relative ">
       <form onSubmit={handleSearch}>
         <input
           type="text"
           placeholder="search..."
-          className="rounded-lg focus-visible:border-none text-black/60 text-sm"
+          className="rounded-lg focus-visible:border-none text-black/60 text-sm "
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
