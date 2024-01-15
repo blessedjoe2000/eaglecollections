@@ -248,13 +248,19 @@ export default function Contact() {
           <div className="flex flex-col justify-center text-center gap-2 sm:mt-0 mt-5">
             <h2 className=" text-xl text-light-green">Our Social Media</h2>
             <div className="flex gap-1 justify-center items-center">
-              <SocialIcon network="facebook" url="/" />
+              <SocialIcon
+                network="facebook"
+                url="https://www.facebook.com/profile.php?id=100064705848755&mibextid=ZbWKwL"
+              />
               <SocialIcon
                 network="instagram"
-                url="/https://www.instagram.com/eaglecollectionstore?igsh=MWhqZDU3M2F3OGx5dQ%3D%3D&utm_source=qr"
+                url="https://www.instagram.com/eaglecollectionstore?igsh=MWhqZDU3M2F3OGx5dQ%3D%3D&utm_source=qr"
               />
-              <SocialIcon network="whatsapp" url="/" />
-              <SocialIcon network="tiktok" url="/" />
+              <SocialIcon network="whatsapp" url="https://wa.me/12103109644" />
+              <SocialIcon
+                network="tiktok"
+                url="https://www.tiktok.com/@eaglecollections_store?_t=8j44epTfpTq&_r=1"
+              />
             </div>
           </div>
         </div>

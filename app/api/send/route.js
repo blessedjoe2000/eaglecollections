@@ -10,7 +10,7 @@ export async function POST(req) {
     const { firstName, lastName, email, mobile, message } = body;
 
     const formData = await resend.emails.send({
-      from: "Eagle Collections <info@eaglecollectionstore.com>",
+      from: "Eagle Collections African Store <info@eaglecollectionstore.com>",
       to: [ourEmail],
       subject: "Contact us message",
       react: EmailTemplate({
