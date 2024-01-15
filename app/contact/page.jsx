@@ -1,7 +1,9 @@
 "use client";
 
 import GoogleMap from "@/components/GoogleMap/GoogleMap";
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { SocialIcon } from "react-social-icons";
 
 export default function Contact() {
@@ -11,7 +13,7 @@ export default function Contact() {
   const [mobile, setMobile] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleContactUs = async (e) => {
     e.preventDefault();
 
     if (!firstName || !lastName) {
@@ -72,6 +74,32 @@ export default function Contact() {
         },
       });
     }
+
+    const response = await axios.post("/api/send", {
+      firstName,
+      lastName,
+      email,
+      mobile,
+      message,
+    });
+
+    if (response.status === 200) {
+      setFirstName(""), setLastName("");
+      setEmail("");
+      setMobile("");
+      setMessage("");
+      toast.success(`Hi ${firstName}, message sent successfully`, {
+        style: {
+          border: "1px solid #01B700",
+          padding: "16px",
+          color: "#01B700",
+        },
+        iconTheme: {
+          primary: "#01B700",
+          secondary: "#FFFAEE",
+        },
+      });
+    }
   };
   return (
     <div className="  mx-5 mt-5 mb-10 ">
@@ -80,7 +108,7 @@ export default function Contact() {
           Contact Us
         </h2>
 
-        <form action="" className="pt-5 pb-10 bg-white p-5">
+        <form onSubmit={handleContactUs} className="pt-5 pb-10 bg-white p-5">
           <div className="sm:flex justify-between gap-2">
             <div className="w-full">
               <label htmlFor="firstName" name="firstName">
@@ -189,7 +217,7 @@ export default function Contact() {
                 />
               </svg>
 
-              <p className="text-lg">bedoror@gmail.com</p>
+              <p className="text-lg">info@eaglecollectionstore.com</p>
             </div>
             <div className="flex gap-2 items-center">
               <svg
