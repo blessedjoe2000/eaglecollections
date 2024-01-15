@@ -6,8 +6,8 @@ import BottomFooter from "../ButtomFooter/BottomFooter";
 
 export default function Footer() {
   return (
-    <footer className="min-h-screen relative">
-      <div className="flex flex-colflex flex-col absolute w-full bottom-0">
+    <footer className=" ">
+      <div className="flex flex-colflex flex-col ">
         <div className="sm:flex justify-between items-center gap-5 bg-dark-green text-white p-5 font-robotoFont">
           <div className="flex justify-center items-center">
             <Logo />

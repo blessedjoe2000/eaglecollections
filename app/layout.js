@@ -14,14 +14,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en " className="bg-light-grey font-muktaFont text-dark-green ">
-      <body className="">
+    <html lang="en " className="bg-light-grey font-muktaFont text-dark-green">
+      <body className="flex flex-col min-h-screen">
         <Toaster position="top-right" />
         <AuthProvider>
           <CartContextProvider>
             <SearchProvider>
               <Navbar />
-              {children}
+              <div className="flex-grow">{children}</div>
               <Footer />
             </SearchProvider>
           </CartContextProvider>
