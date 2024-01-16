@@ -11,7 +11,7 @@ export default function George() {
   const [allGeorges, setAllGeorges] = useState([]);
 
   const getGeorges = async () => {
-    const response = await axios.get("/api/george");
+    const response = await axios.get("/api/georges");
     setAllGeorges(response.data);
   };
 

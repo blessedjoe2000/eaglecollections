@@ -11,7 +11,7 @@ export default function Jewelry() {
   const [jewelries, setJewelries] = useState([]);
 
   const getJewelries = async () => {
-    const response = await axios.get("/api/jewelry");
+    const response = await axios.get("/api/jewelries");
     setJewelries(response.data);
   };
 

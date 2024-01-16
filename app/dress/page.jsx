@@ -12,7 +12,7 @@ export default function Dress() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getDresses = async () => {
-    const response = await axios.get("/api/dress");
+    const response = await axios.get("/api/dresses");
     setDresses(response.data);
   };
 

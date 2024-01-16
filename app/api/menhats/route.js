@@ -7,13 +7,10 @@ export async function GET(req) {
   try {
     const allProducts = await fetchAllProducts();
 
-    const searchQuery = "bag";
+    const searchQuery = "Men Hats";
 
-    const searchedProducts = allProducts.filter(
-      (product) =>
-        product?.category?.[0].toLowerCase().includes(searchQuery) ||
-        product?.title?.toLowerCase().includes(searchQuery) ||
-        product?.description?.toLowerCase().includes(searchQuery)
+    const searchedProducts = allProducts.filter((product) =>
+      product?.category?.[0].toLowerCase().includes(searchQuery)
     );
 
     return new Response(JSON.stringify(searchedProducts), { status: 200 });

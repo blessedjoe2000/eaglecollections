@@ -11,7 +11,7 @@ export default function Lace() {
   const [allLaces, setAllLaces] = useState([]);
 
   const getLaces = async () => {
-    const response = await axios.get("/api/lace");
+    const response = await axios.get("/api/laces");
     setAllLaces(response.data);
   };
 

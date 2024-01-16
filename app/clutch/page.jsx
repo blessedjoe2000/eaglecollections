@@ -12,7 +12,7 @@ export default function Clutch() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getClutches = async () => {
-    const response = await axios.get("/api/clutch");
+    const response = await axios.get("/api/clutches");
     setClutches(response.data);
   };
 

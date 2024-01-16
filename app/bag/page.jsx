@@ -12,7 +12,7 @@ export default function Bag() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getBags = async () => {
-    const response = await axios.get("/api/bag");
+    const response = await axios.get("/api/bags");
     setBags(response.data);
   };
 

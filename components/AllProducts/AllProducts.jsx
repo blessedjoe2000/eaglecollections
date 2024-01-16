@@ -51,7 +51,7 @@ export default function AllProducts() {
             key={searchResult._id}
             className="p-5 rounded-md bg-white shadow-sm"
           >
-            <div className="w-30">
+            <div className="w-[200px]">
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${searchResult._id}`} className="">
                   {searchResult?.newPrice && (
@@ -132,7 +132,7 @@ export default function AllProducts() {
             key={productData._id}
             className="p-5 rounded-md bg-white shadow-sm "
           >
-            <div className="w-30">
+            <div className="w-[200px]">
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300 ">
                 <Link href={`/product/${productData._id}`}>
                   {productData?.newPrice && (
