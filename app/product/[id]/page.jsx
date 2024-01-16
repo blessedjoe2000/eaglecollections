@@ -70,8 +70,6 @@ export default function Product() {
     );
   }
 
-  console.log("productData", productData);
-
   return (
     <div>
       <div className="p-5 flex justify-center ">

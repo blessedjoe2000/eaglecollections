@@ -19,8 +19,6 @@ export default function SimilarProducts({ searchCategory }) {
     searchCategory = "allproducts";
   }
 
-  console.log("searchCategory", searchCategory);
-
   searchCategory = searchCategory?.toLowerCase();
 
   const getCategory = async () => {
