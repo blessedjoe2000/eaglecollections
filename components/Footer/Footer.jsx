@@ -2,7 +2,6 @@ import Link from "next/link";
 import Logo from "../Logo/Logo";
 import { SocialIcon } from "react-social-icons";
 import "react-social-icons/meetup";
-import BottomFooter from "../ButtomFooter/BottomFooter";
 
 export default function Footer() {
   return (

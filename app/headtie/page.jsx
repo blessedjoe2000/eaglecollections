@@ -26,7 +26,7 @@ export default function Headtie() {
 
   if (!headties.length) {
     return (
-      <div className="bg-white mx-5 text-center py-10 ">
+      <div className=" mx-5 text-center py-10 ">
         <h1 className="font-bold py-2 text-lg">No Headtie Available</h1>
       </div>
     );
