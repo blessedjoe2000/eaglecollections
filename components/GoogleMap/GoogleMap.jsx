@@ -10,7 +10,7 @@ export default function GoogleMap() {
       height={500}
       width="100%"
       mode="place"
-      q="11329+Bissonnect+Street+Houston+TX"
+      q="Eagle Collections African Store"
     />
   );
 }
