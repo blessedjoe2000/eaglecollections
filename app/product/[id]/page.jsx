@@ -70,6 +70,8 @@ export default function Product() {
     );
   }
 
+  console.log("productData", productData);
+
   return (
     <div>
       <div className="p-5 flex justify-center ">
@@ -204,7 +206,7 @@ export default function Product() {
           </div>
         </div>
       </div>
-      <SimilarProducts searchCategory={productData.category[0]} />
+      <SimilarProducts searchCategory={productData?.category?.[0]} />
     </div>
   );
 }

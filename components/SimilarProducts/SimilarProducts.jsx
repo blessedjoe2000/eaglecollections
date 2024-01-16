@@ -15,13 +15,17 @@ export default function SimilarProducts({ searchCategory }) {
     searchCategory = "menhats";
   } else if (searchCategory === "Men Fabrics") {
     searchCategory = "menfabrics";
+  } else if (searchCategory === "Uncategorized") {
+    searchCategory = "allproducts";
   }
-  searchCategory = searchCategory.toLowerCase();
+
+  console.log("searchCategory", searchCategory);
+
+  searchCategory = searchCategory?.toLowerCase();
 
   const getCategory = async () => {
     const response = await axios.get(`/api/${searchCategory}`);
-    const limitedProducts = response.data.slice(0, 9);
-    setCategory(limitedProducts);
+    setCategory(response.data);
   };
 
   useEffect(() => {
