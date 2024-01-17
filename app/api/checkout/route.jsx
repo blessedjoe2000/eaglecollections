@@ -20,7 +20,7 @@ export async function POST(req) {
       if (quantity && cartProduct) {
         line_items.push({
           quantity,
-          tax_rates: ["txr_1ONmWpKXecqKmAes5jkQFCO0"],
+          // tax_rates: ["txr_1ONmWpKXecqKmAes5jkQFCO0"],
           price_data: {
             currency: "USD",
             product_data: {
@@ -105,6 +105,9 @@ export async function POST(req) {
         },
       ],
       line_items,
+      automatic_tax: {
+        enabled: true,
+      },
       mode: "payment",
       customer_email: email,
       success_url: process.env.NEXTAUTH_URL + "/cart?success=true",
