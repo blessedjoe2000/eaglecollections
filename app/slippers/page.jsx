@@ -6,19 +6,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
-export default function Jewelry() {
-  const { addToFavorite, favoriteIds } = useContext(CartContext);
-  const [jewelries, setJewelries] = useState([]);
+export default function Shoe() {
+  const [slippers, setSlippers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getJewelries = async () => {
-    const response = await axios.get("/api/jewelries");
-    setJewelries(response.data);
+  const { favoriteIds, addToFavorite } = useContext(CartContext);
+
+  const getSlippers = async () => {
+    const response = await axios.get("/api/slippers");
+    setSlippers(response.data);
   };
 
   useEffect(() => {
-    getJewelries();
-  }, [jewelries]);
+    getSlippers();
+  }, [slippers]);
 
   const addFavorite = (productId) => {
     if (loading) return;
@@ -29,39 +30,37 @@ export default function Jewelry() {
       setLoading(false);
     }, 2000);
   };
-
-  if (!jewelries.length) {
+  if (!slippers.length) {
     return (
-      <div className=" mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">No Jewelries available</h1>
+      <div className="mx-5 text-center py-10 ">
+        <h1 className="font-bold py-2 text-lg">No slippers available</h1>
       </div>
     );
   }
-
   return (
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
-      {jewelries &&
-        jewelries.map((jewelry) => (
+      {slippers &&
+        slippers.map((slipper) => (
           <div
-            key={jewelry._id}
+            key={slipper._id}
             className="p-5 rounded-md bg-white shadow-sm w-[200px]"
           >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
-                <Link href={`/product/${jewelry._id}`}>
-                  {jewelry?.newPrice && (
+                <Link href={`/product/${slipper._id}`}>
+                  {slipper?.newPrice && (
                     <span className="bg-sharp-pink text-white px-2 absolute text-lg">
                       -
                       {Math.round(
-                        (100 * (jewelry?.price - jewelry?.newPrice)) /
-                          jewelry?.price
+                        (100 * (slipper?.price - slipper?.newPrice)) /
+                          slipper?.price
                       )}
                       %
                     </span>
                   )}
                   <Image
-                    src={jewelry.images?.[0]}
-                    alt={`${jewelry.title}`}
+                    src={slipper.images?.[0]}
+                    alt={`${slipper.title}`}
                     width={200}
                     height={100}
                     priority
@@ -70,30 +69,30 @@ export default function Jewelry() {
               </div>
               <div>
                 <div className="flex justify-between items-center ">
-                  {jewelry?.newPrice ? (
+                  {slipper?.newPrice ? (
                     <div className="flex items-center gap-3">
                       <p className=" font-bold text-lg text-main-pink">
-                        ${jewelry?.newPrice}
+                        ${slipper?.newPrice}
                       </p>
                       <p className=" font-bold line-through ">
-                        ${jewelry?.price}
+                        ${slipper?.price}
                       </p>
                     </div>
                   ) : (
                     <p className=" font-bold text-lg text-light-green">
-                      ${jewelry.price}
+                      ${slipper.price}
                     </p>
                   )}
 
                   <svg
-                    onClick={() => addFavorite(jewelry._id)}
+                    onClick={() => addFavorite(slipper._id)}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
                     className={
-                      favoriteIds?.includes(jewelry._id)
+                      favoriteIds?.includes(slipper._id)
                         ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
                         : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
@@ -105,10 +104,10 @@ export default function Jewelry() {
                     />
                   </svg>
                 </div>
-                <Link href={`/product/${jewelry._id}`}>
+                <Link href={`/product/${slipper._id}`}>
                   <p>
-                    {jewelry?.title?.trim().slice(0, 1).toUpperCase() +
-                      jewelry?.title?.trim().slice(1)}
+                    {slipper?.title?.trim().slice(0, 1).toUpperCase() +
+                      slipper?.title?.trim().slice(1)}
                   </p>
                 </Link>
               </div>

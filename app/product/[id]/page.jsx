@@ -13,6 +13,7 @@ export default function Product() {
   const [colors, setColors] = useState("");
   const [sizes, setSizes] = useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const productData = data?.find((product) => product._id === _id);
 
@@ -39,8 +40,14 @@ export default function Product() {
     }
   }, [productData]);
 
-  const addFavorite = (product) => {
-    addToFavorite(product);
+  const addFavorite = (productId) => {
+    if (loading) return;
+
+    addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   const addToCart = () => {
@@ -73,10 +80,10 @@ export default function Product() {
   return (
     <div>
       <div className="p-5 flex justify-center ">
-        <div className="sm:inline-flex  shadow-sm relative">
+        <div className="sm:inline-flex shadow-sm relative">
           <div>
             {productData?.newPrice && (
-              <span className="bg-sharp-pink text-white px-2 text-lg absolute left-7 top-8 z-10  ">
+              <span className="bg-sharp-pink text-white px-2 text-lg absolute left-5 top-5 z-30 rounded-tl-lg">
                 -
                 {Math.round(
                   (100 * (productData?.price - productData?.newPrice)) /
@@ -155,7 +162,9 @@ export default function Product() {
                 </p>
               </div>
             ) : (
-              <p className=" font-bold text-xl">${productData?.price}</p>
+              <p className=" font-bold text-xl text-light-green">
+                ${productData?.price}
+              </p>
             )}
             <div className="flex gap-2 justify-start items-center">
               <p>Save for later</p>
@@ -168,8 +177,8 @@ export default function Product() {
                 stroke="currentColor"
                 className={
                   favoriteIds.includes(productData?._id)
-                    ? "w-6 h-6 fill-main-pink text-main-pink"
-                    : "w-6 h-6 text-main-pink"
+                    ? "w-6 h-6 fill-sharp-pink text-sharp-pink hover:cursor-pointer"
+                    : "w-6 h-6 text-sharp-pink hover:cursor-pointer"
                 }
               >
                 <path

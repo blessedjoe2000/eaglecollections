@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Clutch() {
   const [clutches, setClutches] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
@@ -21,7 +22,13 @@ export default function Clutch() {
   }, [clutches]);
 
   const addFavorite = (productId) => {
+    if (loading) return;
+
     addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   if (!clutches.length) {
@@ -35,7 +42,10 @@ export default function Clutch() {
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
       {clutches &&
         clutches.map((clutch) => (
-          <div key={clutch._id} className="p-5 rounded-md bg-white shadow-sm">
+          <div
+            key={clutch._id}
+            className="p-5 rounded-md bg-white shadow-sm w-[200px]"
+          >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${clutch._id}`}>
@@ -52,8 +62,8 @@ export default function Clutch() {
                   <Image
                     src={clutch.images?.[0]}
                     alt={`${clutch.title}`}
-                    width={150}
-                    height={200}
+                    width={200}
+                    height={100}
                     priority
                   />
                 </Link>
@@ -70,7 +80,7 @@ export default function Clutch() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${clutch.price}
                     </p>
                   )}
@@ -84,8 +94,8 @@ export default function Clutch() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(clutch._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path

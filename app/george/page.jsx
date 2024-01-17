@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 export default function George() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
   const [allGeorges, setAllGeorges] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getGeorges = async () => {
     const response = await axios.get("/api/georges");
@@ -20,7 +21,13 @@ export default function George() {
   }, [allGeorges]);
 
   const addFavorite = (productId) => {
+    if (loading) return;
+
     addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   if (!allGeorges.length) {
@@ -35,7 +42,10 @@ export default function George() {
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
       {allGeorges &&
         allGeorges.map((george) => (
-          <div key={george._id} className="p-5 rounded-md bg-white shadow-sm">
+          <div
+            key={george._id}
+            className="p-5 rounded-md bg-white shadow-sm w-[200px]"
+          >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${george._id}`}>
@@ -52,8 +62,8 @@ export default function George() {
                   <Image
                     src={george.images?.[0]}
                     alt={`${george.title}`}
-                    width={150}
-                    height={200}
+                    width={200}
+                    height={100}
                     priority
                   />
                 </Link>
@@ -70,7 +80,7 @@ export default function George() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${george.price}
                     </p>
                   )}
@@ -84,8 +94,8 @@ export default function George() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(george._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path

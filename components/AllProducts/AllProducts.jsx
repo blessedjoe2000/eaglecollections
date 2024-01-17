@@ -12,6 +12,7 @@ export default function AllProducts() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
   const { searchResults, resetSearchResults } = useSearch();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -32,7 +33,13 @@ export default function AllProducts() {
   }, [data]);
 
   const addFavorite = (productId) => {
+    if (loading) return;
+
     addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   if (!data.length) {
@@ -99,8 +106,8 @@ export default function AllProducts() {
                     stroke="currentColor"
                     className={
                       favoriteIds.includes(searchResult._id)
-                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink"
-                        : "w-6 h-6 text-sharp-pink"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path
@@ -180,8 +187,8 @@ export default function AllProducts() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(productData._id)
-                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink"
-                        : "w-6 h-6 text-sharp-pink"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path

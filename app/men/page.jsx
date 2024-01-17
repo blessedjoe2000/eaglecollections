@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Men() {
   const [menProducts, setMenProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
@@ -21,7 +22,13 @@ export default function Men() {
   }, [menProducts]);
 
   const addFavorite = (productId) => {
+    if (loading) return;
+
     addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   if (!menProducts.length) {
@@ -37,7 +44,7 @@ export default function Men() {
         menProducts.map((menProduct) => (
           <div
             key={menProduct._id}
-            className="p-5 rounded-md bg-white shadow-sm"
+            className="p-5 rounded-md bg-white shadow-sm w-[200px]"
           >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
@@ -55,8 +62,8 @@ export default function Men() {
                   <Image
                     src={menProduct.images?.[0]}
                     alt={`${menProduct.title}`}
-                    width={150}
-                    height={200}
+                    width={200}
+                    height={100}
                     priority
                   />
                 </Link>
@@ -73,7 +80,7 @@ export default function Men() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${menProduct.price}
                     </p>
                   )}
@@ -87,8 +94,8 @@ export default function Men() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(menProduct._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path

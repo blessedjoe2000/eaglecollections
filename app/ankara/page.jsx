@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Ankara() {
   const [allAnkara, setAllAnkara] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
@@ -21,7 +22,13 @@ export default function Ankara() {
   }, [allAnkara]);
 
   const addFavorite = (productId) => {
+    if (loading) return;
+
     addToFavorite(productId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   if (!allAnkara.length) {
@@ -36,7 +43,10 @@ export default function Ankara() {
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
       {allAnkara &&
         allAnkara.map((ankara) => (
-          <div key={ankara._id} className="p-5 rounded-md bg-white shadow-sm">
+          <div
+            key={ankara._id}
+            className="p-5 rounded-md bg-white shadow-sm w-[200px]"
+          >
             <div>
               <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                 <Link href={`/product/${ankara._id}`}>
@@ -53,8 +63,8 @@ export default function Ankara() {
                   <Image
                     src={ankara.images?.[0]}
                     alt={`${ankara.title}`}
-                    width={150}
-                    height={200}
+                    width={200}
+                    height={100}
                     priority
                   />
                 </Link>
@@ -71,7 +81,7 @@ export default function Ankara() {
                       </p>
                     </div>
                   ) : (
-                    <p className=" font-bold text-lg text-black">
+                    <p className=" font-bold text-lg text-light-green">
                       ${ankara.price}
                     </p>
                   )}
@@ -85,8 +95,8 @@ export default function Ankara() {
                     stroke="currentColor"
                     className={
                       favoriteIds?.includes(ankara._id)
-                        ? "w-6 h-6 fill-main-pink"
-                        : "w-6 h-6"
+                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                        : "w-6 h-6 text-sharp-pink cursor-pointer"
                     }
                   >
                     <path

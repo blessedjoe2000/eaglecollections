@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href={"/accessories"}>Accessories</Link>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Link href={"/favorite"}>Saved products</Link>
+            <Link href={"/slippers"}>Slippers</Link>
             <Link href={"/ankara"}>Ankara</Link>
             <Link href={"/shoe"}>Shoes</Link>
             <Link href={"/jewelry"}>Jewelries</Link>

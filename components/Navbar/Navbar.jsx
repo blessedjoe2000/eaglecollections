@@ -43,6 +43,7 @@ export default function Navbar() {
           </Link>
           <Link href={"/about"}>About</Link>
           <Link href={"/contact"}>Contact</Link>
+          <Link href={"/favorite"}>Saved</Link>
         </div>
         <div className="flex gap-5 justify-center items-center">
           <div className="sm:flex hidden flex-col w-full">
@@ -205,6 +206,12 @@ export default function Navbar() {
                 className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
               >
                 Contact
+              </Link>
+              <Link
+                href={"/favorite"}
+                className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
+              >
+                Saved
               </Link>
             </div>
             <div className="inline-flex mt-3">
