@@ -107,8 +107,8 @@ export async function POST(req) {
       line_items,
       mode: "payment",
       customer_email: email,
-      success_url: process.env.PUBLIC_URL + "/cart?success=true",
-      cancel_url: process.env.PUBLIC_URL + "/cart?canceled=true",
+      success_url: process.env.NEXTAUTH_URL + "/cart?success=true",
+      cancel_url: process.env.NEXTAUTH_URL + "/cart?canceled=true",
       metadata: { orderId: orderInfo?._id.toString() },
     });
 
