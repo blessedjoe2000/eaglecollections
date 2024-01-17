@@ -35,6 +35,7 @@ export async function POST(req) {
         await OrderModel.findByIdAndUpdate(orderId, {
           paid: true,
           address: address,
+          status: "Pending",
         });
       }
       break;

@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema(
     address: Object,
     orderProducts: Object,
     paid: { type: Boolean },
+    status: { type: String },
   },
   {
     timestamps: true,
