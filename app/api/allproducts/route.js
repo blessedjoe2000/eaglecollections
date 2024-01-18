@@ -10,6 +10,8 @@ export async function GET(req) {
 
     const allProducts = response.data;
 
+    console.log("allProducts in api", allProducts);
+
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify(error.message), { status: 500 });

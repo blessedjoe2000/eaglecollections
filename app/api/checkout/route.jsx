@@ -20,7 +20,6 @@ export async function POST(req) {
       if (quantity && cartProduct) {
         line_items.push({
           quantity,
-          // tax_rates: ["txr_1ONmWpKXecqKmAes5jkQFCO0"],
           price_data: {
             currency: "USD",
             product_data: {
