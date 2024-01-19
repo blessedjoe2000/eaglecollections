@@ -27,6 +27,7 @@ export default function About() {
               width={"full"}
               height={0}
               objectFit="cover"
+              className="scale-95 hover:scale-100 transition-transform duration-300"
             />
           </div>
           <div className="w-full mt-2">
@@ -51,7 +52,7 @@ export default function About() {
               alt="eagle collections african fabrics"
               width={"full"}
               height={0}
-              className=" "
+              className="scale-95 hover:scale-100 transition-transform duration-300"
             />
           </div>
           <div className="w-full mt-2">
@@ -79,13 +80,14 @@ export default function About() {
             <div className="w-full  ">
               <Image
                 src={gele}
-                alt="eagle collections shoe and bag"
+                alt="eagle collections gele"
                 width={"full"}
                 height={0}
                 objectFit="cover"
+                className="scale-95 hover:scale-100 transition-transform duration-300"
               />
             </div>
-            <div className="w-full mt-2">
+            <div className="w-full mt-2 ">
               <p>
                 We specialize in crafting custom-made attires and group supplies
                 (Asobi) for weddings, birthdays, church events, meetings, and
@@ -102,7 +104,7 @@ export default function About() {
                 alt="eagle collections jewelries"
                 width={"full"}
                 height={0}
-                className=" "
+                className="scale-95 hover:scale-100 transition-transform duration-300"
               />
             </div>
             <div className="w-full mt-2">

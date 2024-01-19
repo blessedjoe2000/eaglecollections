@@ -17,7 +17,7 @@ export default function AllProducts() {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get("/api/allproducts");
+        const response = await axios.get("/api/product");
 
         setData(response.data);
       } catch (error) {
