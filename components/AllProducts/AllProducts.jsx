@@ -28,6 +28,8 @@ export default function AllProducts() {
     fetchAllProducts();
   }, []);
 
+  console.log("data in all products", data);
+
   useEffect(() => {
     resetSearchResults();
   }, [data]);

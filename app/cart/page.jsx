@@ -38,8 +38,6 @@ export default function Cart() {
     }
   });
 
-  console.log("cartProducts", cartProducts);
-
   useEffect(() => {
     if (
       typeof window !== "undefined" &&

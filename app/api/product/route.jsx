@@ -11,6 +11,8 @@ export async function GET(req) {
       createdAt: -1,
     });
 
+    console.log("allProducts", allProducts);
+
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify(error.message), { status: 500 });
