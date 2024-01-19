@@ -1,6 +1,8 @@
 import { mongooseConnect } from "@/lib/connectDB";
 import ProductModel from "@/model/ProductModel";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   await mongooseConnect();
 
