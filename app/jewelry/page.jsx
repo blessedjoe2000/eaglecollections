@@ -12,13 +12,17 @@ export default function Jewelry() {
   const [loading, setLoading] = useState(false);
 
   const getJewelries = async () => {
-    const response = await axios.get("/api/jewelries");
-    setJewelries(response.data);
+    try {
+      const response = await axios.get("/api/jewelries");
+      setJewelries(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getJewelries();
-  }, [jewelries]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

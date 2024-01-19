@@ -18,10 +18,9 @@ export default function AllProducts() {
     const fetchAllProducts = async () => {
       try {
         const response = await axios.get("/api/products");
-
         setData(response.data);
       } catch (error) {
-        console.log("Error fetch data: ", error.message);
+        console.log("Error fetching data: ", error.message);
       }
     };
 

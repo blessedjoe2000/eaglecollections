@@ -13,13 +13,17 @@ export default function Ankara() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getAnkara = async () => {
-    const response = await axios.get("/api/ankara");
-    setAllAnkara(response.data);
+    try {
+      const response = await axios.get("/api/ankara");
+      setAllAnkara(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getAnkara();
-  }, [allAnkara]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

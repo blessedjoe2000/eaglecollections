@@ -20,10 +20,10 @@ export default function Product() {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get("/api/allproducts");
+        const response = await axios.get("/api/products");
         setData(response.data);
       } catch (error) {
-        console.log("Error fetech data: ", error.message);
+        console.log("Error fetching data: ", error.message);
       }
     };
 

@@ -13,13 +13,17 @@ export default function Accessories() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getAccessories = async () => {
-    const response = await axios.get("/api/accessories");
-    setAccessories(response.data);
+    try {
+      const response = await axios.get("/api/accessories");
+      setAccessories(response.data);
+    } catch (error) {
+      console.log("Error fetching data: ", error);
+    }
   };
 
   useEffect(() => {
     getAccessories();
-  }, [accessories]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

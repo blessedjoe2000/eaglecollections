@@ -13,13 +13,17 @@ export default function Headtie() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getHeadties = async () => {
-    const response = await axios.get("/api/headtie");
-    setHeadties(response.data);
+    try {
+      const response = await axios.get("/api/headtie");
+      setHeadties(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getHeadties();
-  }, [headties]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

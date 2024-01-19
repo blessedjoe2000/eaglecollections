@@ -13,13 +13,17 @@ export default function Clutch() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getClutches = async () => {
-    const response = await axios.get("/api/clutches");
-    setClutches(response.data);
+    try {
+      const response = await axios.get("/api/clutches");
+      setClutches(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getClutches();
-  }, [clutches]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

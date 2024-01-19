@@ -13,13 +13,17 @@ export default function Men() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getMenProducts = async () => {
-    const response = await axios.get("/api/men");
-    setMenProducts(response.data);
+    try {
+      const response = await axios.get("/api/men");
+      setMenProducts(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getMenProducts();
-  }, [menProducts]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

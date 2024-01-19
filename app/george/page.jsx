@@ -12,13 +12,17 @@ export default function George() {
   const [loading, setLoading] = useState(false);
 
   const getGeorges = async () => {
-    const response = await axios.get("/api/georges");
-    setAllGeorges(response.data);
+    try {
+      const response = await axios.get("/api/georges");
+      setAllGeorges(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getGeorges();
-  }, [allGeorges]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

@@ -13,13 +13,17 @@ export default function Shoe() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getSlippers = async () => {
-    const response = await axios.get("/api/slippers");
-    setSlippers(response.data);
+    try {
+      const response = await axios.get("/api/slippers");
+      setSlippers(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getSlippers();
-  }, [slippers]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

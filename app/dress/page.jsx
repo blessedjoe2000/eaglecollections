@@ -13,13 +13,17 @@ export default function Dress() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getDresses = async () => {
-    const response = await axios.get("/api/dresses");
-    setDresses(response.data);
+    try {
+      const response = await axios.get("/api/dresses");
+      setDresses(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getDresses();
-  }, [dresses]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

@@ -13,13 +13,17 @@ export default function Bag() {
   const { favoriteIds, addToFavorite } = useContext(CartContext);
 
   const getBags = async () => {
-    const response = await axios.get("/api/bags");
-    setBags(response.data);
+    try {
+      const response = await axios.get("/api/bags");
+      setBags(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
     getBags();
-  }, [bags]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;

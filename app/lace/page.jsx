@@ -12,8 +12,12 @@ export default function Lace() {
   const [loading, setLoading] = useState(false);
 
   const getLaces = async () => {
-    const response = await axios.get("/api/laces");
-    setAllLaces(response.data);
+    try {
+      const response = await axios.get("/api/laces");
+      setAllLaces(response.data);
+    } catch (error) {
+      console.log("error fetching data", error);
+    }
   };
 
   useEffect(() => {
