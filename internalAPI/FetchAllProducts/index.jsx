@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchAllProducts = async () => {
   const domainUrl = process.env.NEXTAUTH_URL;
   try {
-    const response = await axios.get(`${domainUrl}/api/product`);
+    const response = await axios.get(`${domainUrl}/api/products`);
     if (response.status !== 200) {
       throw new Error("Cannot fetch data");
     }

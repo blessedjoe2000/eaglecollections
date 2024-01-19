@@ -18,7 +18,7 @@ export default function Lace() {
 
   useEffect(() => {
     getLaces();
-  }, [allLaces]);
+  }, []);
 
   const addFavorite = (productId) => {
     if (loading) return;
