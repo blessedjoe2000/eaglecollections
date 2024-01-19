@@ -1,4 +1,5 @@
 import { mongooseConnect } from "@/lib/connectDB";
+import ProductModel from "@/model/ProductModel";
 import Product from "@/model/ProductModel";
 
 export const dynamic = "force-dynamic";
@@ -7,7 +8,7 @@ export async function GET(req) {
   await mongooseConnect();
 
   try {
-    const allProducts = await Product.find().sort({
+    const allProducts = await ProductModel.find().sort({
       createdAt: -1,
     });
 

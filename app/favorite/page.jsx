@@ -20,8 +20,6 @@ export default function Favorite() {
     }
   }, [favoriteIds]);
 
-  console.log("favoriteProducts", favoriteProducts);
-
   const addFavorite = (productId) => {
     if (loading) return;
 
