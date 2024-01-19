@@ -1,8 +1,6 @@
 import { mongooseConnect } from "@/lib/connectDB";
 import axios from "axios";
 
-export const dynamic = "force-dynamic";
-
 export async function GET(req) {
   await mongooseConnect();
   const domainUrl = process.env.NEXTAUTH_URL;
