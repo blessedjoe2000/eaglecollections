@@ -1,6 +1,8 @@
 import { mongooseConnect } from "@/lib/connectDB";
 import axios from "axios";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   await mongooseConnect();
   const domainUrl = process.env.NEXTAUTH_URL;
@@ -9,8 +11,6 @@ export async function GET(req) {
     const response = await axios.get(`${domainUrl}/api/product`);
 
     const allProducts = response.data;
-
-    console.log("allProducts in api", allProducts);
 
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {

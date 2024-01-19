@@ -32,8 +32,6 @@ export default function AllProducts() {
     resetSearchResults();
   }, [data]);
 
-  console.log("data in all products", data);
-
   const addFavorite = (productId) => {
     if (loading) return;
 
