@@ -2,6 +2,8 @@ import { fetchAllProducts } from "@/internalAPI/FetchAllProducts";
 import { mongooseConnect } from "@/lib/connectDB";
 import ProductModel from "@/model/ProductModel";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   await mongooseConnect();
 
@@ -24,5 +26,3 @@ export async function GET(req) {
     return new Response(JSON.stringify(error.message), { status: 500 });
   }
 }
-
-export const dynamic = "force-dynamic";
