@@ -245,7 +245,7 @@ export default function Cart() {
               ))}
             <div className="flex gap-2 shadow-sm bg-white py-2 px-5">
               <p>Sub-total: </p>
-              <div className="font-bold text-light-green">${total}</div>
+              <div className="font-bold text-sharp-pink">${total}</div>
             </div>
           </div>
           <div className="flex flex-col p-5 rounded-md shadow-sm bg-white ">
