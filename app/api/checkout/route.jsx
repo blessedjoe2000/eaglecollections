@@ -38,6 +38,7 @@ export async function POST(req) {
       name,
       email,
       phone,
+      status: "Not paid",
       address: {
         city: "",
         country: "",
@@ -78,27 +79,13 @@ export async function POST(req) {
           shipping_rate_data: {
             type: "fixed_amount",
             fixed_amount: {
-              amount: 0,
-              currency: "usd",
-            },
-            display_name: "Free Shipping",
-            delivery_estimate: {
-              minimum: { unit: "business_day", value: 7 },
-              maximum: { unit: "business_day", value: 10 },
-            },
-          },
-        },
-        {
-          shipping_rate_data: {
-            type: "fixed_amount",
-            fixed_amount: {
-              amount: 2000,
+              amount: 1999,
               currency: "usd",
             },
             display_name: "Standard",
             delivery_estimate: {
-              minimum: { unit: "business_day", value: 3 },
-              maximum: { unit: "business_day", value: 5 },
+              minimum: { unit: "business_day", value: 5 },
+              maximum: { unit: "business_day", value: 7 },
             },
           },
         },

@@ -43,7 +43,7 @@ export function ProductImages({ images }) {
   }, [activeImage, images]);
 
   return (
-    <div className="sm:flex gap-1 shadow-sm p-5 bg-white">
+    <div className="sm:flex gap-1 shadow-l-lg p-5 bg-white">
       <div
         className="relative overflow-hidden rounded-md cursor-zoom-in z-20 "
         style={{

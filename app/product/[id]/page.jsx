@@ -80,7 +80,7 @@ export default function Product() {
   return (
     <div>
       <div className="p-5 flex justify-center ">
-        <div className="sm:inline-flex shadow-sm relative">
+        <div className="sm:inline-flex shadow-sm relative bg-white">
           <div>
             {productData?.newPrice && (
               <span className="bg-sharp-pink text-white px-2 text-lg absolute left-5 top-5 z-30 rounded-tl-lg">
