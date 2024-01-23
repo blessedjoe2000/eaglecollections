@@ -8,7 +8,7 @@ export async function GET(req) {
 
   try {
     const allProducts = await ProductModel.find().sort({
-      createdAt: -1,
+      updatedAt: -1,
     });
     const { searchParams } = new URL(req.url);
 
@@ -17,9 +17,11 @@ export async function GET(req) {
     const searchedProducts = allProducts.filter(
       (product) =>
         product?.description
-          .toLowerCase()
+          ?.toLowerCase()
           .includes(searchQuery.toLowerCase()) ||
-        product?.title.toLowerCase().includes(searchQuery.toLowerCase())
+        product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product?.colors?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product?.category?.[0].toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return new Response(JSON.stringify(searchedProducts), { status: 200 });

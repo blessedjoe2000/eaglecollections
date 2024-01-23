@@ -8,7 +8,7 @@ export async function GET(req) {
 
   try {
     const allProducts = await ProductModel.find().sort({
-      createdAt: -1,
+      updatedAt: -1,
     });
 
     const searchQuery = "clutch" || "purse";
