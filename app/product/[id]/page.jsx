@@ -94,7 +94,7 @@ export default function Product() {
             )}
             <ProductImages images={productData?.images} />
           </div>
-          <div className="flex flex-col gap-2 mt-2 sm:mt-0 bg-white p-5 shadow-sm">
+          <div className="flex flex-col gap-2 mt-2 sm:mt-0 bg-white p-5 shadow-sm sm:w-[400px]">
             <h2 className="font-bold text-xl">
               <p>
                 {productData?.title?.trim().slice(0, 1).toUpperCase() +
