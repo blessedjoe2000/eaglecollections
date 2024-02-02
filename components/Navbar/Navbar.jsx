@@ -72,7 +72,40 @@ export default function Navbar() {
             className="menuitems cursor-pointer hover:text-sharp-pink"
             onClick={toggleMenu}
           >
-            Shop
+            <div className="flex gap-0.5 items-center justify-center">
+              <p>Shop</p>
+              {openMenu ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              )}
+            </div>
           </div>
 
           <Link href={"/about"} className="menuitems" onMouseMove={closeMenu}>
