@@ -15,8 +15,6 @@ export const NavMenu = ({ closeMenuCallback }) => {
     }
   }, [closeMenuCallback]);
 
-  console.log("submenuOpen", submenuOpen);
-
   const menuLink = [
     {
       name: "Shop",

@@ -242,7 +242,7 @@ export default function Navbar() {
               <div
                 className={openMenu ? "mt-5 absolute w-full left-0" : "hidden"}
               >
-                <NavMenu />
+                <NavMenu closeMenuCallback={closeMenu} />
               </div>
               <div
                 className="menuitems cursor-pointer hover:text-sharp-pink"
@@ -253,7 +253,7 @@ export default function Navbar() {
               <div
                 className={
                   openMenu
-                    ? "flex flex-col justify-center items-center gap-1 mt-48"
+                    ? "flex flex-col justify-center items-center gap-1 mt-52"
                     : "flex flex-col gap-1 justify-center items-center"
                 }
               >
