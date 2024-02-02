@@ -3,17 +3,23 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export const NavMenu = () => {
-  const [openMenu, setOpenMenu] = useState(true);
+  // const [openMenu, setOpenMenu] = useState(true);
+  const [submenuOpen, setSubmenuOpen] = useState(false);
 
   const closeMenu = () => {
-    setOpenMenu(false);
+    // setOpenMenu(false);
+    setSubmenuOpen(false);
+  };
+
+  const toggleSubmenu = () => {
+    setSubmenuOpen(!submenuOpen);
   };
 
   useEffect(() => {
-    if (!openMenu) {
-      setOpenMenu(true);
+    if (!submenuOpen) {
+      setSubmenuOpen(true);
     }
-  }, [closeMenu, openMenu]);
+  }, [closeMenu, submenuOpen]);
 
   const menuLink = [
     {
@@ -73,25 +79,20 @@ export const NavMenu = () => {
     },
   ];
   return (
-    <div className="">
+    <div className="" onMouseLeave={closeMenu}>
       {menuLink.map((menu, index) => (
         <div key={index}>
           {menu.sublinks && (
             <div
               className={
-                openMenu
+                submenuOpen
                   ? "grid sm:grid-cols-6 grid-cols-3 gap-5 p-5 items-center bg-dark-green duration-50 "
                   : "hidden"
               }
-              onMouseLeave={closeMenu}
             >
               {menu.sublinks.map((link, index) => (
-                <div key={index}>
-                  <Link
-                    href={link.link}
-                    onClick={closeMenu}
-                    className="menuitems"
-                  >
+                <div key={index} onClick={toggleSubmenu}>
+                  <Link href={link.link} className="menuitems">
                     {link.name}
                   </Link>
                 </div>
