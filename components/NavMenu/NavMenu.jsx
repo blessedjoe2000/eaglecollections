@@ -2,14 +2,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export const NavMenu = () => {
-  // const [openMenu, setOpenMenu] = useState(true);
+export const NavMenu = ({ closeMenuCallback }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
-
-  const closeMenu = () => {
-    // setOpenMenu(false);
-    setSubmenuOpen(false);
-  };
 
   const toggleSubmenu = () => {
     setSubmenuOpen(!submenuOpen);
@@ -19,7 +13,9 @@ export const NavMenu = () => {
     if (!submenuOpen) {
       setSubmenuOpen(true);
     }
-  }, [closeMenu, submenuOpen]);
+  }, [closeMenuCallback]);
+
+  console.log("submenuOpen", submenuOpen);
 
   const menuLink = [
     {
@@ -79,7 +75,7 @@ export const NavMenu = () => {
     },
   ];
   return (
-    <div className="" onMouseLeave={closeMenu}>
+    <div className="">
       {menuLink.map((menu, index) => (
         <div key={index}>
           {menu.sublinks && (
@@ -89,10 +85,17 @@ export const NavMenu = () => {
                   ? "grid sm:grid-cols-6 grid-cols-3 gap-5 p-5 items-center bg-dark-green duration-50 "
                   : "hidden"
               }
+              onMouseLeave={closeMenuCallback}
             >
               {menu.sublinks.map((link, index) => (
-                <div key={index} onClick={toggleSubmenu}>
-                  <Link href={link.link} className="menuitems">
+                <div key={index}>
+                  <Link
+                    href={link.link}
+                    className="menuitems"
+                    onClick={() => {
+                      toggleSubmenu();
+                    }}
+                  >
                     {link.name}
                   </Link>
                 </div>

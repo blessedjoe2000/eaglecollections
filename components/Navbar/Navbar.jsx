@@ -15,7 +15,7 @@ export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const { data: session } = useSession();
 
@@ -66,7 +66,7 @@ export default function Navbar() {
               openMenu ? " mt-12 absolute w-full left-0 top-8" : "hidden"
             }
           >
-            <NavMenu />
+            <NavMenu closeMenuCallback={closeMenu} />
           </div>
           <div
             className="menuitems cursor-pointer hover:text-sharp-pink"
