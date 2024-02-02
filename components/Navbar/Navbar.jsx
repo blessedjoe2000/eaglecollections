@@ -15,7 +15,7 @@ export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(true);
 
   const { data: session } = useSession();
 
