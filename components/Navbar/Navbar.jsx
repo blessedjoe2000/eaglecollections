@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Logo from "../Logo/Logo";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../providers/CartContext/CartContext";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
@@ -39,6 +39,14 @@ export default function Navbar() {
   const closeMenu = () => {
     setOpenMenu(false);
   };
+
+  useEffect(() => {
+    if (showHamburger) {
+      setOpenMenu(true);
+    } else {
+      setOpenMenu(false);
+    }
+  }, [showHamburger]);
 
   return (
     <nav className="bg-dark-green text-white sticky top-0 z-50 font-poppinsFont text-sm uppercase font-semibold px-5">
