@@ -11,7 +11,8 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    const searchQuery = "belt";
+    let searchQuery = "belt";
+    searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(
       (product) =>

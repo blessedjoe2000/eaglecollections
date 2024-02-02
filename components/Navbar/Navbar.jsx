@@ -9,11 +9,13 @@ import Image from "next/image";
 import SearchProducts from "../SearchProduct/SearchProduct";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import { NavMenu } from "../NavMenu/NavMenu";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
   const { cartProducts } = useContext(CartContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const { data: session } = useSession();
 
@@ -23,35 +25,76 @@ export default function Navbar() {
 
   const toggleHambuger = () => {
     setShowHamburger(!showHamburger);
+    setOpenMenu(true);
+  };
+
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  const openMobileMenu = () => {
+    setOpenMenu(true);
+  };
+
+  const closeMenu = () => {
+    setOpenMenu(false);
   };
 
   return (
-    <nav className="bg-dark-green text-white sticky top-0 z-50 font-robotoFont px-5">
+    <nav className="bg-dark-green text-white sticky top-0 z-50 font-poppinsFont text-sm uppercase font-semibold px-5">
       <div
         className={
           showHamburger
-            ? "mb-24   flex justify-between items-center gap-5  "
-            : "flex justify-between items-center gap-5   "
+            ? "mb-80 flex justify-between items-center gap-5  "
+            : "flex justify-between items-center gap-5 "
         }
       >
-        <div className="py-3">
+        <div className="py-3" onMouseMove={closeMenu}>
           <Logo />
         </div>
-        <div className="hidden sm:inline-flex gap-5">
-          <Link href={"/"} className="">
+        <div className="hidden sm:inline-flex justify-center items-center gap-5 ">
+          <div
+            className={
+              openMenu ? " mt-12 absolute w-full left-0 top-8" : "hidden"
+            }
+          >
+            <NavMenu />
+          </div>
+          <div
+            className="menuitems cursor-pointer hover:text-sharp-pink"
+            onClick={toggleMenu}
+          >
             Shop
+          </div>
+
+          <Link href={"/about"} className="menuitems" onMouseMove={closeMenu}>
+            About
           </Link>
-          <Link href={"/about"}>About</Link>
-          <Link href={"/contact"}>Contact</Link>
-          <Link href={"/favorite"}>Saved</Link>
+          <Link href={"/contact"} className="menuitems" onMouseMove={closeMenu}>
+            Contact
+          </Link>
+          <Link
+            href={"/favorite"}
+            className="menuitems"
+            onMouseMove={closeMenu}
+          >
+            Saved
+          </Link>
         </div>
         <div className="flex gap-5 justify-center items-center">
-          <div className="sm:flex hidden flex-col w-full">
+          <div
+            className="sm:flex hidden flex-col w-full"
+            onMouseMove={closeMenu}
+          >
             <SearchProducts />
           </div>
-          <Link href={"/cart"} className="flex">
-            <div className="flex flex-col  items-center">
-              <div className="absolute sm:top-4 top-3 font-bold text-lg text-sharp-pink">
+          <Link
+            href={"/cart"}
+            className="flex menuitems"
+            onMouseMove={closeMenu}
+          >
+            <div className="flex flex-col  items-center relative">
+              <div className="absolute bottom-2.5 font-bold text-lg text-sharp-pink">
                 {cartProducts ? cartProducts.length : 0}
               </div>
               <svg
@@ -71,7 +114,7 @@ export default function Navbar() {
             </div>
             <p>cart</p>
           </Link>
-          <div className="sm:inline-flex hidden">
+          <div className="sm:inline-flex hidden" onMouseMove={closeMenu}>
             {!session && (
               <button
                 className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green "
@@ -96,7 +139,7 @@ export default function Navbar() {
               </button>
             )}
           </div>
-          <div>
+          <div onMouseMove={closeMenu}>
             {session && (
               <div>
                 <button onClick={toggleDrawer}>
@@ -178,7 +221,7 @@ export default function Navbar() {
           <div
             className={
               showHamburger
-                ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-3 bg-dark-green"
+                ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-5 bg-dark-green"
                 : "hidden"
             }
           >
@@ -187,37 +230,41 @@ export default function Navbar() {
               <div className="w-6 h-1 -rotate-45 absolute bg-white"></div>
             </button>
 
-            <div className="flex flex-col gap-2">
-              <Link
-                href={"/"}
-                className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
+            <div className="flex flex-col items-center gap-1">
+              <div
+                className={openMenu ? "mt-5 absolute w-full left-0" : "hidden"}
+              >
+                <NavMenu />
+              </div>
+              <div
+                className="menuitems cursor-pointer hover:text-sharp-pink"
+                onClick={openMobileMenu}
               >
                 Shop
-              </Link>
-              <Link
-                href={"/about"}
-                className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
+              </div>
+              <div
+                className={
+                  openMenu
+                    ? "flex flex-col justify-center items-center gap-1 mt-48"
+                    : "flex flex-col gap-1 justify-center items-center"
+                }
               >
-                About
-              </Link>
+                <Link href={"/about"} className={"menuitems"}>
+                  About
+                </Link>
 
-              <Link
-                href={"/contact"}
-                className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
-              >
-                Contact
-              </Link>
-              <Link
-                href={"/favorite"}
-                className=" hover:bg-white hover:text-dark-green hover:w-screen flex justify-center items-center"
-              >
-                Saved
-              </Link>
+                <Link href={"/contact"} className=" menuitems">
+                  Contact
+                </Link>
+                <Link href={"/favorite"} className=" menuitems">
+                  Saved
+                </Link>
+              </div>
             </div>
             <div className="inline-flex mt-3">
               {!session && (
                 <button
-                  className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green "
+                  className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green"
                   onClick={signIn}
                 >
                   <svg

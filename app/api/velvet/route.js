@@ -11,7 +11,8 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    const searchQuery = "velvet";
+    let searchQuery = "velvet";
+    searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(
       (product) =>

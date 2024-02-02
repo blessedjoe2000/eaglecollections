@@ -11,7 +11,8 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    const searchQuery = "Men Fabrics";
+    let searchQuery = "Men Fabrics";
+    searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter((product) =>
       product?.category?.[0].toLowerCase().includes(searchQuery)

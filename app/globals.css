@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -25,4 +26,15 @@ h1,
 h2,
 h3 {
   @apply font-robotoFont text-light-green;
+}
+
+.menuitems {
+  @apply px-2 py-1;
+}
+.menuitems:hover {
+  @apply bg-white px-2 py-1 rounded-md;
+}
+
+.hamburger-menu {
+  @apply hover:bg-white hover:text-sharp-pink hover:w-screen flex justify-center items-center;
 }

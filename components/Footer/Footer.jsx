@@ -7,27 +7,51 @@ export default function Footer() {
   return (
     <footer className=" ">
       <div className="flex flex-colflex flex-col ">
-        <div className="sm:flex justify-between items-center gap-5 bg-dark-green text-white p-5 font-robotoFont">
+        <div className="sm:flex justify-between items-center gap-5 bg-dark-green text-white p-5 font-poppinsFont text-sm uppercase font-semibold">
           <div className="flex justify-center items-center">
             <Logo />
           </div>
-          <div className="flex flex-col justify-center items-center ">
-            <Link href={"/george"}>Georges</Link>
-            <Link href={"/lace"}>Laces</Link>
-            <Link href={"/bag"}>Bags</Link>
-            <Link href={"/accessories"}>Accessories</Link>
+          <div className="flex flex-col justify-center items-center  ">
+            <Link href={"/george"} className="menuitems">
+              Georges
+            </Link>
+            <Link href={"/lace"} className="menuitems">
+              Laces
+            </Link>
+            <Link href={"/bag"} className="menuitems">
+              Bags
+            </Link>
+            <Link href={"/accessories"} className="menuitems">
+              Accessories
+            </Link>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Link href={"/slippers"}>Slippers</Link>
-            <Link href={"/ankara"}>Ankara</Link>
-            <Link href={"/shoe"}>Shoes</Link>
-            <Link href={"/jewelry"}>Jewelries</Link>
+            <Link href={"/slippers"} className="menuitems">
+              Slippers
+            </Link>
+            <Link href={"/ankara"} className="menuitems">
+              Ankara
+            </Link>
+            <Link href={"/shoe"} className="menuitems">
+              Shoes
+            </Link>
+            <Link href={"/jewelry"} className="menuitems">
+              Jewelries
+            </Link>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <Link href={"/men"}>Men Products</Link>
-            <Link href={"/clutch"}>Clutches</Link>
-            <Link href={"/dress"}>Gown Dresses</Link>
-            <Link href={"/headtie"}>Headtie Gele</Link>
+            <Link href={"/men"} className="menuitems">
+              Men Shop
+            </Link>
+            <Link href={"/clutch"} className="menuitems">
+              Clutches
+            </Link>
+            <Link href={"/dress"} className="menuitems">
+              Gown Dresses
+            </Link>
+            <Link href={"/headtie"} className="menuitems">
+              Headtie Gele
+            </Link>
           </div>
           <div className="flex flex-col justify-center text-center gap-2">
             <h2 className="text-lg text-white">Our Social Media</h2>
@@ -55,7 +79,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t-2 bg-dark-green text-white text-center py-2 ">
+        <div className="border-t-2 bg-dark-green text-white text-center py-2 font-robotoFont ">
           <p>Eagle Collections. All Rights Reserved. ©2023</p>
         </div>
       </div>

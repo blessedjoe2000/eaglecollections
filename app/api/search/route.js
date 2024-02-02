@@ -12,16 +12,15 @@ export async function GET(req) {
     });
     const { searchParams } = new URL(req.url);
 
-    const searchQuery = searchParams.get("query");
+    let searchQuery = searchParams.get("query");
+    searchQuery = searchQuery.toLowerCase().toLowerCase();
 
     const searchedProducts = allProducts.filter(
       (product) =>
-        product?.description
-          ?.toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-        product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product?.colors?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product?.category?.[0].toLowerCase().includes(searchQuery.toLowerCase())
+        product?.description?.toLowerCase().includes(searchQuery) ||
+        product?.title?.toLowerCase().includes(searchQuery) ||
+        product?.colors?.toLowerCase().includes(searchQuery) ||
+        product?.category?.[0].toLowerCase().includes(searchQuery)
     );
 
     return new Response(JSON.stringify(searchedProducts), { status: 200 });

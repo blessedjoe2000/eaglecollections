@@ -11,10 +11,11 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    const searchQuery = "Shoes and Bags";
+    let searchQuery = "Shoes and Bags";
+    searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter((product) =>
-      product?.category?.[0].toLowerCase().includes(searchQuery)
+      product?.category?.[0]?.toLowerCase().includes(searchQuery)
     );
 
     return new Response(JSON.stringify(searchedProducts), { status: 200 });
