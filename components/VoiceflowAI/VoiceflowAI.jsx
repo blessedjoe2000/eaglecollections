@@ -20,9 +20,9 @@ const VoiceflowAI = () => {
     return () => {
       document.body.removeChild(script);
     };
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+  }, []);
 
-  return null; // No need to render anything for the script component
+  return null;
 };
 
 export default VoiceflowAI;
