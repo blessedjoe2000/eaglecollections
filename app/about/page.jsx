@@ -12,8 +12,8 @@ export default function About() {
         <Image
           src={aboutBanner}
           alt="eagle collections about banner"
-          width={1500}
           height={500}
+          className="image-full-width"
         />
       </div>
       <h1 className="text-2xl text-center sm:pt-10 pt-5">Our Services</h1>
