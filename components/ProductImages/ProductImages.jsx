@@ -65,26 +65,28 @@ export function ProductImages({ images }) {
         />
       </div>
       <div className="flex gap-1 sm:flex-col mt-2 sm:mt-0">
-        {images?.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setActiveImage(image)}
-            className={
-              activeImage === image
-                ? " p-1 bg-light-grey border-2 border-light-green"
-                : " p-1 bg-light-grey border-2 border-transparent"
-            }
-          >
-            <Image
-              src={image}
-              alt=""
-              width={70}
-              height={50}
-              className="rounded-md"
-              priority
-            />
-          </button>
-        ))}
+        {images
+          ?.filter((image) => image !== activeImage)
+          .map((img, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveImage(img)}
+              className={
+                activeImage === img
+                  ? " p-1 bg-light-grey border-2 border-light-green"
+                  : " p-1 bg-light-grey border-2 border-transparent"
+              }
+            >
+              <Image
+                src={img}
+                alt=""
+                width={70}
+                height={50}
+                className="rounded-md"
+                priority
+              />
+            </button>
+          ))}
       </div>
     </div>
   );
