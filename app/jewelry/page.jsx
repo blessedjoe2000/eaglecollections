@@ -37,7 +37,7 @@ export default function Jewelry() {
   if (!jewelries.length) {
     return (
       <div className=" mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">No Jewelries available</h1>
+        <h1 className="font-bold py-2 text-lg">Coming soon...</h1>
       </div>
     );
   }

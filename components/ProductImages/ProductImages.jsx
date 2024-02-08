@@ -71,11 +71,7 @@ export function ProductImages({ images }) {
             <button
               key={index}
               onClick={() => setActiveImage(img)}
-              className={
-                activeImage === img
-                  ? " p-1 bg-light-grey border-2 border-light-green"
-                  : " p-1 bg-light-grey border-2 border-transparent"
-              }
+              className={(activeImage = " p-1 bg-light-grey border-2 ")}
             >
               <Image
                 src={img}
