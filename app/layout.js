@@ -10,7 +10,7 @@ import VoiceflowAI from "@/components/VoiceflowAI/VoiceflowAI";
 export const metadata = {
   title: "Eagle Collections African Fabrics Store",
   description:
-    "online store for all African fashion fabrics attires, jewelries and accessories",
+    "online store for all African fashion fabrics attires, jewelries and accessories in Houston, Texas",
 };
 
 export default function RootLayout({ children }) {
