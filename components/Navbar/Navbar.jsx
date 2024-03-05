@@ -86,7 +86,7 @@ export default function Navbar() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                    d="m4.5 15.75 7.5-7.5 7.5 7.5"
                   />
                 </svg>
               ) : (

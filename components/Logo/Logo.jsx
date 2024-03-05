@@ -1,4 +1,4 @@
-import logo from "@/public/images/eaglecollectionslogowhite.png";
+import logo from "@/public/images/eaglecollectionslogo.png";
 import Image from "next/image";
 import Link from "next/link";
 
