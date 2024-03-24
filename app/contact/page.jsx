@@ -197,7 +197,10 @@ export default function Contact() {
           className="sm:flex justify-around items-center gap-5 py-5 bg-white my-5"
           data-aos="fade-up"
         >
-          <div className="flex flex-col justify-center items-center gap-2">
+          <div
+            className="flex flex-col justify-center items-center gap-2"
+            data-aos="fade-right"
+          >
             <div className="flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -259,7 +262,10 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center text-center gap-2 sm:mt-0 mt-5">
+          <div
+            className="flex flex-col justify-center text-center gap-2 sm:mt-0 mt-5"
+            data-aos="fade-left"
+          >
             <h2 className=" text-xl text-light-green">Our Social Media</h2>
             <div className="flex gap-1 justify-center items-center">
               <SocialIcon
