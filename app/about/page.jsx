@@ -1,11 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import aboutBanner from "@/public/images/eagle_collections_banner_photo.png";
 import fabric from "@/public/images/eagle_collections_fabric_2.png";
 import shoeBag from "@/public/images/eagle_collections_shoe_and_bag.png";
 import jewelry from "@/public/images/eagle_collections_jewelry.png";
 import gele from "@/public/images/eagle_collections_gele.png";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function About() {
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
+  });
+
   return (
     <div className="mx-5 mt-5 mb-10">
       <div>
@@ -16,10 +25,15 @@ export default function About() {
           className="image-full-width"
         />
       </div>
-      <h1 className="text-2xl text-center sm:pt-10 pt-5">Our Services</h1>
+      <h1 className="text-2xl text-center sm:pt-10 pt-5" data-aos="fade-up">
+        Our Services
+      </h1>
 
       <div className="flex gap-2 bg-white sm:text-lg text-md text-center mb-5 sm:mt-5 mt-2 p-5 sm:flex-row flex-col">
-        <div className="sm:w-1/2 w-full  shadow-md px-2 pb-5">
+        <div
+          className="sm:w-1/2 w-full  shadow-md px-2 pb-5"
+          data-aos="fade-right"
+        >
           <div className="w-full  ">
             <Image
               src={shoeBag}
@@ -45,7 +59,10 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="sm:w-1/2 w-full  shadow-md px-2 pb-5">
+        <div
+          className="sm:w-1/2 w-full  shadow-md px-2 pb-5"
+          data-aos="fade-left"
+        >
           <div className="w-full">
             <Image
               src={fabric}
@@ -73,10 +90,16 @@ export default function About() {
         </div>
       </div>
 
-      <div className=" bg-white sm:text-lg text-md text-center  p-5">
+      <div
+        className=" bg-white sm:text-lg text-md text-center  p-5"
+        data-aos="fade-up"
+      >
         <h2 className="text-xl sm:pt-2 pt-0">We are Eagle Collections!</h2>
         <div className="flex gap-2 sm:mt-5 mt-2 sm:flex-row flex-col">
-          <div className="sm:w-1/2 w-full shadow-md px-2 pb-5 ">
+          <div
+            className="sm:w-1/2 w-full shadow-md px-2 pb-5 "
+            data-aos="fade-right"
+          >
             <div className="w-full  ">
               <Image
                 src={gele}
@@ -97,7 +120,10 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="sm:w-1/2 w-full shadow-md px-2 pb-5">
+          <div
+            className="sm:w-1/2 w-full shadow-md px-2 pb-5 "
+            data-aos="fade-left"
+          >
             <div className="w-full">
               <Image
                 src={jewelry}

@@ -53,7 +53,7 @@ export default function Navbar() {
       <div
         className={
           showHamburger
-            ? "mb-80 flex justify-between items-center gap-5  "
+            ? "mb-80 flex justify-between items-center gap-5"
             : "flex justify-between items-center gap-5 "
         }
       >
@@ -262,7 +262,7 @@ export default function Navbar() {
           <div
             className={
               showHamburger
-                ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-50 py-5 bg-dark-green"
+                ? "sm:hidden flex flex-col justify-center w-screen items-center absolute -top-0 hambuger-focus:top-0 right-0 duration-150 py-5 bg-dark-green"
                 : "hidden"
             }
           >

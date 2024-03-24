@@ -5,6 +5,9 @@ import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { SocialIcon } from "react-social-icons";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Contact() {
   const [firstName, setFirstName] = useState("");
@@ -12,6 +15,10 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
+  });
 
   const handleContactUs = async (e) => {
     e.preventDefault();
@@ -108,7 +115,11 @@ export default function Contact() {
           Contact Us
         </h2>
 
-        <form onSubmit={handleContactUs} className="pt-5 pb-10 bg-white p-5">
+        <form
+          onSubmit={handleContactUs}
+          className="pt-5 pb-10 bg-white p-5"
+          data-aos="fade-up"
+        >
           <div className="sm:flex justify-between gap-2">
             <div className="w-full">
               <label htmlFor="firstName" name="firstName">
@@ -182,7 +193,10 @@ export default function Contact() {
             </button>
           </div>
         </form>
-        <div className="sm:flex justify-around items-center gap-5 py-5 bg-white my-5">
+        <div
+          className="sm:flex justify-around items-center gap-5 py-5 bg-white my-5"
+          data-aos="fade-up"
+        >
           <div className="flex flex-col justify-center items-center gap-2">
             <div className="flex gap-2 items-center">
               <svg
@@ -272,7 +286,7 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      <div className="bg-white p-5">
+      <div className="bg-white p-5" data-aos="fade-up">
         <h2 className="text-center py-5 font-bold text-xl ">
           Find us on Google
         </h2>
