@@ -16,7 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <html lang="en " className="bg-light-grey font-muktaFont text-dark-green">
+      <html
+        lang="en "
+        className="bg-light-grey font-robotoFont text-dark-green"
+      >
         <body className="flex flex-col min-h-screen">
           <Toaster position="top-right" />
           <AuthProvider>

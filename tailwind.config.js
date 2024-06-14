@@ -27,9 +27,10 @@ module.exports = {
       },
       fontFamily: {
         muktaFont: ["Mukta", "sans-serif"],
-        robotoFont: ["Roboto", "sans-serif"],
+        robotoFont: ["Roboto", "Rubik", "sans-serif"],
         josefinFont: ["Josefin", "Roboto", "sans-serif"],
         poppinsFont: ["Poppins", "Roboto", "sans-serif"],
+        rubikFont: ["Rubik", "Poppins", "Roboto"],
       },
     },
   },

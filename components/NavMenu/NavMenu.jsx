@@ -80,7 +80,7 @@ export const NavMenu = ({ closeMenuCallback }) => {
             <div
               className={
                 submenuOpen
-                  ? "grid sm:grid-cols-6 grid-cols-3 gap-5 p-5 items-center bg-dark-green duration-50 "
+                  ? "grid sm:grid-cols-6 grid-cols-3 gap-5 p-5 items-center bg-dark-green transition-transform duration-100"
                   : "hidden"
               }
               onMouseLeave={closeMenuCallback}

@@ -80,7 +80,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t-2 bg-dark-green text-white text-center py-2 font-robotoFont ">
-          <p>Eagle Collections. All Rights Reserved. ©2023</p>
+          <h3 className=" font-bold text-white">
+            Eagle Collections. All Rights Reserved. ©{new Date().getFullYear()}
+          </h3>
         </div>
       </div>
     </footer>

@@ -25,7 +25,7 @@ export default function About() {
           className="image-full-width"
         />
       </div>
-      <h1 className="text-2xl text-center sm:pt-10 pt-5" data-aos="fade-up">
+      <h1 className=" text-center sm:pt-10 pt-5" data-aos="fade-up">
         Our Services
       </h1>
 
@@ -94,7 +94,7 @@ export default function About() {
         className=" bg-white sm:text-lg text-md text-center  p-5"
         data-aos="fade-up"
       >
-        <h2 className="text-xl sm:pt-2 pt-0">We are Eagle Collections!</h2>
+        <h2 className=" sm:pt-2 pt-0">We are Eagle Collections!</h2>
         <div className="flex gap-2 sm:mt-5 mt-2 sm:flex-row flex-col">
           <div
             className="sm:w-1/2 w-full shadow-md px-2 pb-5 "

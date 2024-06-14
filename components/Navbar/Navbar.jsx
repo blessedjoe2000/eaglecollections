@@ -54,7 +54,7 @@ export default function Navbar() {
         className={
           showHamburger
             ? "mb-80 flex justify-between items-center gap-5"
-            : "flex justify-between items-center gap-5 "
+            : "flex justify-between items-center gap-8] "
         }
       >
         <div className="py-3" onMouseMove={closeMenu}>
@@ -63,7 +63,9 @@ export default function Navbar() {
         <div className="hidden sm:inline-flex justify-center items-center gap-5 ">
           <div
             className={
-              openMenu ? " mt-12 absolute w-full left-0 top-8" : "hidden"
+              openMenu
+                ? " mt-12 absolute w-full left-0 top-8 border-t-2"
+                : "hidden"
             }
           >
             <NavMenu closeMenuCallback={closeMenu} />

@@ -111,9 +111,7 @@ export default function Contact() {
   return (
     <div className="  mx-5 mt-5 mb-10 ">
       <div>
-        <h2 className="text-center sm:pb-5 pb-2 font-bold text-2xl ">
-          Contact Us
-        </h2>
+        <h1 className="text-center sm:pb-5 pb-2 font-bold ">Contact Us</h1>
 
         <form
           onSubmit={handleContactUs}
@@ -266,7 +264,7 @@ export default function Contact() {
             className="flex flex-col justify-center text-center gap-2 sm:mt-0 mt-5"
             data-aos="fade-left"
           >
-            <h2 className=" text-xl text-light-green">Our Social Media</h2>
+            <h3 className=" text-2xl ">Our Social Media</h3>
             <div className="flex gap-1 justify-center items-center">
               <SocialIcon
                 network="facebook"
@@ -293,9 +291,7 @@ export default function Contact() {
         </div>
       </div>
       <div className="bg-white p-5" data-aos="fade-up">
-        <h2 className="text-center py-5 font-bold text-xl ">
-          Find us on Google
-        </h2>
+        <h2 className="text-center py-5 font-bold ">Find us on Google</h2>
         <GoogleMap />
       </div>
     </div>
