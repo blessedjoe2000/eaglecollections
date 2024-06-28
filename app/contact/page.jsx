@@ -160,7 +160,7 @@ export default function Contact() {
                 Phone Number
               </label>
               <input
-                type="phone"
+                type="number"
                 placeholder="Enter Phone Number"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
