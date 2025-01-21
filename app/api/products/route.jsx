@@ -7,9 +7,11 @@ export async function GET(req) {
   await mongooseConnect();
 
   try {
-    const allProducts = await ProductModel.find().sort({
-      updatedAt: -1,
-    });
+    const allProducts = await ProductModel.find()
+      .sort({
+        updatedAt: -1,
+      })
+      .limit(10);
 
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {

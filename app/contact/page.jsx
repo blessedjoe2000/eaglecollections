@@ -159,7 +159,7 @@ export default function Contact() {
               <label htmlFor="mobile" name="mobile">
                 Phone Number
               </label>
-              <input
+              <inputd
                 type="number"
                 placeholder="Enter Phone Number"
                 value={mobile}

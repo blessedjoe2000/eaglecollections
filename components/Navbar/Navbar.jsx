@@ -49,12 +49,12 @@ export default function Navbar() {
   }, [showHamburger]);
 
   return (
-    <nav className="bg-dark-green text-white sticky top-0 z-50 font-poppinsFont text-sm uppercase font-semibold px-5">
+    <nav className="bg-white text-main-blue sticky top-0 z-50 font-poppinsFont text-sm uppercase font-semibold px-5">
       <div
         className={
           showHamburger
-            ? "mb-80 flex justify-between items-center gap-5"
-            : "flex justify-between items-center gap-8] "
+            ? "mb-80 flex justify-around items-center gap-5"
+            : "flex justify-around items-center gap-8] "
         }
       >
         <div className="py-3" onMouseMove={closeMenu}>

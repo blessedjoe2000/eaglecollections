@@ -13,7 +13,7 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
 
     let searchQuery = searchParams.get("query");
-    searchQuery = searchQuery.toLowerCase().toLowerCase();
+    searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(
       (product) =>

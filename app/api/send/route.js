@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req) {
   try {
     const body = await req.json();
-    const ourEmail = "bedoror@gmail.com";
+    const ourEmail = "info@eaglecollectionstore.com";
     const { firstName, lastName, email, mobile, message } = body;
 
     const formData = await resend.emails.send({
