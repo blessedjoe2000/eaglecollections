@@ -10,7 +10,7 @@ export default function Logo() {
         alt="eagle collections logo"
         width="160"
         height={50}
-        className=" "
+        priority
       />
     </Link>
   );

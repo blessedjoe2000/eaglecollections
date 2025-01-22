@@ -41,6 +41,8 @@ export default function AllProducts() {
     }, 2000);
   };
 
+  console.log("data  :>> ", data);
+
   if (!data.length) {
     return (
       <div className="flex justify-center items-center py-5">

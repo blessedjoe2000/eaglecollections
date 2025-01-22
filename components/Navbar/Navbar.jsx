@@ -10,6 +10,13 @@ import SearchProducts from "../SearchProduct/SearchProduct";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { NavMenu } from "../NavMenu/NavMenu";
+import { MenuButton } from "./styles";
+import AutoAwesomeOutlinedIcon from "@mui/icons-material/AutoAwesomeOutlined";
+import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { Box } from "@mui/system";
 
 export default function Navbar() {
   const [showHamburger, setShowHamburger] = useState(false);
@@ -49,12 +56,12 @@ export default function Navbar() {
   }, [showHamburger]);
 
   return (
-    <nav className="bg-white text-main-blue sticky top-0 z-50 font-poppinsFont text-sm uppercase font-semibold px-5">
+    <nav className="bg-white text-main-blue sticky top-0 z-50 px-5">
       <div
         className={
           showHamburger
             ? "mb-80 flex justify-around items-center gap-5"
-            : "flex justify-around items-center gap-8] "
+            : "flex justify-around items-center gap-2 "
         }
       >
         <div className="py-3" onMouseMove={closeMenu}>
@@ -70,58 +77,52 @@ export default function Navbar() {
           >
             <NavMenu closeMenuCallback={closeMenu} />
           </div>
+
           <div
-            className="menuitems cursor-pointer hover:text-sharp-pink"
-            onClick={toggleMenu}
+            onMouseEnter={openMobileMenu}
+            className="flex gap-0.5 items-center justify-center"
           >
-            <div className="flex gap-0.5 items-center justify-center">
-              <p>Shop</p>
-              {openMenu ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              )}
-            </div>
+            <MenuButton>
+              Shop
+              <Box sx={{ color: "#ff5d8f" }}>
+                <StorefrontOutlinedIcon fontSize="small" />
+                {openMenu ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              </Box>
+            </MenuButton>
           </div>
 
+          <Link
+            href={"/newarrivals"}
+            className="menuitems"
+            onMouseMove={closeMenu}
+          >
+            <MenuButton>
+              New Arrival
+              <Box sx={{ color: "#ff5d8f" }}>
+                <AutoAwesomeOutlinedIcon fontSize="medium" />
+              </Box>
+            </MenuButton>
+          </Link>
+          <Link href={"/sales"} className="menuitems" onMouseMove={closeMenu}>
+            <MenuButton>On Sale</MenuButton>
+          </Link>
           <Link href={"/about"} className="menuitems" onMouseMove={closeMenu}>
-            About
+            <MenuButton>About Us</MenuButton>
           </Link>
           <Link href={"/contact"} className="menuitems" onMouseMove={closeMenu}>
-            Contact
+            <MenuButton>Contact Us</MenuButton>
           </Link>
           <Link
             href={"/favorite"}
             className="menuitems"
             onMouseMove={closeMenu}
           >
-            Saved
+            <MenuButton>
+              Saved
+              <Box sx={{ color: "#ff5d8f" }}>
+                <FavoriteBorderIcon fontSize="small" />
+              </Box>
+            </MenuButton>
           </Link>
         </div>
         <div className="flex gap-5 justify-center items-center">
@@ -136,31 +137,33 @@ export default function Navbar() {
             className="flex menuitems"
             onMouseMove={closeMenu}
           >
-            <div className="flex flex-col  items-center relative">
-              <div className="absolute bottom-2.5 font-bold text-lg text-sharp-pink">
-                {cartProducts ? cartProducts.length : 0}
+            <MenuButton>
+              <div className="flex flex-col  items-center relative">
+                <div className="absolute bottom-2.5 font-bold text-lg text-main-pink">
+                  {cartProducts ? cartProducts.length : 0}
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 z-0"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                  />
+                </svg>
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 z-0"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                />
-              </svg>
-            </div>
-            <p>cart</p>
+              Cart
+            </MenuButton>
           </Link>
           <div className="sm:inline-flex hidden" onMouseMove={closeMenu}>
             {!session && (
               <button
-                className="flex items-center px-2 py-1 bg-sharp-pink rounded-lg hover:text-light-green "
+                className="flex items-center gap-1 px-2 py-1 bg-main-blue text-white rounded-lg"
                 onClick={signIn}
               >
                 <svg
@@ -169,7 +172,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-4 h-4"
                 >
                   <path
                     strokeLinecap="round"
@@ -177,8 +180,7 @@ export default function Navbar() {
                     d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
                   />
                 </svg>
-
-                <p>Signin</p>
+                Signin
               </button>
             )}
           </div>

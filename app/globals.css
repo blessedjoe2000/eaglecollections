@@ -16,13 +16,13 @@ select {
   @apply shadow-sm;
 }
 
-a:hover {
+/* a:hover {
   @apply text-sharp-pink;
-}
+} */
 
-button:hover {
+/* button:hover {
   @apply text-light-green;
-}
+} */
 
 h1 {
   @apply text-4xl font-rubikFont text-light-green;

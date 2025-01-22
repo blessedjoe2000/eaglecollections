@@ -6,6 +6,7 @@ import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 import { SearchProvider } from "@/components/providers/SearchProvider/SearchProvider";
 import { Toaster } from "react-hot-toast";
 import VoiceflowAI from "@/components/VoiceflowAI/VoiceflowAI";
+import { ThemeProvider } from "@/components/providers/ThemeProvider/ThemeProvider";
 
 export const metadata = {
   title: "Eagle Collections African Fabrics Store",
@@ -16,22 +17,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <html
-        lang="en "
-        className="bg-light-grey font-robotoFont text-dark-green"
-      >
+      <html lang="en " className="bg-light-grey font-robotoFont ">
         <body className="flex flex-col min-h-screen">
-          <Toaster position="top-right" />
-          <AuthProvider>
-            <CartContextProvider>
-              <SearchProvider>
-                <Navbar />
-                <div className="flex-grow">{children}</div>
-                <Footer />
-              </SearchProvider>
-            </CartContextProvider>
-          </AuthProvider>
-          <VoiceflowAI />
+          <ThemeProvider>
+            <Toaster position="top-right" />
+            <AuthProvider>
+              <CartContextProvider>
+                <SearchProvider>
+                  <Navbar />
+                  <div className="flex-grow">{children}</div>
+                  <Footer />
+                </SearchProvider>
+              </CartContextProvider>
+            </AuthProvider>
+            <VoiceflowAI />
+          </ThemeProvider>
         </body>
       </html>
     </>
