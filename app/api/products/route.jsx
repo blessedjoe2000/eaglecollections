@@ -11,7 +11,7 @@ export async function GET(req) {
       .sort({
         updatedAt: -1,
       })
-      .limit(10);
+      .limit(30);
 
     return new Response(JSON.stringify(allProducts), { status: 200 });
   } catch (error) {

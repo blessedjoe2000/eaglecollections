@@ -11,6 +11,9 @@ export default function Lace() {
   const [allLaces, setAllLaces] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const twentyDaysAgo = new Date();
+  twentyDaysAgo.setDate(twentyDaysAgo.getDate() - 20);
+
   const getLaces = async () => {
     try {
       const response = await axios.get("/api/laces");
@@ -44,77 +47,87 @@ export default function Lace() {
   return (
     <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
       {allLaces &&
-        allLaces.map((lace) => (
-          <div
-            key={lace._id}
-            className="p-5 rounded-md bg-white shadow-sm w-[200px]"
-          >
-            <div>
-              <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
-                <Link href={`/product/${lace._id}`}>
-                  {lace?.newPrice && (
-                    <span className="bg-sharp-pink text-white px-2 absolute text-lg">
-                      -
-                      {Math.round(
-                        (100 * (lace?.price - lace?.newPrice)) / lace?.price
-                      )}
-                      %
-                    </span>
-                  )}
-                  <Image
-                    src={lace.images?.[0]}
-                    alt={`${lace.title}`}
-                    width={200}
-                    height={100}
-                    priority
-                  />
-                </Link>
-              </div>
+        allLaces.map((lace) => {
+          const isNew = new Date(lace.createdAt) >= twentyDaysAgo;
+          return (
+            <div
+              key={lace._id}
+              className="p-5 rounded-md bg-white shadow-sm w-[200px]"
+            >
               <div>
-                <div className="flex justify-between items-center ">
-                  {lace?.newPrice ? (
-                    <div className="flex items-center gap-3">
-                      <p className=" font-bold text-lg text-main-pink">
-                        ${lace?.newPrice}
-                      </p>
-                      <p className=" font-bold line-through ">${lace?.price}</p>
-                    </div>
-                  ) : (
-                    <p className=" font-bold text-lg text-light-green">
-                      ${lace.price}
-                    </p>
-                  )}
-
-                  <svg
-                    onClick={() => addFavorite(lace._id)}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className={
-                      favoriteIds?.includes(lace._id)
-                        ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
-                        : "w-6 h-6 text-sharp-pink cursor-pointer"
-                    }
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
+                  <Link href={`/product/${lace._id}`}>
+                    {lace?.newPrice && (
+                      <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                        -
+                        {Math.round(
+                          (100 * (lace?.price - lace?.newPrice)) / lace?.price
+                        )}
+                        %
+                      </span>
+                    )}
+                    {isNew && (
+                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0">
+                        NEW
+                      </span>
+                    )}
+                    <Image
+                      src={lace.images?.[0]}
+                      alt={`${lace.title}`}
+                      width={200}
+                      height={100}
+                      priority
                     />
-                  </svg>
+                  </Link>
                 </div>
-                <Link href={`/product/${lace._id}`}>
-                  <p>
-                    {lace?.title?.trim().slice(0, 1).toUpperCase() +
-                      lace?.title?.trim().slice(1)}
-                  </p>
-                </Link>
+                <div>
+                  <div className="flex justify-between items-center ">
+                    {lace?.newPrice ? (
+                      <div className="flex items-center gap-3">
+                        <p className=" font-bold text-lg text-main-pink">
+                          ${lace?.newPrice}
+                        </p>
+                        <p className=" font-bold line-through ">
+                          ${lace?.price}
+                        </p>
+                      </div>
+                    ) : (
+                      <p className=" font-bold text-lg text-light-green">
+                        ${lace.price}
+                      </p>
+                    )}
+
+                    <svg
+                      onClick={() => addFavorite(lace._id)}
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className={
+                        favoriteIds?.includes(lace._id)
+                          ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                          : "w-6 h-6 text-sharp-pink cursor-pointer"
+                      }
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                      />
+                    </svg>
+                  </div>
+                  <Link href={`/product/${lace._id}`}>
+                    <p>
+                      {lace?.title?.trim().slice(0, 1).toUpperCase() +
+                        lace?.title?.trim().slice(1)}
+                    </p>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
     </div>
   );
 }

@@ -15,7 +15,12 @@ export default function Product() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const twentyDaysAgo = new Date();
+  twentyDaysAgo.setDate(twentyDaysAgo.getDate() - 20);
+
   const productData = data?.find((product) => product._id === _id);
+
+  const isNew = new Date(productData?.createdAt) >= twentyDaysAgo;
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -90,6 +95,11 @@ export default function Product() {
                     productData?.price
                 )}
                 %
+              </span>
+            )}
+            {isNew && (
+              <span className="bg-main-blue text-white px-1 font-bold absolute top-5 left-96 z-30">
+                NEW
               </span>
             )}
             <ProductImages images={productData?.images} />

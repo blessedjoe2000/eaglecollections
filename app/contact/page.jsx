@@ -2,10 +2,9 @@
 
 import GoogleMap from "@/components/GoogleMap/GoogleMap";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { SocialIcon } from "react-social-icons";
-import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
