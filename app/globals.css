@@ -9,6 +9,16 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background: rgb(238, 174, 202);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 38%,
+    rgba(218, 188, 238, 1) 100%
+  );
+}
+
 input,
 textarea,
 select {
@@ -34,12 +44,12 @@ h3 {
   @apply font-rubikFont text-light-green;
 }
 
-.menuitems {
+/* .menuitems {
   @apply px-2 py-1;
 }
 .menuitems:hover {
   @apply bg-white px-2 py-1 rounded-md;
-}
+} */
 
 .hamburger-menu {
   @apply hover:bg-white hover:text-sharp-pink hover:w-screen flex justify-center items-center;

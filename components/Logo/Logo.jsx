@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default function Logo() {
   return (
-    <Link href={"/"}>
+    <Link href={`/products/page/1`}>
       <Image
         src={logo}
         alt="eagle collections logo"
         width="160"
-        height={50}
+        height="auto"
         priority
       />
     </Link>

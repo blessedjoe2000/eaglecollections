@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <>
-      <html lang="en " className="bg-light-grey font-robotoFont ">
+      <html lang="en " className="font-robotoFont ">
         <body className="flex flex-col min-h-screen">
           <ThemeProvider>
             <Toaster position="top-right" />

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { MenuButton } from "../Navbar/styles";
 
 export const NavMenu = ({ closeMenuCallback }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -29,24 +30,26 @@ export const NavMenu = ({ closeMenuCallback }) => {
           link: "/lace",
         },
         {
-          name: "Bags",
-          link: "/bag",
+          name: "Wax / Ankara",
+          link: "/ankara",
         },
         {
           name: "Accessories",
           link: "/accessories",
         },
+
         {
-          name: "Slippers",
-          link: "/slippers",
+          name: "Bags",
+          link: "/bag",
         },
+
         {
           name: "Gown Dress",
           link: "/dress",
         },
         {
-          name: "Ankara",
-          link: "/ankara",
+          name: "Slippers",
+          link: "/slippers",
         },
         {
           name: "Shoes",
@@ -78,11 +81,11 @@ export const NavMenu = ({ closeMenuCallback }) => {
         <div key={index}>
           {menu.sublinks && (
             <div
-              className={
+              className={`transition-all duration-300 ease-in-out ${
                 submenuOpen
-                  ? "grid sm:grid-cols-6 grid-cols-3 gap-5 p-5 items-center bg-dark-green transition-transform duration-100"
-                  : "hidden"
-              }
+                  ? "grid grid-cols-3 gap-5 p-5 items-center justify-center text-center bg-white opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-[-20px] pointer-events-none"
+              }`}
               onMouseLeave={closeMenuCallback}
             >
               {menu.sublinks.map((link, index) => (
@@ -94,7 +97,7 @@ export const NavMenu = ({ closeMenuCallback }) => {
                       toggleSubmenu();
                     }}
                   >
-                    {link.name}
+                    <MenuButton>{link.name}</MenuButton>
                   </Link>
                 </div>
               ))}

@@ -104,13 +104,13 @@ export default function Navbar() {
             </MenuButton>
           </Link>
           <Link href={"/sales"} className="menuitems" onMouseMove={closeMenu}>
-            <MenuButton>On Sale</MenuButton>
+            <MenuButton>Sales</MenuButton>
           </Link>
           <Link href={"/about"} className="menuitems" onMouseMove={closeMenu}>
-            <MenuButton>About Us</MenuButton>
+            <MenuButton>About</MenuButton>
           </Link>
           <Link href={"/contact"} className="menuitems" onMouseMove={closeMenu}>
-            <MenuButton>Contact Us</MenuButton>
+            <MenuButton>Contact</MenuButton>
           </Link>
           <Link
             href={"/favorite"}
@@ -285,7 +285,7 @@ export default function Navbar() {
                 className="menuitems cursor-pointer hover:text-sharp-pink"
                 onClick={openMobileMenu}
               >
-                Shop
+                <MenuButton>Shop</MenuButton>
               </div>
               <div
                 className={
@@ -294,15 +294,34 @@ export default function Navbar() {
                     : "flex flex-col gap-1 justify-center items-center"
                 }
               >
+                <Link
+                  href={"/newarrivals"}
+                  className="menuitems"
+                  onMouseMove={closeMenu}
+                >
+                  <MenuButton>
+                    New Arrival
+                    <Box sx={{ color: "#ff5d8f" }}>
+                      <AutoAwesomeOutlinedIcon fontSize="medium" />
+                    </Box>
+                  </MenuButton>
+                </Link>
+                <Link
+                  href={"/sales"}
+                  className="menuitems"
+                  onMouseMove={closeMenu}
+                >
+                  <MenuButton>Sales</MenuButton>
+                </Link>
                 <Link href={"/about"} className={"menuitems"}>
-                  About
+                  <MenuButton>About</MenuButton>
                 </Link>
 
                 <Link href={"/contact"} className=" menuitems">
-                  Contact
+                  <MenuButton>Contact</MenuButton>
                 </Link>
                 <Link href={"/favorite"} className=" menuitems">
-                  Saved
+                  <MenuButton>Saved</MenuButton>
                 </Link>
               </div>
             </div>

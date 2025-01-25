@@ -25,6 +25,7 @@ module.exports = {
         "light-green": "#25c7c0",
         "mid-green": "#31859b",
         "main-blue": "#006BFF",
+        "dark-blue": "#01204e",
       },
       fontFamily: {
         muktaFont: ["Mukta", "sans-serif"],
@@ -32,6 +33,16 @@ module.exports = {
         josefinFont: ["Josefin", "Roboto", "sans-serif"],
         poppinsFont: ["Poppins", "Roboto", "sans-serif"],
         rubikFont: ["Rubik", "Poppins", "Roboto"],
+      },
+      keyframes: {
+        pulseScale: {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1)" },
+        },
+      },
+      animation: {
+        pulseScale: "pulseScale 0.6s ease-in-out",
       },
     },
   },

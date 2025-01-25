@@ -79,6 +79,7 @@ export default function George() {
                       width={200}
                       height={100}
                       priority
+                      className="object-cover w-full h-[300px] rounded-md"
                     />
                   </Link>
                 </div>

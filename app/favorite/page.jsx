@@ -54,30 +54,30 @@ export default function Favorite() {
                 >
                   <div className="sm:flex gap-1  p-5 ">
                     <div>
-                      {favProductData?.newPrice && (
-                        <span className="bg-sharp-pink text-white px-2 text-lg absolute left-5 top-5 z-10 rounded-tl-md ">
-                          -
-                          {Math.round(
-                            (100 *
-                              (favProductData?.price -
-                                favProductData?.newPrice)) /
-                              favProductData?.price
-                          )}
-                          %
-                        </span>
-                      )}
-                      {isNew && (
-                        <span className="bg-main-blue text-white px-1 font-bold absolute right-0">
-                          NEW
-                        </span>
-                      )}
                       <Link href={`/product/${favProductData._id}`}>
+                        {favProductData?.newPrice && (
+                          <span className="bg-sharp-pink text-white px-2 text-lg absolute left-5 top-5 z-10 rounded-tl-md ">
+                            -
+                            {Math.round(
+                              (100 *
+                                (favProductData?.price -
+                                  favProductData?.newPrice)) /
+                                favProductData?.price
+                            )}
+                            %
+                          </span>
+                        )}
+                        {isNew && (
+                          <span className="bg-main-blue text-white px-1 font-bold absolute left-56 z-30 rounded-tr-md">
+                            NEW
+                          </span>
+                        )}
                         <Image
                           src={favProductData.images?.[0]}
                           alt={`${favProductData.title}`}
                           width={200}
                           height={100}
-                          className="rounded-md scale-100 hover:scale-105 transition-transform duration-300"
+                          className="object-cover w-[248px] h-[300px] rounded-md scale-100 hover:scale-105 transition-transform duration-300"
                         />
                       </Link>
                     </div>

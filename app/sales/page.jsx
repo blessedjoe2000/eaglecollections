@@ -59,7 +59,7 @@ export default function Sales() {
                 <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                   <Link href={`/product/${saleProduct._id}`}>
                     {saleProduct?.newPrice && (
-                      <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                      <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
                         -
                         {Math.round(
                           (100 * (saleProduct?.price - saleProduct?.newPrice)) /
@@ -68,12 +68,19 @@ export default function Sales() {
                         %
                       </span>
                     )}
+
+                    {isNew && (
+                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-sm-tr-md">
+                        NEW
+                      </span>
+                    )}
                     <Image
                       src={saleProduct.images?.[0]}
                       alt={`${saleProduct.title}`}
                       width={200}
                       height={100}
                       priority
+                      className="object-cover w-full h-[300px] rounded-md"
                     />
                   </Link>
                 </div>

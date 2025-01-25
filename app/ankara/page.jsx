@@ -60,7 +60,7 @@ export default function Ankara() {
                 <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
                   <Link href={`/product/${ankara._id}`}>
                     {ankara?.newPrice && (
-                      <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                      <span className="bg-sharp-pink text-white px-2 absolute text-lg rounded-tl-md ">
                         -
                         {Math.round(
                           (100 * (ankara?.price - ankara?.newPrice)) /
@@ -70,7 +70,7 @@ export default function Ankara() {
                       </span>
                     )}
                     {isNew && (
-                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0">
+                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-tr-md">
                         NEW
                       </span>
                     )}
@@ -80,6 +80,7 @@ export default function Ankara() {
                       width={200}
                       height={100}
                       priority
+                      className="object-cover w-full h-[300px] rounded-md"
                     />
                   </Link>
                 </div>
