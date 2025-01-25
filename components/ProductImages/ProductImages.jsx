@@ -59,7 +59,7 @@ export function ProductImages({ images }) {
           src={activeImage}
           alt={""}
           width={400}
-          height={200}
+          height={500}
           priority
           className="opacity-0"
         />

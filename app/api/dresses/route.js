@@ -11,7 +11,7 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    let searchQuery = "dress" || "gown";
+    let searchQuery = "dress";
     searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(

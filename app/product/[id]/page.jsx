@@ -6,6 +6,7 @@ import { ProductImages } from "@/components/ProductImages/ProductImages";
 import Spinner from "@/components/Spinner/Spinner";
 import axios from "axios";
 import SimilarProducts from "@/components/SimilarProducts/SimilarProducts";
+import { SpinnerContainer } from "@/app/products/page/[...page]/styles";
 
 export default function Product() {
   const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
@@ -18,14 +19,10 @@ export default function Product() {
   const twentyDaysAgo = new Date();
   twentyDaysAgo.setDate(twentyDaysAgo.getDate() - 20);
 
-  const productData = data?.find((product) => product._id === _id);
-
-  const isNew = new Date(productData?.createdAt) >= twentyDaysAgo;
-
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get(`/api/products/`);
         setData(response.data);
       } catch (error) {
         console.log("Error fetching data: ", error.message);
@@ -34,6 +31,9 @@ export default function Product() {
 
     fetchAllProducts();
   }, []);
+
+  const productData = data?.find((product) => product._id === _id);
+  const isNew = new Date(productData?.createdAt) >= twentyDaysAgo;
 
   useEffect(() => {
     if (productData?.colors) {
@@ -76,9 +76,9 @@ export default function Product() {
 
   if (!productData) {
     return (
-      <div className="flex justify-center items-center py-5">
+      <SpinnerContainer>
         <Spinner />
-      </div>
+      </SpinnerContainer>
     );
   }
 

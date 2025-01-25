@@ -1,5 +1,15 @@
 import { Button } from "@mui/material";
 import { Box, styled } from "@mui/system";
+
+export const SpinnerContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 1rem;
+`;
 export const CardContainer = styled(Box)`
   display: flex;
   flex-wrap: wrap;

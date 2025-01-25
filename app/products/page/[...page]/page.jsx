@@ -10,11 +10,12 @@ import {
   ImageContainer,
   PrevNextButton,
   PrevNextDisabledButton,
+  SpinnerContainer,
 } from "./styles";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { useSearch } from "@/components/providers/SearchProvider/SearchProvider";
 import Spinner from "@/components/Spinner/Spinner";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Container } from "@mui/system";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
@@ -66,102 +67,138 @@ export default function AllProducts() {
 
   if (!data.length) {
     return (
-      <div className="flex justify-center items-center py-5">
+      <SpinnerContainer>
         <Spinner />
-      </div>
+      </SpinnerContainer>
     );
   }
 
   if (searchResults.length > 0) {
     return (
       <div>
-        <CardContainer className=" flex flex-wrap justify-center items-center gap-2 mb-5 pt-5">
-          {searchResults.map((searchResult) => {
-            const isNew = new Date(searchResult.createdAt) >= twentyDaysAgo;
-
-            return (
-              <CardDetails
-                key={searchResult._id}
-                className="p-5 rounded-md bg-white shadow-sm"
-              >
-                <ImageContainer className="w-[200px]">
-                  <div className="mb-2 scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
-                    <Link href={`/product/${searchResult._id}`} className="">
-                      {searchResult?.newPrice && (
-                        <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
-                          -
-                          {Math.round(
-                            (100 *
-                              (searchResult?.price - searchResult?.newPrice)) /
-                              searchResult?.price
-                          )}
-                          %
-                        </span>
-                      )}
-                      {isNew && (
-                        <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-tr-md">
-                          NEW
-                        </span>
-                      )}
-                      <Image
-                        src={searchResult.images?.[0]}
-                        alt={`${searchResult.title}`}
-                        width={200}
-                        height={200}
-                        priority
-                        className="object-cover w-[200px] h-[250px] rounded-md"
-                      />
-                    </Link>
-                  </div>
-                  <div>
-                    <div className="flex justify-between items-center ">
-                      {searchResult?.newPrice ? (
-                        <div className="flex items-center gap-1">
-                          <p className=" font-bold text-lg text-main-pink">
-                            ${searchResult?.newPrice}
-                          </p>
-                          <p className=" font-bold line-through ">
-                            ${searchResult?.price}
-                          </p>
-                        </div>
-                      ) : (
-                        <p className=" font-bold text-lg text-light-green">
-                          ${searchResult.price}
-                        </p>
-                      )}
-
-                      <svg
-                        onClick={() => addFavorite(searchResult._id)}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className={
-                          favoriteIds.includes(searchResult._id)
-                            ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
-                            : "w-6 h-6 text-sharp-pink cursor-pointer"
-                        }
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+        <CardContainer>
+          {searchResults &&
+            searchResults.map((searchResult) => {
+              const isNew = new Date(searchResult.createdAt) >= twentyDaysAgo;
+              return (
+                <CardDetails key={searchResult._id}>
+                  <ImageContainer>
+                    <div className="mb-2 scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
+                      <Link href={`/product/${searchResult._id}`}>
+                        {searchResult?.newPrice && (
+                          <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
+                            -
+                            {Math.round(
+                              (100 *
+                                (searchResult?.price -
+                                  searchResult?.newPrice)) /
+                                searchResult?.price
+                            )}
+                            %
+                          </span>
+                        )}
+                        {isNew && (
+                          <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-tr-md">
+                            NEW
+                          </span>
+                        )}
+                        <Image
+                          src={searchResult.images?.[0]}
+                          alt={`${searchResult.title}`}
+                          width={200}
+                          height={250}
+                          priority
+                          className="object-cover w-[200px] h-[250px] rounded-md"
                         />
-                      </svg>
+                      </Link>
                     </div>
-                    <Link href={`/product/${searchResult._id}`}>
-                      <p>
-                        {searchResult?.title?.trim().slice(0, 1).toUpperCase() +
-                          searchResult?.title?.trim().slice(1)}
-                      </p>
-                    </Link>
-                  </div>
-                </ImageContainer>
-              </CardDetails>
-            );
-          })}
+                    <div>
+                      <div className="flex justify-between items-center ">
+                        {searchResult?.newPrice ? (
+                          <div className="flex items-center gap-1">
+                            <p className=" font-bold text-lg text-main-pink">
+                              ${searchResult?.newPrice}
+                            </p>
+                            <p className=" font-bold line-through text-light-grey">
+                              ${searchResult?.price}
+                            </p>
+                          </div>
+                        ) : (
+                          <p className=" font-bold text-lg text-main-pink">
+                            ${searchResult.price}
+                          </p>
+                        )}
+
+                        <svg
+                          onClick={() => addFavorite(searchResult._id)}
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className={
+                            favoriteIds?.includes(searchResult._id)
+                              ? "w-6 h-6 fill-sharp-pink text-sharp-pink cursor-pointer"
+                              : "w-6 h-6 text-sharp-pink cursor-pointer"
+                          }
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                          />
+                        </svg>
+                      </div>
+                      <Link href={`/product/${searchResult._id}`}>
+                        <p className="font-semi-bold text-white">
+                          {searchResult?.title
+                            ?.trim()
+                            .slice(0, 1)
+                            .toUpperCase() +
+                            searchResult?.title?.trim().slice(1)}
+                        </p>
+                      </Link>
+                    </div>
+                  </ImageContainer>
+                </CardDetails>
+              );
+            })}
         </CardContainer>
+
+        <Container
+          sx={{ display: "flex", justifyContent: "space-between", my: "1rem" }}
+        >
+          {pageId > 1 ? (
+            <Link href={`/products/page/${pageId - 1}`}>
+              <PrevNextButton>
+                <KeyboardDoubleArrowLeftIcon />
+                Previous
+              </PrevNextButton>
+            </Link>
+          ) : (
+            <PrevNextDisabledButton
+              sx={{ display: "flex", alignItems: "center", gap: "1px" }}
+            >
+              <DoNotDisturbIcon sx={{ fontSize: "medium" }} />
+              Previous
+            </PrevNextDisabledButton>
+          )}
+          {pagesRemaining != 0 ? (
+            <PrevNextDisabledButton
+              sx={{ display: "flex", alignItems: "center", gap: "1px" }}
+            >
+              Next
+              <DoNotDisturbAltIcon sx={{ fontSize: "medium" }} />
+            </PrevNextDisabledButton>
+          ) : (
+            <Link href={`/products/page/${pageId + 1}`}>
+              <PrevNextButton>
+                Next
+                <KeyboardDoubleArrowRightIcon />
+              </PrevNextButton>
+            </Link>
+          )}
+        </Container>
       </div>
     );
   }
@@ -252,6 +289,7 @@ export default function AllProducts() {
             );
           })}
       </CardContainer>
+
       <Container
         sx={{ display: "flex", justifyContent: "space-between", my: "1rem" }}
       >

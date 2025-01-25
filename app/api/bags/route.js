@@ -11,7 +11,7 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    let searchQuery = "bags";
+    let searchQuery = "bag";
     searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(

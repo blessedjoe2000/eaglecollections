@@ -11,7 +11,7 @@ export async function GET(req) {
       updatedAt: -1,
     });
 
-    let searchQuery = "ankara || wax";
+    let searchQuery = "ankara";
     searchQuery = searchQuery.toLowerCase();
 
     const searchedProducts = allProducts.filter(

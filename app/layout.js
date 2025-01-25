@@ -5,7 +5,7 @@ import { CartContextProvider } from "@/components/providers/CartContext/CartCont
 import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 import { SearchProvider } from "@/components/providers/SearchProvider/SearchProvider";
 import { Toaster } from "react-hot-toast";
-import VoiceflowAI from "@/components/VoiceflowAI/VoiceflowAI";
+
 import { ThemeProvider } from "@/components/providers/ThemeProvider/ThemeProvider";
 
 export const metadata = {
@@ -30,7 +30,6 @@ export default function RootLayout({ children }) {
                 </SearchProvider>
               </CartContextProvider>
             </AuthProvider>
-            <VoiceflowAI />
           </ThemeProvider>
         </body>
       </html>
