@@ -25,7 +25,7 @@ export default function Accessories() {
 
   const getAccessories = async () => {
     try {
-      const response = await axios.get(`/api/accessories/${pageId}`);
+      const response = await axios.get(`/api/accessories`);
       setAccessories(response.data);
     } catch (error) {
       console.log("Error fetching accessories data: ", error);

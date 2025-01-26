@@ -1,88 +1,67 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../Logo/Logo";
-import { SocialIcon } from "react-social-icons";
 import "react-social-icons/meetup";
+import { MenuButton } from "../Navbar/styles";
+import SocialMedia from "../SocialMedia";
 
 export default function Footer() {
   return (
-    <footer className=" ">
-      <div className="flex flex-colflex flex-col ">
-        <div className="sm:flex justify-between items-center gap-5 bg-dark-green text-white p-5 font-poppinsFont text-sm uppercase font-semibold">
+    <footer className="bg-dark-blue text-white ">
+      <div className="flex flex-col">
+        <div className="sm:flex justify-around items-center gap-5  p-5 font-poppinsFont text-sm uppercase font-semibold">
           <div className="flex justify-center items-center">
             <Logo />
           </div>
           <div className="flex flex-col justify-center items-center  ">
             <Link href={"/george"} className="menuitems">
-              Georges
+              <MenuButton>Georges</MenuButton>
             </Link>
             <Link href={"/lace"} className="menuitems">
-              Laces
+              <MenuButton>Laces</MenuButton>
             </Link>
             <Link href={"/bag"} className="menuitems">
-              Bags
+              <MenuButton>Bags</MenuButton>
             </Link>
             <Link href={"/accessories"} className="menuitems">
-              Accessories
+              <MenuButton>Accessories</MenuButton>
             </Link>
           </div>
           <div className="flex flex-col justify-center items-center">
             <Link href={"/slippers"} className="menuitems">
-              Slippers
+              <MenuButton>Slippers</MenuButton>
             </Link>
             <Link href={"/ankara"} className="menuitems">
-              Ankara
+              <MenuButton>Ankara</MenuButton>
             </Link>
             <Link href={"/shoe"} className="menuitems">
-              Shoes
+              <MenuButton>Shoes</MenuButton>
             </Link>
             <Link href={"/jewelry"} className="menuitems">
-              Jewelries
+              <MenuButton>Jewelries</MenuButton>
             </Link>
           </div>
           <div className="flex flex-col justify-center items-center">
             <Link href={"/men"} className="menuitems">
-              Men Shop
+              <MenuButton>Men Shop</MenuButton>
             </Link>
             <Link href={"/clutch"} className="menuitems">
-              Clutches
+              <MenuButton>Clutches</MenuButton>
             </Link>
             <Link href={"/dress"} className="menuitems">
-              Gown Dresses
+              <MenuButton>Gown Dresses</MenuButton>
             </Link>
             <Link href={"/headtie"} className="menuitems">
-              Headtie Gele
+              <MenuButton>Headtie Gele</MenuButton>
             </Link>
           </div>
-          <div className="flex flex-col justify-center text-center gap-2">
-            <h2 className="text-lg text-white">Our Social Media</h2>
-            <div className="flex gap-1 justify-center items-center">
-              <SocialIcon
-                network="facebook"
-                url="https://www.facebook.com/profile.php?id=100064705848755&mibextid=ZbWKwL"
-                target="_blank"
-              />
-              <SocialIcon
-                network="instagram"
-                url="https://www.instagram.com/eaglecollectionstore?igsh=MWhqZDU3M2F3OGx5dQ%3D%3D&utm_source=qr"
-                target="_blank"
-              />
-              <SocialIcon
-                network="whatsapp"
-                url="https://wa.me/12103109644"
-                target="_blank"
-              />
-              <SocialIcon
-                network="tiktok"
-                url="https://www.tiktok.com/@eaglecollections_store?_t=8j44epTfpTq&_r=1"
-                target="_blank"
-              />
-            </div>
-          </div>
+          <SocialMedia />
         </div>
-        <div className="border-t-2 bg-dark-green text-white text-center py-2 font-robotoFont ">
-          <h3 className=" font-bold text-white">
+        <div className="border-t-2 text-center py-2  ">
+          <p className="  text-white">
             Eagle Collections. All Rights Reserved. ©{new Date().getFullYear()}
-          </h3>
+          </p>
         </div>
       </div>
     </footer>

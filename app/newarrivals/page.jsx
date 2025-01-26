@@ -5,6 +5,14 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import {
+  CardContainer,
+  CardDetails,
+  ImageContainer,
+  SpinnerContainer,
+} from "@/app/products/page/[...page]/styles";
+import { ComingSoon } from "@/app/accessories/styles";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function NewArrival() {
   const [newArrivals, setNewArrivals] = useState([]);
@@ -40,23 +48,21 @@ export default function NewArrival() {
 
   if (!newArrivals.length) {
     return (
-      <div className="mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">No New Arrival...</h1>
-      </div>
+      <SpinnerContainer>
+        <ComingSoon>Coming soon...</ComingSoon>
+        <Spinner />
+      </SpinnerContainer>
     );
   }
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
+    <CardContainer>
       {newArrivals &&
         newArrivals.map((newArrival) => {
           const isNew = new Date(newArrival.createdAt) >= twentyDaysAgo;
           return (
-            <div
-              key={newArrival._id}
-              className="p-5 rounded-md bg-white shadow-sm w-[200px]"
-            >
-              <div>
-                <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
+            <CardDetails key={newArrival._id}>
+              <ImageContainer>
+                <div className="mb-2 scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
                   <Link href={`/product/${newArrival._id}`}>
                     {newArrival?.newPrice && (
                       <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
@@ -77,25 +83,25 @@ export default function NewArrival() {
                       src={newArrival.images?.[0]}
                       alt={`${newArrival.title}`}
                       width={200}
-                      height={100}
+                      height={250}
                       priority
-                      className="object-cover w-full h-[300px] rounded-md"
+                      className="object-cover w-[200px] h-[250px] rounded-md"
                     />
                   </Link>
                 </div>
                 <div>
                   <div className="flex justify-between items-center ">
                     {newArrival?.newPrice ? (
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
                         <p className=" font-bold text-lg text-main-pink">
                           ${newArrival?.newPrice}
                         </p>
-                        <p className=" font-bold line-through ">
+                        <p className=" font-bold line-through text-light-grey">
                           ${newArrival?.price}
                         </p>
                       </div>
                     ) : (
-                      <p className=" font-bold text-lg text-light-green">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${newArrival.price}
                       </p>
                     )}
@@ -121,16 +127,16 @@ export default function NewArrival() {
                     </svg>
                   </div>
                   <Link href={`/product/${newArrival._id}`}>
-                    <p>
+                    <p className="font-semi-bold text-white">
                       {newArrival?.title?.trim().slice(0, 1).toUpperCase() +
                         newArrival?.title?.trim().slice(1)}
                     </p>
                   </Link>
                 </div>
-              </div>
-            </div>
+              </ImageContainer>
+            </CardDetails>
           );
         })}
-    </div>
+    </CardContainer>
   );
 }

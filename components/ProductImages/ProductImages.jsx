@@ -43,7 +43,7 @@ export function ProductImages({ images }) {
   }, [activeImage, images]);
 
   return (
-    <div className="sm:flex gap-1 shadow-l-lg p-5 bg-white">
+    <div className="sm:flex gap-1 p-5 ">
       <div
         className="relative overflow-hidden rounded-md cursor-zoom-in z-20 "
         style={{
@@ -58,7 +58,7 @@ export function ProductImages({ images }) {
         <Image
           src={activeImage}
           alt={""}
-          width={400}
+          width={407}
           height={500}
           priority
           className="opacity-0"
@@ -71,7 +71,7 @@ export function ProductImages({ images }) {
             <button
               key={index}
               onClick={() => setActiveImage(img)}
-              className=" p-1 bg-light-grey border-2 "
+              className=" p-1 bg-white border-2 "
             >
               <Image
                 src={img}

@@ -22,34 +22,24 @@ body {
 input,
 textarea,
 select {
-  @apply border border-gray-200 rounded-sm w-full mb-2 p-1 outline-none focus-visible:border-light-green text-black;
-  @apply shadow-sm;
+  @apply border border-white rounded-sm w-full mb-2 p-1 outline-none focus-visible:border-sharp-pink text-white;
 }
-
-/* a:hover {
-  @apply text-sharp-pink;
-} */
-
-/* button:hover {
-  @apply text-light-green;
-} */
 
 h1 {
-  @apply text-4xl font-rubikFont text-light-green;
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 700;
 }
 h2 {
-  @apply font-rubikFont text-light-green text-3xl;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 600;
 }
 h3 {
-  @apply font-rubikFont text-light-green;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 500;
 }
-
-/* .menuitems {
-  @apply px-2 py-1;
-}
-.menuitems:hover {
-  @apply bg-white px-2 py-1 rounded-md;
-} */
 
 .hamburger-menu {
   @apply hover:bg-white hover:text-sharp-pink hover:w-screen flex justify-center items-center;

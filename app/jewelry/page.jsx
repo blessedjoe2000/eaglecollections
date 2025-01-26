@@ -5,6 +5,14 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import {
+  CardContainer,
+  CardDetails,
+  ImageContainer,
+  SpinnerContainer,
+} from "@/app/products/page/[...page]/styles";
+import { ComingSoon } from "@/app/accessories/styles";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function Jewelry() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
@@ -19,7 +27,7 @@ export default function Jewelry() {
       const response = await axios.get("/api/jewelries");
       setJewelries(response.data);
     } catch (error) {
-      console.log("error fetching data", error);
+      console.log("error fetching jewelry data", error);
     }
   };
 
@@ -39,27 +47,25 @@ export default function Jewelry() {
 
   if (!jewelries.length) {
     return (
-      <div className=" mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">Coming soon...</h1>
-      </div>
+      <SpinnerContainer>
+        <ComingSoon>Coming soon...</ComingSoon>
+        <Spinner />
+      </SpinnerContainer>
     );
   }
 
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
+    <CardContainer>
       {jewelries &&
         jewelries.map((jewelry) => {
           const isNew = new Date(jewelry.createdAt) >= twentyDaysAgo;
           return (
-            <div
-              key={jewelry._id}
-              className="p-5 rounded-md bg-white shadow-sm w-[200px]"
-            >
-              <div>
-                <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
+            <CardDetails key={jewelry._id}>
+              <ImageContainer>
+                <div className="mb-2 scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
                   <Link href={`/product/${jewelry._id}`}>
                     {jewelry?.newPrice && (
-                      <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                      <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
                         -
                         {Math.round(
                           (100 * (jewelry?.price - jewelry?.newPrice)) /
@@ -69,7 +75,7 @@ export default function Jewelry() {
                       </span>
                     )}
                     {isNew && (
-                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0">
+                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-tr-md">
                         NEW
                       </span>
                     )}
@@ -77,24 +83,25 @@ export default function Jewelry() {
                       src={jewelry.images?.[0]}
                       alt={`${jewelry.title}`}
                       width={200}
-                      height={100}
+                      height={250}
                       priority
+                      className="object-cover w-[200px] h-[250px] rounded-md"
                     />
                   </Link>
                 </div>
                 <div>
                   <div className="flex justify-between items-center ">
                     {jewelry?.newPrice ? (
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
                         <p className=" font-bold text-lg text-main-pink">
                           ${jewelry?.newPrice}
                         </p>
-                        <p className=" font-bold line-through ">
+                        <p className=" font-bold line-through text-light-grey">
                           ${jewelry?.price}
                         </p>
                       </div>
                     ) : (
-                      <p className=" font-bold text-lg text-light-green">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${jewelry.price}
                       </p>
                     )}
@@ -120,16 +127,16 @@ export default function Jewelry() {
                     </svg>
                   </div>
                   <Link href={`/product/${jewelry._id}`}>
-                    <p>
+                    <p className="font-semi-bold text-white">
                       {jewelry?.title?.trim().slice(0, 1).toUpperCase() +
                         jewelry?.title?.trim().slice(1)}
                     </p>
                   </Link>
                 </div>
-              </div>
-            </div>
+              </ImageContainer>
+            </CardDetails>
           );
         })}
-    </div>
+    </CardContainer>
   );
 }

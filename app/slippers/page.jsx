@@ -5,6 +5,14 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import {
+  CardContainer,
+  CardDetails,
+  ImageContainer,
+  SpinnerContainer,
+} from "@/app/products/page/[...page]/styles";
+import { ComingSoon } from "@/app/accessories/styles";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function Shoe() {
   const [slippers, setSlippers] = useState([]);
@@ -39,26 +47,24 @@ export default function Shoe() {
   };
   if (!slippers.length) {
     return (
-      <div className="mx-5 text-center py-10 ">
-        <h1 className="font-bold py-2 text-lg">Coming soon...</h1>
-      </div>
+      <SpinnerContainer>
+        <ComingSoon>Coming soon...</ComingSoon>
+        <Spinner />
+      </SpinnerContainer>
     );
   }
   return (
-    <div className=" flex flex-wrap justify-center items-center gap-2 my-5">
+    <CardContainer>
       {slippers &&
         slippers.map((slipper) => {
           const isNew = new Date(slipper.createdAt) >= twentyDaysAgo;
           return (
-            <div
-              key={slipper._id}
-              className="p-5 rounded-md bg-white shadow-sm w-[200px]"
-            >
-              <div>
-                <div className="mb-2 scale-100 hover:scale-105 transition-transform duration-300">
+            <CardDetails key={slipper._id}>
+              <ImageContainer>
+                <div className="mb-2 scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
                   <Link href={`/product/${slipper._id}`}>
                     {slipper?.newPrice && (
-                      <span className="bg-sharp-pink text-white px-2 absolute text-lg">
+                      <span className="bg-sharp-pink text-white px-2 absolute font-bold rounded-tl-md">
                         -
                         {Math.round(
                           (100 * (slipper?.price - slipper?.newPrice)) /
@@ -68,7 +74,7 @@ export default function Shoe() {
                       </span>
                     )}
                     {isNew && (
-                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0">
+                      <span className="bg-main-blue text-white px-1 font-bold absolute right-0 rounded-tr-md">
                         NEW
                       </span>
                     )}
@@ -76,24 +82,25 @@ export default function Shoe() {
                       src={slipper.images?.[0]}
                       alt={`${slipper.title}`}
                       width={200}
-                      height={100}
+                      height={250}
                       priority
+                      className="object-cover w-[200px] h-[250px] rounded-md"
                     />
                   </Link>
                 </div>
                 <div>
                   <div className="flex justify-between items-center ">
                     {slipper?.newPrice ? (
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
                         <p className=" font-bold text-lg text-main-pink">
                           ${slipper?.newPrice}
                         </p>
-                        <p className=" font-bold line-through ">
+                        <p className=" font-bold line-through text-light-grey">
                           ${slipper?.price}
                         </p>
                       </div>
                     ) : (
-                      <p className=" font-bold text-lg text-light-green">
+                      <p className=" font-bold text-lg text-main-pink">
                         ${slipper.price}
                       </p>
                     )}
@@ -119,16 +126,16 @@ export default function Shoe() {
                     </svg>
                   </div>
                   <Link href={`/product/${slipper._id}`}>
-                    <p>
+                    <p className="font-semi-bold text-white">
                       {slipper?.title?.trim().slice(0, 1).toUpperCase() +
                         slipper?.title?.trim().slice(1)}
                     </p>
                   </Link>
                 </div>
-              </div>
-            </div>
+              </ImageContainer>
+            </CardDetails>
           );
         })}
-    </div>
+    </CardContainer>
   );
 }

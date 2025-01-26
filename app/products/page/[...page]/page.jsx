@@ -21,6 +21,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
+import { ComingSoon } from "@/app/accessories/styles";
 
 export default function AllProducts() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
@@ -68,6 +69,7 @@ export default function AllProducts() {
   if (!data.length) {
     return (
       <SpinnerContainer>
+        <ComingSoon>Loading...</ComingSoon>
         <Spinner />
       </SpinnerContainer>
     );

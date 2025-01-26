@@ -24,7 +24,7 @@ export default function SearchProduct() {
         <input
           type="text"
           placeholder="search..."
-          className="rounded-lg focus-visible:border-none text-black/60 text-sm  "
+          className="border border-light-grey rounded-lg focus-visible:border-none text-black/60 text-sm  "
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
