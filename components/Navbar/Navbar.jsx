@@ -18,7 +18,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-
 import { Box } from "@mui/system";
 
 export default function Navbar() {
@@ -167,7 +166,7 @@ export default function Navbar() {
           <div
             className={
               openMenu
-                ? " mt-12 absolute w-full left-0 top-8 border-t-2"
+                ? " mt-32 absolute w-full left-0 top-8 border-t-2"
                 : "hidden"
             }
           >
@@ -223,11 +222,9 @@ export default function Navbar() {
       </div>
 
       <div
-        className={
-          showHamburger
-            ? "flex justify-around items-center gap-5 mb-80 "
-            : "xl:flex xl:justify-around xl:items-center xl:gap-2 lg:hidden md:hidden sm:hidden xs:flex"
-        }
+        className={`flex justify-around items-center gap-5 ${
+          showHamburger ? "mb-96" : "xl:gap-2 xl:flex"
+        } sm:hidden xs:flex`}
       >
         <div className="py-3" onMouseMove={closeMenu}>
           <Logo />
