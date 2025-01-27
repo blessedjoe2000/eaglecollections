@@ -16,7 +16,7 @@ export const MenuButton = styled(Button)`
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #006bff;
+    background-color: #f72585;
     transition: width 0.3s ease-in-out;
   }
 

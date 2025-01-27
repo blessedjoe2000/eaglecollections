@@ -83,7 +83,7 @@ export const NavMenu = ({ closeMenuCallback }) => {
             <div
               className={`transition-all duration-300 ease-in-out ${
                 submenuOpen
-                  ? "grid grid-cols-3 gap-5 p-5 items-center justify-center text-center bg-white opacity-100 translate-y-0"
+                  ? "grid grid-cols-3 gap-5 p-5 items-center justify-center text-center bg-dark-blue opacity-100 translate-y-0"
                   : "opacity-0 translate-y-[-20px] pointer-events-none"
               }`}
               onMouseLeave={closeMenuCallback}

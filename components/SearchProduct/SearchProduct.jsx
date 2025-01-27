@@ -35,7 +35,7 @@ export default function SearchProduct() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-5 h-7 text-main-blue absolute right-0 sm:right-0 top-0 cursor-pointer hover:text-main-pink bg-light-grey rounded-tr-lg rounded-br-lg"
+            className="w-5 h-7 text-sharp-pink absolute right-0 sm:right-0 top-0 cursor-pointer hover:text-main-pink bg-light-grey rounded-tr-lg rounded-br-lg"
           >
             <path
               strokeLinecap="round"
