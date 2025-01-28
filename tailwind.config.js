@@ -26,6 +26,7 @@ module.exports = {
         "mid-green": "#31859b",
         "main-blue": "#006BFF",
         "dark-blue": "#01204e",
+        "hover-blue": "#4158a6",
       },
       fontFamily: {
         muktaFont: ["Mukta", "sans-serif"],

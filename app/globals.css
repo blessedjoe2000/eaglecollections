@@ -41,18 +41,7 @@ h3 {
   font-weight: 500;
 }
 
-/* .hamburger-menu {
-  @apply hover:bg-white hover:text-sharp-pink hover:w-screen flex justify-center items-center;
-} */
-
 .image-full-width {
   width: 100%;
   height: auto;
-}
-
-@media (max-width: 1200px) {
-  .mid-screen-menu {
-    display: flex;
-    flex-direction: column;
-  }
 }

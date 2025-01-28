@@ -37,10 +37,6 @@ export default function Navbar() {
     setOpenMenu(true);
   };
 
-  const toggleMenu = () => {
-    setOpenMenu(!openMenu);
-  };
-
   const openMobileMenu = () => {
     setOpenMenu(true);
   };

@@ -111,7 +111,7 @@ export default function Footer() {
           </div>
           <SocialMedia />
         </div>
-        <div className="border-t-2 text-center py-2  ">
+        <div className=" border-t-2 text-center py-2  ">
           <p className="">
             Eagle Collections. All Rights Reserved. ©{new Date().getFullYear()}
           </p>

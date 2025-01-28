@@ -108,6 +108,7 @@ export default function Contact() {
       });
     }
   };
+
   return (
     <div className="  my-10 ">
       <Container>
@@ -117,10 +118,7 @@ export default function Contact() {
           className="sm:flex justify-around items-center gap-5 py-5 bg-dark-blue text-white my-5"
           data-aos="fade-up"
         >
-          <div
-            className="flex flex-col justify-center items-center gap-2"
-            data-aos="fade-right"
-          >
+          <div className="flex flex-col justify-center items-center gap-2">
             <div className="flex gap-2 items-center">
               <Box sx={{ color: "#f72585" }}>
                 <PhoneIphoneIcon />
@@ -144,7 +142,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div data-aos="fade-left">
+          <div>
             <SocialMedia />
           </div>
         </div>

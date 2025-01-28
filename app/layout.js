@@ -7,6 +7,7 @@ import { SearchProvider } from "@/components/providers/SearchProvider/SearchProv
 import { Toaster } from "react-hot-toast";
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider/ThemeProvider";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
   title: "Eagle Collections African Fabrics Store",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
                 <SearchProvider>
                   <Navbar />
                   <div className="flex-grow">{children}</div>
+                  <ScrollToTop />
                   <Footer />
                 </SearchProvider>
               </CartContextProvider>
