@@ -31,10 +31,10 @@ export default function Contact() {
       return toast.error("Name is required. Please enter first and last name", {
         style: {
           padding: "16px",
-          color: "#006BFF",
+          color: "#01579b",
         },
         iconTheme: {
-          primary: "#006BFF",
+          primary: "#01579b",
           secondary: "#FFFAEE",
         },
       });
@@ -44,10 +44,10 @@ export default function Contact() {
       return toast.error("Email is required. Please enter email", {
         style: {
           padding: "16px",
-          color: "#006BFF",
+          color: "#01579b",
         },
         iconTheme: {
-          primary: "#006BFF",
+          primary: "#01579b",
           secondary: "#FFFAEE",
         },
       });
@@ -59,10 +59,10 @@ export default function Contact() {
         {
           style: {
             padding: "16px",
-            color: "#006BFF",
+            color: "#01579b",
           },
           iconTheme: {
-            primary: "#006BFF",
+            primary: "#01579b",
             secondary: "#FFFAEE",
           },
         }
@@ -73,10 +73,10 @@ export default function Contact() {
       return toast.error("Message is required, Please enter a message", {
         style: {
           padding: "16px",
-          color: "#006BFF",
+          color: "#01579b",
         },
         iconTheme: {
-          primary: "#006BFF",
+          primary: "#01579b",
           secondary: "#FFFAEE",
         },
       });
@@ -99,10 +99,10 @@ export default function Contact() {
       toast.success(`Hi ${firstName}, message sent successfully`, {
         style: {
           padding: "16px",
-          color: "#006BFF",
+          color: "#01579b",
         },
         iconTheme: {
-          primary: "#006BFF",
+          primary: "#01579b",
           secondary: "#FFFAEE",
         },
       });
@@ -216,7 +216,7 @@ export default function Contact() {
             <div className="flex justify-end">
               <Button
                 type="submit"
-                className="px-3 py-1 bg-sharp-pink rounded-md text-white text-lg w-full"
+                className="px-3 py-1 bg-sharp-pink rounded-md text-white text-lg w-full hover:bg-deep-pink"
               >
                 Send
               </Button>

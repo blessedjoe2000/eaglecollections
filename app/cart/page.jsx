@@ -7,6 +7,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import { SavedProducts } from "../favorite/styles";
+import { CartProducts } from "./styles";
 
 export default function Cart() {
   const [name, setName] = useState("");
@@ -138,11 +140,11 @@ export default function Cart() {
 
   return (
     <div className="m-5">
-      <h1 className="font-bold mb-3 text-xl text-center">Shopping Cart</h1>
+      <SavedProducts>Shopping Cart</SavedProducts>
       {!cartProducts?.length ? (
         <div>
           {!cartProducts?.length && (
-            <p className="text-center font-bold">Your Cart is empty.</p>
+            <CartProducts>Your Cart is empty</CartProducts>
           )}
         </div>
       ) : (

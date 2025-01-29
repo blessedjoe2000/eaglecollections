@@ -22,6 +22,8 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 import { ComingSoon } from "@/app/accessories/styles";
+import SalesToDisplay from "@/app/SalesToDisplay";
+import Banner from "@/components/Banner";
 
 export default function AllProducts() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
@@ -207,6 +209,8 @@ export default function AllProducts() {
 
   return (
     <div>
+      <Banner />
+      <SalesToDisplay />
       <CardContainer>
         {data &&
           data.map((productData) => {

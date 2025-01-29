@@ -39,7 +39,7 @@ export const PrevNextButton = styled(Button)`
   font-size: 1rem;
 
   :hover {
-    background-color: #4158a6 !important;
+    background-color: #01579b !important;
   }
 `;
 

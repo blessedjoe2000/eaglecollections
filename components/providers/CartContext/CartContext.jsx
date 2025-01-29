@@ -35,12 +35,11 @@ export function CartContextProvider({ children }) {
     setCartProducts((prev) => [...prev, product]);
     toast.success("product added to cart successfully", {
       style: {
-        border: "1px solid #01B700",
         padding: "16px",
-        color: "#01B700",
+        color: "#01579b",
       },
       iconTheme: {
-        primary: "#01B700",
+        primary: "#01579b",
         secondary: "#FFFAEE",
       },
     });
@@ -57,12 +56,11 @@ export function CartContextProvider({ children }) {
     });
     toast.success("product removed from cart", {
       style: {
-        border: "1px solid #01B700",
         padding: "16px",
-        color: "#01B700",
+        color: "#01579b",
       },
       iconTheme: {
-        primary: "#01B700",
+        primary: "#01579b",
         secondary: "#FFFAEE",
       },
     });
@@ -89,24 +87,22 @@ export function CartContextProvider({ children }) {
       if (favoriteIds.includes(productIdForToast)) {
         toast.success("product added to favorites", {
           style: {
-            border: "1px solid #01B700",
             padding: "16px",
-            color: "#01B700",
+            color: "#01579b",
           },
           iconTheme: {
-            primary: "#01B700",
+            primary: "#01579b",
             secondary: "#FFFAEE",
           },
         });
       } else {
         toast.success("product removed from favorites", {
           style: {
-            border: "1px solid #01B700",
             padding: "16px",
-            color: "#01B700",
+            color: "#01579b",
           },
           iconTheme: {
-            primary: "#01B700",
+            primary: "#01579b",
             secondary: "#FFFAEE",
           },
         });
