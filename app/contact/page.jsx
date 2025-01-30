@@ -146,10 +146,10 @@ export default function Contact() {
             <SocialMedia />
           </div>
         </div>
-        <div className="bg-dark-blue text-white my-20 " data-aos="fade-up">
+        <div className="bg-dark-blue  my-20 " data-aos="fade-up">
           <h2 className="text-center pt-10">Send Us A Message</h2>
           <form onSubmit={handleContactUs} className="p-10 pt-5">
-            <div className="sm:flex justify-between gap-2">
+            <div className="sm:flex justify-between gap-2 ">
               <div className="w-full">
                 <label htmlFor="firstName" name="firstName">
                   First Name
