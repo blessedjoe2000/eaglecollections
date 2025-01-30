@@ -9,6 +9,9 @@ import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { SavedProducts } from "../favorite/styles";
 import { CartProducts } from "./styles";
+import { Divider } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Container } from "@mui/system";
 
 export default function Cart() {
   const [name, setName] = useState("");
@@ -107,7 +110,7 @@ export default function Cart() {
   if (isSuccess) {
     return (
       <>
-        <div className="bg-white mx-5 text-center py-10 ">
+        <div className="bg-dark-blue mx-5 text-center py-10 ">
           <h1 className="font-bold py-2 text-lg">
             Payment Successful! Thank you for shopping with us.
           </h1>
@@ -148,46 +151,43 @@ export default function Cart() {
           )}
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 gap-2 ">
-          <div className="">
+        <div className="grid sm:grid-cols-2 gap-2 text-white">
+          <div className=" bg-dark-blue lg:px-10  md:px-2 rounded-md ">
             {cartProducts &&
               cartProducts.map((cartProductData, index) => (
-                <div
-                  key={index}
-                  className=" shadow-sm rounded-md mb-2 bg-white"
-                >
-                  <div className="flex justify-center items-center gap-5 p-5">
-                    <Link href={`/product/${cartProductData._id}`}>
-                      <Image
-                        src={cartProductData.images?.[0]}
-                        alt={`${cartProductData.title}`}
-                        width={100}
-                        height={100}
-                        priority
-                        className="rounded-md scale-100 hover:scale-105 transition-transform duration-300"
-                      />
-                    </Link>
+                <div key={index} className="">
+                  <div className="flex justify-center items-center gap-2 sm:p-5 p-2 ">
+                    <div className="scale-100 transition-transform duration-300 ease-in-out hover:animate-pulseScale">
+                      <Link href={`/product/${cartProductData._id}`}>
+                        <Image
+                          src={cartProductData.images?.[0]}
+                          alt={`${cartProductData.title}`}
+                          width={150}
+                          height={200}
+                          priority
+                          className="object-cover w-[150px] h-[200px] rounded-md"
+                        />
+                      </Link>
+                    </div>
 
                     <div className="">
-                      <div className="text-light-green">
-                        {cartProductData?.newPrice ? (
-                          <p className="font-bold">
-                            ${cartProductData?.newPrice}
-                          </p>
-                        ) : (
-                          <p className=" font-bold ">
-                            ${cartProductData.price}
-                          </p>
-                        )}
-                      </div>
-
-                      <p>
+                      <p className="font-semi-bold text-lg ">
                         {cartProductData?.title
                           ?.trim()
                           .slice(0, 1)
                           .toUpperCase() +
                           cartProductData?.title?.trim().slice(1)}
                       </p>
+                      <div className="text-sharp-pink">
+                        {cartProductData?.newPrice ? (
+                          <p className="font-bold">
+                            ${cartProductData?.newPrice}
+                          </p>
+                        ) : (
+                          <p className="font-bold ">${cartProductData.price}</p>
+                        )}
+                      </div>
+
                       <div>
                         {cartProductData?.colors && (
                           <div className="flex items-center gap-1">
@@ -222,35 +222,24 @@ export default function Cart() {
                       <div className="flex  py-2">
                         <button
                           onClick={() => reduceProduct(cartProductData)}
-                          className="flex items-center bg-dark-green px-2 rounded-md text-white hover:text-white"
+                          className="flex items-center bg-sharp-pink px-2 rounded-md text-white hover:text-white"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-5 h-5"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
+                          <CloseIcon fontSize="small" />
                           <p>Remove</p>
                         </button>
                       </div>
                     </div>
                   </div>
+                  <Divider />
                 </div>
               ))}
-            <div className="flex gap-2 shadow-sm bg-white py-2 px-5">
+
+            <div className="flex gap-2 py-2 px-5 text-lg font-bold">
               <p>Sub-total: </p>
-              <div className="font-bold text-sharp-pink">${total}</div>
+              <div className="text-xl text-sharp-pink">${total}</div>
             </div>
           </div>
-          <div className="flex flex-col p-5 rounded-md shadow-sm bg-white ">
+          <div className="flex flex-col p-5 rounded-md  bg-dark-blue ">
             {!!cartProducts?.length && (
               <div className="">
                 <h2 className="font-bold text-lg text-light-green">
@@ -284,7 +273,7 @@ export default function Cart() {
                     disabled={!session}
                     className={
                       session
-                        ? " bg-dark-green px-3 py-1 mt-2 rounded-md text-white text-center"
+                        ? " bg-sharp-pink px-3 py-1 mt-2 rounded-md text-white text-center"
                         : "cursor-not-allowed disabled:bg-slate-300  px-3 py-1 mt-2 rounded-md text-white text-center hover:text-white"
                     }
                   >

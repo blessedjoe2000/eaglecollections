@@ -17,6 +17,14 @@ export const CardContainer = styled(Box)`
   align-items: center;
   gap: 1rem;
   margin: 1rem 0;
+
+  @media (max-width: 479px) {
+    gap: 5px;
+  }
+
+  @media (max-width: 380px) {
+    gap: 2px;
+  }
 `;
 
 export const CardDetails = styled(Box)`
@@ -28,6 +36,19 @@ export const CardDetails = styled(Box)`
 
 export const ImageContainer = styled(Box)`
   width: 200px;
+
+  @media (max-width: 479px) {
+    width: 170px;
+  }
+  @media (max-width: 430px) {
+    width: 150px;
+  }
+  @media (max-width: 380px) {
+    width: 130px;
+  }
+  @media (max-width: 326px) {
+    width: 200px;
+  }
 `;
 
 export const PrevNextButton = styled(Button)`
@@ -37,6 +58,10 @@ export const PrevNextButton = styled(Button)`
   color: #fff;
   border-radius: 5px;
   font-size: 1rem;
+
+  @media (max-width: 479px) {
+    padding: 1px 5px;
+  }
 
   :hover {
     background-color: #01579b !important;
@@ -49,4 +74,8 @@ export const PrevNextDisabledButton = styled(Box)`
   padding: 0.5rem 2rem;
   border-radius: 5px;
   cursor: not-allowed !important;
+
+  @media (max-width: 479px) {
+    padding: 1px 5px;
+  }
 `;

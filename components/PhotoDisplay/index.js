@@ -87,6 +87,10 @@ export default function PhotoDisplay() {
               alt={photo.desc}
               height={500}
               width={300}
+              style={{
+                width: "100%", // Makes image responsive
+                height: "auto", // Maintains aspect ratio
+              }}
             />
           </Link>
         </PhotoWrapper>
