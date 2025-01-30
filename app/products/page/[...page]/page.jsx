@@ -297,7 +297,12 @@ export default function AllProducts() {
       </CardContainer>
 
       <Container
-        sx={{ display: "flex", justifyContent: "space-between", my: "1rem" }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "2rem",
+          my: "1rem",
+        }}
       >
         {pageId > 1 ? (
           <Link href={`/products/page/${pageId - 1}`}>

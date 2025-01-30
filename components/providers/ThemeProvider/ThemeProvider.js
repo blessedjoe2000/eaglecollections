@@ -63,9 +63,6 @@ export function ThemeProvider({ children }) {
         },
         components: {
           MuiDivider: {
-            defaultProps: {
-              disableRipple: true,
-            },
             styleOverrides: {
               root: {
                 backgroundColor: mode === "light" ? "#E0E0E0" : "#4A4A4A",
@@ -73,6 +70,9 @@ export function ThemeProvider({ children }) {
             },
           },
           MuiButton: {
+            defaultProps: {
+              disableRipple: true,
+            },
             styleOverrides: {
               root: {
                 color: "#006BFF",

@@ -25,9 +25,9 @@ export const ScrollContainer = styled(Box)`
     border-radius: 10px;
   }
 
-  /* &::-webkit-scrollbar-thumb:hover {
-    background: #01579b;
-  } */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #01204e;
+  }
 `;
 
 export const PhotoWrapper = styled(Box)`

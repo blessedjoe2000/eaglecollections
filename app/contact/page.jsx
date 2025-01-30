@@ -142,7 +142,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex justify-center mt-5">
             <SocialMedia />
           </div>
         </div>
