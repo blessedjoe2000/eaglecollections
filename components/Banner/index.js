@@ -95,13 +95,8 @@ export default function Banner() {
                   <Image
                     src={displayContent.image}
                     alt="slider"
-                    height={0}
-                    // width={0}
+                    height={500}
                     className="object-cover image-full-width"
-                    style={{
-                      width: "100%",
-                      maxHeight: "500px",
-                    }}
                   />
                 </div>
               </div>
