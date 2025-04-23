@@ -19,11 +19,11 @@ export const CardContainer = styled(Box)`
   margin: 1rem 0;
 
   @media (max-width: 479px) {
-    gap: 5px;
+    gap: 10px;
   }
 
   @media (max-width: 380px) {
-    gap: 2px;
+    gap: 5px;
   }
 `;
 
