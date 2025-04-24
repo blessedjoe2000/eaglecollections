@@ -49,3 +49,7 @@ h3 {
   width: 100%;
   height: auto;
 }
+
+li {
+  padding: 2px 0;
+}

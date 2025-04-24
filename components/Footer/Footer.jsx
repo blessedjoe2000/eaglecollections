@@ -109,7 +109,12 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <SocialMedia />
+          <div className="flex flex-col gap-2 items-center justify-center">
+            <SocialMedia />
+            <Link href={"/policy"} className="menuitems">
+              <MenuButton>Policies</MenuButton>
+            </Link>
+          </div>
         </div>
         <div className=" border-t-2 text-center py-2  ">
           <p className="">
