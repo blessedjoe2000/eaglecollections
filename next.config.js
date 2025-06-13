@@ -5,7 +5,6 @@ const nextConfig = {
       "eaglecollections.s3.amazonaws.com",
       "lh3.googleusercontent.com",
       "eaglecollectionstore.s3.amazonaws.com",
-      "i7l4i0sqmv.ufs.sh",
     ],
   },
 };
