@@ -9,7 +9,7 @@ export async function GET(req, ctx) {
   let { page } = ctx.params;
 
   page = parseInt(page);
-  const itemLimit = 50;
+  const itemLimit = 30;
 
   const skipPage = (page - 1) * itemLimit;
 

@@ -24,6 +24,7 @@ import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 import { ComingSoon } from "@/app/accessories/styles";
 import Banner from "@/components/Banner";
 import PhotoDisplay from "@/components/PhotoDisplay";
+import ProductSkeleton from "@/components/ProductSkeleton/ProductSkeleton";
 
 export default function AllProducts() {
   const { addToFavorite, favoriteIds } = useContext(CartContext);
@@ -51,7 +52,7 @@ export default function AllProducts() {
     fetchAllProducts();
   }, [pageId]);
 
-  const itemsPerPage = 50;
+  const itemsPerPage = 30;
   const pagesRemaining = Math.ceil(data.length % itemsPerPage);
 
   useEffect(() => {
@@ -67,15 +68,6 @@ export default function AllProducts() {
       setLoading(false);
     }, 2000);
   };
-
-  if (!data.length) {
-    return (
-      <SpinnerContainer>
-        <ComingSoon>Loading...</ComingSoon>
-        <Spinner />
-      </SpinnerContainer>
-    );
-  }
 
   if (searchResults.length > 0) {
     return (
@@ -111,6 +103,7 @@ export default function AllProducts() {
                           alt={`${searchResult.title}`}
                           width={200}
                           height={250}
+                          loading="lazy"
                           priority
                           className="object-cover w-[200px] h-[250px] rounded-md"
                         />
@@ -210,7 +203,8 @@ export default function AllProducts() {
   return (
     <div>
       <Banner />
-      <PhotoDisplay />
+      {/* <PhotoDisplay /> */}
+      {!data.length && <ProductSkeleton />}
       <CardContainer>
         {data &&
           data.map((productData) => {
