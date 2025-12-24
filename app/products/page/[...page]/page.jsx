@@ -10,18 +10,15 @@ import {
   ImageContainer,
   PrevNextButton,
   PrevNextDisabledButton,
-  SpinnerContainer,
 } from "./styles";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { useSearch } from "@/components/providers/SearchProvider/SearchProvider";
-import Spinner from "@/components/Spinner/Spinner";
 import { usePathname } from "next/navigation";
 import { Container } from "@mui/system";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
-import { ComingSoon } from "@/app/accessories/styles";
 import Banner from "@/components/Banner";
 import PhotoDisplay from "@/components/PhotoDisplay";
 import ProductSkeleton from "@/components/ProductSkeleton/ProductSkeleton";
@@ -105,6 +102,7 @@ export default function AllProducts() {
                           height={250}
                           loading="lazy"
                           priority
+                          unoptimized
                           className="object-cover w-[200px] h-[250px] rounded-md"
                         />
                       </Link>
@@ -236,6 +234,7 @@ export default function AllProducts() {
                         width={200}
                         height={250}
                         priority
+                        unoptimized
                         className="object-cover w-[200px] h-[250px] rounded-md"
                       />
                     </Link>

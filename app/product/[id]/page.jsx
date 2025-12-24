@@ -4,10 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
 import axios from "axios";
-import { SpinnerContainer } from "@/app/products/page/[...page]/styles";
 import { Container } from "@mui/system";
 import { DescContainer, PriceContainer } from "@/app/favorite/styles";
-import { ComingSoon } from "@/app/accessories/styles";
 import SingleProductSkeleton from "@/components/SingleProductSkeleton/SingleProductSkeleton";
 
 export default function Product() {
