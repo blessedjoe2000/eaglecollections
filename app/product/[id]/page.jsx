@@ -3,13 +3,12 @@ import { useParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "@/components/providers/CartContext/CartContext";
 import { ProductImages } from "@/components/ProductImages/ProductImages";
-import Spinner from "@/components/Spinner/Spinner";
 import axios from "axios";
-import SimilarProducts from "@/components/SimilarProducts/SimilarProducts";
 import { SpinnerContainer } from "@/app/products/page/[...page]/styles";
 import { Container } from "@mui/system";
 import { DescContainer, PriceContainer } from "@/app/favorite/styles";
 import { ComingSoon } from "@/app/accessories/styles";
+import SingleProductSkeleton from "@/components/SingleProductSkeleton/SingleProductSkeleton";
 
 export default function Product() {
   const { addToFavorite, favoriteIds, addProduct } = useContext(CartContext);
@@ -78,12 +77,7 @@ export default function Product() {
   };
 
   if (!productData) {
-    return (
-      <SpinnerContainer>
-        <ComingSoon>Loading...</ComingSoon>
-        <Spinner />
-      </SpinnerContainer>
-    );
+    return <SingleProductSkeleton />;
   }
 
   return (

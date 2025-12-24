@@ -61,6 +61,7 @@ export function ProductImages({ images }) {
           width={407}
           height={500}
           priority
+          unoptimized
           className="opacity-0"
         />
       </div>
@@ -80,6 +81,7 @@ export function ProductImages({ images }) {
                 height={50}
                 className="rounded-md"
                 priority
+                unoptimized
               />
             </button>
           ))}
