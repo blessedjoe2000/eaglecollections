@@ -27,6 +27,7 @@
     "mongoose": "^8.0.2",
     "next": "^14.0.3",
     "next-auth": "^4.24.5",
+    "nodemailer": "^6.10.1",
     "react": "^18",
     "react-dom": "^18",
     "react-easy-panzoom": "^0.4.4",

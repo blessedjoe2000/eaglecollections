@@ -110,11 +110,11 @@ export default function Cart() {
   if (isSuccess) {
     return (
       <>
-        <div className="bg-dark-blue mx-5 text-center py-10 ">
+        <div className="bg-dark-blue mx-5 text-center py-10 text-white">
           <h1 className="font-bold py-2 text-lg">
             Payment Successful! Thank you for shopping with us.
           </h1>
-          <p className="mb-5">We will email you when your order is sent.</p>
+          <p className="mb-5 ">We will email you when your order is sent.</p>
           <Link
             href={"/"}
             className=" bg-dark-green rounded-md  inline-flex justify-center items-center gap-2 text-white px-3 py-1 hover:text-light-green"

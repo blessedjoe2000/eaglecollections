@@ -1,6 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_SK);
 import { mongooseConnect } from "@/lib/connectDB";
 import OrderModel from "@/model/OrderModel";
+import { transporter } from "@/lib/mailer";
 
 export async function POST(req) {
   //connected to database
@@ -27,17 +28,40 @@ export async function POST(req) {
     case "checkout.session.completed":
       const paymentData = event.data.object;
       // Then define and call a function to handle the event payment_intent.succeeded
-      const { payment_status, metadata, shipping_details } = paymentData;
+      const { payment_status, metadata, customer_details, shipping_details } =
+        paymentData;
 
-      const orderId = metadata.orderId;
+      const orderId = metadata?.orderId;
       const address = shipping_details.address;
       if (payment_status === "paid" || orderId) {
-        await OrderModel.findByIdAndUpdate(orderId, {
-          paid: true,
-          address: address,
-          status: "Pending",
+        await OrderModel.findByIdAndUpdate(
+          orderId,
+          {
+            paid: true,
+            address: address,
+            status: "Pending",
+          },
+          { new: true }
+        );
+
+        // 🔔 SEND ADMIN ALERT EMAIL
+        await transporter.sendMail({
+          from: {
+            name: "Eagle Collections Store",
+            address: process.env.ADMIN_EMAIL,
+          },
+          to: [process.env.ADMIN_NOTIFY_EMAIL, process.env.ORG_EMAIL],
+          subject: "🛒 New Purchase Alert",
+          html: `
+            <h2>New Order Received</h2>
+            <p><strong>Customer:</strong> ${customer_details?.name}</p>
+            <p><strong>Email:</strong> ${customer_details?.email}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Status:</strong> Paid</p>
+          `,
         });
       }
+
       break;
     // ... handle other event types
     default:
