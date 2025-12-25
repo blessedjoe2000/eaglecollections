@@ -56,7 +56,16 @@ export async function POST(req) {
             <h2>New Order Received</h2>
             <p><strong>Customer:</strong> ${customer_details?.name}</p>
             <p><strong>Email:</strong> ${customer_details?.email}</p>
-            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Address:</strong> ${`${
+              address.line1 +
+              " " +
+              address.city +
+              " " +
+              address.state +
+              " " +
+              address.postal_code
+            }`}</p>
+            <p><strong>Total:</strong> $${session.amount_total / 100}</p>
             <p><strong>Status:</strong> Paid</p>
           `,
         });
