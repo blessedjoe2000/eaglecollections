@@ -41,7 +41,7 @@ export async function POST(req) {
             address: address,
             status: "Pending",
           },
-          { new: true }
+          { new: true },
         );
 
         // 🔔 SEND ADMIN ALERT EMAIL
@@ -54,7 +54,7 @@ export async function POST(req) {
           subject: "🛒 New Purchase Alert",
           html: `
             <h2>New Order Received</h2>
-            <p><strong>Customer:</strong> ${customer_details?.name}</p>
+            <p><strong>Customer Name:</strong> ${customer_details?.name}</p>
             <p><strong>Email:</strong> ${customer_details?.email}</p>
             <p><strong>Address:</strong> ${`${
               address?.line1 +
